@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6415ac55-1302-4be7-9b01-f2a2bb73ce35" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Login.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Login.java" />
-    </list>
+    <list default="true" id="6415ac55-1302-4be7-9b01-f2a2bb73ce35" name="Default" comment="" />
     <ignored path="Project.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
