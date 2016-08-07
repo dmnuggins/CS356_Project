@@ -104,4 +104,28 @@ public class FileDB {
         file.writeInt(length);
         file.writeInt(f);
     }
+
+    public int getNextID() {
+        int nextID = -1;
+        try {
+            file.seek(0);
+            while (!eof()) {
+                int length = file.readInt();
+                long start = file.getFilePointer();
+                int idlen = seekField(Field.ID.ordinal(), start + length);
+                if (idlen > 0) {
+                    int id = file.readInt();
+                    if (id > nextID) {
+                        nextID = id;
+                    }
+                }
+                file.seek(start + length); //seek to next record
+            }
+
+            return nextID + 1;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return -1;
+    }
 }

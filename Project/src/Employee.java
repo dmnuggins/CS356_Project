@@ -12,10 +12,11 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int id, String n, boolean admin) {
+    public Employee(int id, String n, boolean admin, List<Date> res) {
         ID = id;
         name = n;
         isAdmin = admin;
+        reserved = res;
     }
 
     public void reserveDate(Date d) {
