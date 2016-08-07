@@ -20,7 +20,7 @@ public class Meeting {
     }
 
     public List<Employee> getAttendees() {
-        return null;
+        return EmployeeMeeting.getAllEmployees(id);
     }
 
     public Employee getOwner() {
