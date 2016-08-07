@@ -10,7 +10,8 @@ public class EmployeeMeetingDB extends FileDB{
         ID,
         EMPLOYEE,
         MEETING,
-        ISOWNER
+        ISOWNER,
+        ACCEPTED
     }
 
     protected EmployeeMeetingDB() {
@@ -80,11 +81,18 @@ public class EmployeeMeetingDB extends FileDB{
             isOwner = file.readBoolean();
         }
 
+        len = seekField(Field.ACCEPTED.ordinal(), end);
+        boolean acc = false;
+        if (len > 0) {
+            acc = file.readBoolean();
+        }
+
         EmployeeMeeting em = new EmployeeMeeting();
         em.ID = id;
         em.employeeID = empid;
         em.meetingID = mid;
         em.isOwner = isOwner;
+        em.accepted = acc;
 
         return em;
     }
@@ -107,6 +115,9 @@ public class EmployeeMeetingDB extends FileDB{
 
             writeFieldHeader(Field.ISOWNER.ordinal(), 1);
             file.writeBoolean(em.isOwner);
+
+            writeFieldHeader(Field.ACCEPTED.ordinal(), 1);
+            file.writeBoolean(em.accepted);
 
             long end = file.getFilePointer();
             file.seek(start);
