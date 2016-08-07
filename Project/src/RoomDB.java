@@ -42,7 +42,7 @@ public class RoomDB extends FileDB {
         int length = seekRecord(id);
         if (length > 0) {
             try {
-                readRecord(length);
+                return readRecord(length);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -60,7 +60,7 @@ public class RoomDB extends FileDB {
         }
         int id = file.readInt();
 
-        int capLen = seekField(Field.ID.ordinal(), end);
+        int capLen = seekField(Field.CAP.ordinal(), end);
         int cap = 0;
         if (capLen > 0) {
             cap = file.readInt();
