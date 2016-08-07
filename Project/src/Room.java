@@ -10,4 +10,6 @@ public class Room {
         this.num = num;
         this.capacity = capacity;
     }
+
+    public Room() {};
 }

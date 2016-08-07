@@ -1,27 +1,25 @@
+import java.util.*;
 /**
  * Created by cthill on 8/6/16.
  */
 public class MeetingApp {
 
     public static void main(String args[]) {
-        System.out.println("hello");
+        LoginDB db = LoginDB.getInstance();
 
-        Employee testEmployee = new Employee(1, "Bob Jones 4", true);
+//        Login l = new Login(0, "joe", "password");
+//        db.save(l);
+//        Employee loadTest1 = Login.authenticate("joe", "password");
+//        Date d = new Date();
+//        d.setYear(2016);
+//        d.setDate(11);
+//        d.setMonth(9);
+//        loadTest1.reserveDate(d);
 
-        EmployeeDB db = (EmployeeDB) EmployeeDB.getInstance();
+        Employee loadTest1 = Login.authenticate("joe", "password");
 
-        db.save(testEmployee);
-        db.save(testEmployee);
-        db.save(testEmployee);
-
-
-        Employee loadTest1 = db.load(0);
-        loadTest1.isAdmin = true;
-        db.save(loadTest1);
-        Employee loadTest2 = db.load(1);
         System.out.println(loadTest1.name);
-        System.out.println(loadTest2.name);
-
+        System.out.println(loadTest1.reserved.size());
     }
 
 }

@@ -4,7 +4,7 @@ import java.io.RandomAccessFile;
 /**
  * Created by cthill on 8/7/16.
  */
-public abstract class FileDB {
+public class FileDB {
     protected String filename;
     protected RandomAccessFile file;
     protected enum Field {
@@ -30,7 +30,7 @@ public abstract class FileDB {
                 long start = file.getFilePointer();
 
                 //seek ID field
-                seekField(Field.ID.ordinal(), length);
+                seekField(Field.ID.ordinal(), start + length);
                 int idRead = file.readInt();
 
                 if (idRead == id) {
@@ -83,9 +83,8 @@ public abstract class FileDB {
     }
 
     //seeks to starting point of specific field in record
-    protected int seekField(int f, int maxBytes) throws IOException{
-        int read = 0;
-        while (read < maxBytes) {
+    protected int seekField(int f, long end) throws IOException{
+        while (file.getFilePointer() < end) {
             int l = file.readInt();
             int ordinal = file.readInt();
             long fieldStart = file.getFilePointer();
@@ -95,7 +94,6 @@ public abstract class FileDB {
                 return l;
             }
 
-            read += 8 + l;
             file.skipBytes(l);
         }
 
