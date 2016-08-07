@@ -5,21 +5,18 @@ import java.util.*;
 public class MeetingApp {
 
     public static void main(String args[]) {
-        LoginDB db = LoginDB.getInstance();
+        MeetingDB mdb = MeetingDB.getInstance();
+        Meeting m = new Meeting();
+        m.id = 0;
+        m.room = 1100;
+        m.start = new Date(2016, 9, 11, 9, 0, 0);
+        m.end = new Date(2016, 9, 11, 10, 0, 0);
+        mdb.save(m);
 
-//        Login l = new Login(0, "joe", "password");
-//        db.save(l);
-//        Employee loadTest1 = Login.authenticate("joe", "password");
-//        Date d = new Date();
-//        d.setYear(2016);
-//        d.setDate(11);
-//        d.setMonth(9);
-//        loadTest1.reserveDate(d);
+        Meeting load = mdb.load(0);
+        System.out.println(load.start);
+        System.out.println(load.end);
 
-        Employee loadTest1 = Login.authenticate("joe", "password");
-
-        System.out.println(loadTest1.name);
-        System.out.println(loadTest1.reserved.size());
+        System.out.println(mdb.getNextID());
     }
-
 }

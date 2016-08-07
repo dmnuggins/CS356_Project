@@ -13,12 +13,26 @@ public class EmployeeDB extends FileDB{
         RESERVED
     }
 
-    protected EmployeeDB() {
-        super("employeedb.txt");
-    }
+    protected EmployeeDB() { super("employeedb.txt"); }
 
-    public static final EmployeeDB getInstance() {
-        return instance;
+    public static final EmployeeDB getInstance() { return instance; }
+
+    public List<Employee> loadAll() {
+        List<Employee> l = new ArrayList<Employee>();
+
+        try {
+            file.seek(0);
+            while (!eof()) {
+                int length = file.readInt();
+                l.add(readRecord(length));
+            }
+
+            return l;
+        } catch (IOException ex){
+            ex.printStackTrace();
+        }
+
+        return null;
     }
 
     public Employee load(int id) {

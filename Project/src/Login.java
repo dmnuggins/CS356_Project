@@ -16,7 +16,7 @@ public class Login {
         password = p;
     }
 
-    //checks username and password. Returns employeeID or -1 for not found
+    //checks username and password. Returns employee
     public static Employee authenticate(String u, String p) {
         LoginDB db = LoginDB.getInstance();
         List<Login> loginList = db.loadAll();
