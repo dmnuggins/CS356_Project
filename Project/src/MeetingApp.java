@@ -5,7 +5,12 @@ import java.util.*;
 public class MeetingApp {
 
     public static void main(String args[]) {
-        LoginDB db = LoginDB.getInstance();
+        LoginGUI gui = new LoginGUI();
+        gui.showGUI();
+//        EmployeeDB db = EmployeeDB.getInstance();
+//        Employee e = new Employee(0, "TestEMP", false);
+//        e.reserved = new ArrayList<Date>();
+//        db.save(e);
 
 //        Login l = new Login(0, "joe", "password");
 //        db.save(l);
@@ -16,10 +21,10 @@ public class MeetingApp {
 //        d.setMonth(9);
 //        loadTest1.reserveDate(d);
 
-        Employee loadTest1 = Login.authenticate("joe", "password");
-
-        System.out.println(loadTest1.name);
-        System.out.println(loadTest1.reserved.size());
+//        Employee loadTest1 = Login.authenticate("joe", "password");
+//
+//        System.out.println(loadTest1.name);
+//        System.out.println(loadTest1.reserved.size());
     }
 
 }
