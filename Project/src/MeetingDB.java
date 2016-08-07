@@ -1,6 +1,5 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by cthill on 8/7/16.
@@ -9,19 +8,21 @@ public class MeetingDB extends FileDB {
     protected static final MeetingDB instance = new MeetingDB();
     protected enum Field {
         ID,
-        CAP
+        ROOM,
+        START,
+        END
     }
 
     protected MeetingDB() {
-        super("roomdb.txt");
+        super("meetingdb.txt");
     }
 
     public static final MeetingDB getInstance() {
         return instance;
     }
 
-    public List<Room> loadAll() {
-        List<Room> l = new ArrayList<Room>();
+    public List<Meeting> loadAll() {
+        List<Meeting> l = new ArrayList<Meeting>();
 
         try {
             file.seek(0);
@@ -38,11 +39,11 @@ public class MeetingDB extends FileDB {
         return null;
     }
 
-    public Room load(int id) {
+    public Meeting load(int id) {
         int length = seekRecord(id);
         if (length > 0) {
             try {
-                readRecord(length);
+                return readRecord(length);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -51,7 +52,7 @@ public class MeetingDB extends FileDB {
         return null;
     }
 
-    protected Room readRecord(int length) throws IOException{
+    protected Meeting readRecord(int length) throws IOException{
         long end = file.getFilePointer() + length;
 
         int idLen = seekField(Field.ID.ordinal(), end);
@@ -60,31 +61,51 @@ public class MeetingDB extends FileDB {
         }
         int id = file.readInt();
 
-        int capLen = seekField(Field.ID.ordinal(), end);
-        int cap = 0;
-        if (capLen > 0) {
-            cap = file.readInt();
+        int roomLen = seekField(Field.ROOM.ordinal(), end);
+        if (roomLen != 4) {
+            return null;
         }
+        int r = file.readInt();
 
-        Room r = new Room();
-        r.num = id;
-        r.capacity = cap;
+        int stimeLen = seekField(Field.START.ordinal(), end);
+        if (stimeLen != 8) {
+            return null;
+        }
+        Date s = new Date(file.readLong());
 
-        return r;
+        int etimeLen = seekField(Field.END.ordinal(), end);
+        if (etimeLen != 8) {
+            return null;
+        }
+        Date e = new Date(file.readLong());
+
+        Meeting m = new Meeting();
+        m.id = id;
+        m.room = r;
+        m.start = s;
+        m.end = e;
+
+        return m;
     }
 
-    public void save(Room r) {
+    public void save(Meeting m) {
         try {
-            eraseRecord(r.num);
+            eraseRecord(m.id);
 
             long start = file.getFilePointer();
             file.writeInt(0); //placeholder for length
 
             writeFieldHeader(Field.ID.ordinal(), 4);
-            file.writeInt(r.num);
+            file.writeInt(m.id);
 
-            writeFieldHeader(Field.CAP.ordinal(), 4);
-            file.writeInt(r.capacity);
+            writeFieldHeader(Field.ROOM.ordinal(), 4);
+            file.writeInt(m.room);
+
+            writeFieldHeader(Field.START.ordinal(), 8);
+            file.writeLong(m.start.getTime());
+
+            writeFieldHeader(Field.END.ordinal(), 8);
+            file.writeLong(m.end.getTime());
 
             long end = file.getFilePointer();
             file.seek(start);
