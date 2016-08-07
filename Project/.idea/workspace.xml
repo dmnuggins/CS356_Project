@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aeea193a-5326-417e-b0e5-4c8b2da42716" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/EmployeeMeeting.class" afterPath="$PROJECT_DIR$/out/production/Project/EmployeeMeeting.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/Meeting.class" afterPath="$PROJECT_DIR$/out/production/Project/Meeting.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/MeetingApp.class" afterPath="$PROJECT_DIR$/out/production/Project/MeetingApp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/MeetingDB$Field.class" afterPath="$PROJECT_DIR$/out/production/Project/MeetingDB$Field.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/MeetingDB.class" afterPath="$PROJECT_DIR$/out/production/Project/MeetingDB.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Meeting.java" afterPath="$PROJECT_DIR$/src/Meeting.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MeetingApp.java" afterPath="$PROJECT_DIR$/src/MeetingApp.java" />
     </list>
     <ignored path="Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -503,6 +496,13 @@
       <option name="number" value="Default" />
       <updated>1470610121892</updated>
     </task>
+    <task id="LOCAL-00001" summary="Fixed workspace.xml file conflict">
+      <created>1470610441165</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1470610441165</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -535,6 +535,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixed workspace.xml file conflict" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed workspace.xml file conflict" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
