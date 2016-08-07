@@ -19,12 +19,23 @@ public class Meeting {
         end = e;
     }
 
+    //returns attendees of meeting. Includes owner
     public List<Employee> getAttendees() {
-        return null;
+        return EmployeeMeeting.getAllEmployees(id, true);
     }
 
     public Employee getOwner() {
-        return null;
+        return EmployeeMeeting.getOwner(id);
+    }
+
+    //returns true if meeting is over
+    public boolean isPast() {
+        return end.before(new Date());
+    }
+
+    //returns true if meeting is currently happening
+    public boolean isCurrent() {
+        return start.before(new Date()) && end.after(new Date());
     }
 
 }
