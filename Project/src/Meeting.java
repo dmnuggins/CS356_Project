@@ -24,7 +24,17 @@ public class Meeting {
     }
 
     public Employee getOwner() {
-        return null;
+        return EmployeeMeeting.getOwner(id);
+    }
+
+    //returns true if meeting is over
+    public boolean isPast() {
+        return end.before(new Date());
+    }
+
+    //returns true if meeting is started
+    public boolean isCurrent() {
+        return start.before(new Date()) && end.after(new Date());
     }
 
 }

@@ -29,7 +29,7 @@ public class EmployeeMeeting {
             EmployeeMeeting em = eml.get(i);
             if (em.employeeID == employeeID && em.isOwner == isOwner) {
                 Meeting m = MeetingDB.getInstance().load(em.meetingID);
-                if (includePast || m.end.after(new Date())) {
+                if (includePast || m.end.before(new Date())) {
                     l.add(m);
                 }
             }
