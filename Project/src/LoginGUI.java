@@ -51,9 +51,28 @@ public class LoginGUI extends JFrame{
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Employee emp = Login.authenticate(userNameField.getText(),new String(passwordField.getPassword()));
+                System.out.println(emp.name);
+                if(emp.name != null) {
+                    if (emp.isAdmin) {
+                        //give choice of accessing admin/employee UI
+                    } else {
+                        //access Employee UI
+                    }
 
+                }
             }
         });
+
+    }
+
+    // method is called in MeetingApp to initiate Login User Interface
+    public void showGUI() {
+        setTitle("Login");
+        setContentPane(new LoginGUI().loginPanel);
+        pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
 
     }
 }
