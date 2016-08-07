@@ -21,7 +21,7 @@ public class Meeting {
 
     //returns attendees of meeting. Includes owner
     public List<Employee> getAttendees() {
-        return EmployeeMeeting.getAllEmployees(id, true);
+        return EmployeeMeeting.getAllEmployees(id,true,true);
     }
 
     public Employee getOwner() {
