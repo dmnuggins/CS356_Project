@@ -2,29 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aeea193a-5326-417e-b0e5-4c8b2da42716" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/EmployeeDisplayAdminGUI.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/EmployeeDisplayAdminGUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/Employee.class" afterPath="$PROJECT_DIR$/out/production/Project/Employee.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/EmployeeDB.class" afterPath="$PROJECT_DIR$/out/production/Project/EmployeeDB.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/FileDB.class" afterPath="$PROJECT_DIR$/out/production/Project/FileDB.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/LoginGUI.class" afterPath="$PROJECT_DIR$/out/production/Project/LoginGUI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/MeetingApp.class" afterPath="$PROJECT_DIR$/out/production/Project/MeetingApp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/RoomDB.class" afterPath="$PROJECT_DIR$/out/production/Project/RoomDB.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/UpdatesGUI.class" afterPath="$PROJECT_DIR$/out/production/Project/UpdatesGUI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/AbstractLayout.class" afterPath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/AbstractLayout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/DimensionInfo.class" afterPath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/DimensionInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/GridConstraints.class" afterPath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/GridConstraints.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/GridLayoutManager.class" afterPath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/GridLayoutManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/HorizontalInfo.class" afterPath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/HorizontalInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/LayoutState.class" afterPath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/LayoutState.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/Spacer.class" afterPath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/Spacer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" afterPath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/SupportCode.class" afterPath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/SupportCode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/Util.class" afterPath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/Util.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/VerticalInfo.class" afterPath="$PROJECT_DIR$/out/production/Project/com/intellij/uiDesigner/core/VerticalInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/roomDisplayAdminGui.form" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MeetingApp.java" afterPath="$PROJECT_DIR$/src/MeetingApp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdminGui.form" afterPath="$PROJECT_DIR$/src/AdminGui.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EmployeeDisplayAdminGUI.form" afterPath="$PROJECT_DIR$/src/EmployeeDisplayAdminGUI.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/adminGui.java" afterPath="$PROJECT_DIR$/src/adminGui.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/roomDisplayAdminGui.java" afterPath="$PROJECT_DIR$/src/roomDisplayAdminGui.java" />
     </list>
     <ignored path="Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,7 +29,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MeetingApp.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MeetingApp.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MeetingApp.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
@@ -59,38 +42,11 @@
       <file leaf-file-name="EmployeeDisplayAdminGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/EmployeeDisplayAdminGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="46" column="48" selection-start-line="44" selection-start-column="16" selection-end-line="46" selection-end-column="48" />
+            <state relative-caret-position="296">
+              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RoomDisplayAdminGui.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RoomDisplayAdminGui.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RoomDisplayAdminGui.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RoomDisplayAdminGui.form">
-          <provider selected="true" editor-type-id="ui-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AdminGUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AdminGUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="35" column="75" selection-start-line="35" selection-start-column="75" selection-end-line="35" selection-end-column="75" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -102,8 +58,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminGUI.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AdminGUI.form">
+      <file leaf-file-name="RoomDisplayAdminGui.form" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/RoomDisplayAdminGui.form">
           <provider selected="true" editor-type-id="ui-designer">
             <state />
           </provider>
@@ -143,8 +99,8 @@
         <option value="$PROJECT_DIR$/src/EmployeeDisplayAdminGUI.java" />
         <option value="$PROJECT_DIR$/src/RoomDisplayAdminGui.java" />
         <option value="$PROJECT_DIR$/src/RoomDisplayAdminGui.form" />
-        <option value="$PROJECT_DIR$/src/EmployeeDisplayAdminGUI.form" />
         <option value="$PROJECT_DIR$/src/MeetingApp.java" />
+        <option value="$PROJECT_DIR$/src/EmployeeDisplayAdminGUI.form" />
       </list>
     </option>
   </component>
@@ -245,24 +201,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="EmployeeDisplayAdminGUI" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AdminGUI" />
               <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -563,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470610441165</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fixed workspace.xml file conflict">
+      <created>1470619747765</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1470619747765</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -756,20 +701,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RoomDisplayAdminGui.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EmployeeDisplayAdminGUI.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/EmployeeDisplayAdminGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="46" column="48" selection-start-line="44" selection-start-column="16" selection-end-line="46" selection-end-column="48" />
+        <state relative-caret-position="296">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -782,6 +717,16 @@
           <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EmployeeDisplayAdminGUI.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RoomDisplayAdminGui.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
       </provider>
     </entry>
   </component>
