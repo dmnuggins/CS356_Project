@@ -26,7 +26,7 @@
               <component id="52f96" class="javax.swing.JButton" binding="employeeButton">
                 <constraints/>
                 <properties>
-                  <preferredSize width="142" height="32"/>
+                  <preferredSize width="160" height="32"/>
                   <text value="View Employee"/>
                 </properties>
               </component>
@@ -55,6 +55,7 @@
               <component id="a54e5" class="javax.swing.JButton" binding="meetingButton">
                 <constraints/>
                 <properties>
+                  <preferredSize width="160" height="32"/>
                   <text value="View Meeting Rooms"/>
                 </properties>
               </component>
@@ -71,7 +72,7 @@
               <component id="81f58" class="javax.swing.JButton" binding="goBack">
                 <constraints/>
                 <properties>
-                  <preferredSize width="142" height="32"/>
+                  <preferredSize width="160" height="32"/>
                   <text value="Back"/>
                 </properties>
               </component>
