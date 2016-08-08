@@ -14,6 +14,10 @@ public class EmployeeGUI {
     private JButton displayScheduleButton;
     private JButton createMeetingButton;
     private JButton updateUserInfoButton;
+    private JPanel southPanel;
+    private JPanel acceptDeclinePanel;
+    private JPanel newMeetingInvitePanel;
+    private JPanel meetingSchedulePanel;
 
     public EmployeeGUI() {
         displayScheduleButton.addActionListener(new ActionListener() {
