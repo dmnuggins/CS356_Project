@@ -6,29 +6,22 @@ import java.awt.event.ActionListener;
 /**
  * Created by CesarRecinos on 8/7/2016.
  */
-public class roomDisplayAdminGui extends JFrame {
+public class RoomDisplayAdminGui extends JFrame {
     private JPanel rootPanel;
     private JPanel textPanel;
     private JPanel buttonPanel;
     private JButton createRoom;
     private JButton editRoom;
-    private JButton goBack;
+    private JButton cancelButton;
     private JComboBox listComboBox;
 
-    public roomDisplayAdminGui(){
+    public RoomDisplayAdminGui(){
         super("Meeting Rooms");
         setContentPane(rootPanel);
+        pack();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        rootPanel.add(textPanel);
-        rootPanel.add(buttonPanel);
-
-        textPanel.add(listComboBox);
-
-        buttonPanel.add(createRoom);
-        buttonPanel.add(editRoom);
-        buttonPanel.add(goBack);
 
         listComboBox.addActionListener(new ActionListener() {
             @Override
@@ -50,10 +43,12 @@ public class roomDisplayAdminGui extends JFrame {
             }
         });
 
-        goBack.addActionListener(new ActionListener() {
+        cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dispose();
 
+                new AdminGUI().setVisible(true);
             }
         });
 

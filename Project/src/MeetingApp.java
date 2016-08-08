@@ -1,12 +1,11 @@
-import java.util.*;
 /**
  * Created by cthill on 8/6/16.
  */
 public class MeetingApp {
 
     public static void main(String args[]) {
-        LoginGUI log = new LoginGUI();
-        log.showGUI();
+        AdminGUI ag = new AdminGUI(); //Admin Run Test
+
 //        EmployeeMeetingDB emd = EmployeeMeetingDB.getInstance();
 //
 //        EmployeeMeeting em1 = new EmployeeMeeting();
