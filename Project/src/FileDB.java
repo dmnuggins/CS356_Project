@@ -47,7 +47,7 @@ public class FileDB {
         return -1;
     }
 
-    protected boolean eraseRecord(int ID) throws IOException {
+    public boolean eraseRecord(int ID) throws IOException {
         int length = seekRecord(ID);
         //record exists
         if (length > 0) {
