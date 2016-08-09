@@ -6,17 +6,16 @@ public class Employee {
     public int ID;
     public String name;
     public boolean isAdmin;
-    public List<Date> reserved; //reserved days
+    public List<Date> reserved = new ArrayList<Date>(); //reserved days
 
 
     public Employee() {
     }
 
-    public Employee(int id, String n, boolean admin, List<Date> res) {
+    public Employee(int id, String n, boolean admin) {
         ID = id;
         name = n;
         isAdmin = admin;
-        reserved = res;
     }
 
     public void reserveDate(Date d) {
