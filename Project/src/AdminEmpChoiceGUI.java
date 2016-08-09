@@ -11,6 +11,9 @@ public class AdminEmpChoiceGUI extends JFrame{
     private JButton adminMenuButton;
     private JButton employeeMenuButton;
     private JButton logOutButton;
+    private JPanel adminMenuPanel;
+    private JPanel employeeMenuPanel;
+    private JPanel logOutPanel;
 
     public AdminEmpChoiceGUI() {
         adminMenuButton.addActionListener(new ActionListener() {

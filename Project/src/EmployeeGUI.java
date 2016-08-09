@@ -18,9 +18,11 @@ public class EmployeeGUI extends JFrame{
     private JPanel acceptDeclinePanel;
     private JPanel newMeetingInvitePanel;
     private JPanel meetingSchedulePanel;
-    private JTable table1;
-    private JTable acc;
-    private JTable table3;
+    private JTable invitesTabel;
+    private JTable accDecTabel;
+    private JTable scheduleTable;
+    private JPanel buttonPanel;
+    private JScrollPane scheduleScrollPane;
 
     public EmployeeGUI() {
         displayScheduleButton.addActionListener(new ActionListener() {

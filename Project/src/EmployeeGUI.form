@@ -13,7 +13,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="4bc89" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+          <grid id="4bc89" binding="buttonPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -58,7 +58,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="89af2" class="javax.swing.JTable" binding="acc">
+              <component id="89af2" class="javax.swing.JTable" binding="accDecTabel">
                 <constraints/>
                 <properties>
                   <autoCreateRowSorter value="true"/>
@@ -73,7 +73,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="de2c2" class="javax.swing.JTable" binding="table3" default-binding="true">
+              <component id="de2c2" class="javax.swing.JTable" binding="scheduleTable">
                 <constraints/>
                 <properties/>
               </component>
@@ -86,12 +86,12 @@
             <properties/>
             <border type="none"/>
             <children>
-              <scrollpane id="a3921">
+              <scrollpane id="a3921" binding="scheduleScrollPane">
                 <constraints/>
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="a9f96" class="javax.swing.JTable" binding="table1" default-binding="true">
+                  <component id="a9f96" class="javax.swing.JTable" binding="invitesTabel">
                     <constraints/>
                     <properties/>
                   </component>
