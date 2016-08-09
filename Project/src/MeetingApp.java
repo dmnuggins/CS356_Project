@@ -4,7 +4,14 @@
 public class MeetingApp {
 
     public static void main(String args[]) {
-        AdminGUI ag = new AdminGUI(); //Admin Run Test
+        //Create admin account
+        Employee admin = new Employee(0, "Admin", true);
+        EmployeeDB.getInstance().save(admin);
+        Login adminLogin = new Login(0, "admin", "password");
+        LoginDB.getInstance().save(adminLogin);
+
+        LoginGUI lg = new LoginGUI();
+        lg.showGUI();
 
 //        EmployeeMeetingDB emd = EmployeeMeetingDB.getInstance();
 //

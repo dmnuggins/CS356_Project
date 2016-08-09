@@ -27,7 +27,7 @@ public class LoginGUI extends JFrame{
         userNameField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                login();
             }
         });
         userNameField.addKeyListener(new KeyAdapter() {
@@ -39,7 +39,7 @@ public class LoginGUI extends JFrame{
         passwordField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                login();
             }
         });
         passwordField.addKeyListener(new KeyAdapter() {
@@ -51,21 +51,25 @@ public class LoginGUI extends JFrame{
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AdminEmpChoiceGUI aegui = new AdminEmpChoiceGUI();
-                aegui.showGUI();
-//                Employee emp = Login.authenticate(userNameField.getText(),new String(passwordField.getPassword()));
-//                System.out.println(emp.name);
-//                if(emp.name != null) {
-//                    if (emp.isAdmin) {
-//                        //give choice of accessing admin/employee UI
-//                    } else {
-
-//                    }
-//
-//                }
+                login();
             }
         });
 
+    }
+
+    public void login() {
+        Employee emp = Login.authenticate(userNameField.getText(),new String(passwordField.getPassword()));
+        if(emp != null) {
+            if (emp.isAdmin) {
+                AdminEmpChoiceGUI aegui = new AdminEmpChoiceGUI();
+                aegui.showGUI();
+            } else {
+                EmployeeGUI egui = new EmployeeGUI();
+                egui.showGUI();
+            }
+        } else {
+            //show failed login text
+        }
     }
 
     // method is called in MeetingApp to initiate Login User Interface
