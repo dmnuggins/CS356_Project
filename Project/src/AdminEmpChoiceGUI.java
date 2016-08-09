@@ -37,7 +37,7 @@ public class AdminEmpChoiceGUI extends JFrame{
         });
     }
     public void showGUI() {
-        setTitle("New Meeting");
+        setTitle("Choose Menu Type");
         setContentPane(new AdminEmpChoiceGUI().choicePanel);
         pack();
         setVisible(true);
