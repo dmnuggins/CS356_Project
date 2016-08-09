@@ -87,6 +87,7 @@
           <component id="ad3ef" class="javax.swing.JButton" binding="Create">
             <constraints/>
             <properties>
+              <enabled value="true"/>
               <text value="Create"/>
             </properties>
           </component>
