@@ -20,12 +20,14 @@ public class AdminGUI extends JFrame{
         super("Admin Menu");
         setContentPane(rootPanel);
         pack();
+        setLocationRelativeTo(null);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         employeeButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 EmployeeDisplayAdminGUI empDisplay = new EmployeeDisplayAdminGUI();
+                dispose();
             }
         });
 
@@ -33,7 +35,8 @@ public class AdminGUI extends JFrame{
         meetingButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
 
-                RoomDisplayAdminGui roomDisplay =new RoomDisplayAdminGui();
+                RoomDisplayAdminGUI roomDisplay =new RoomDisplayAdminGUI();
+                dispose();
 
             }
         });

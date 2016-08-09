@@ -7,11 +7,12 @@
     <properties>
       <enabled value="false"/>
       <font size="12" style="1"/>
+      <preferredSize width="400" height="300"/>
     </properties>
     <border type="none"/>
     <children>
       <grid id="e8ee8" binding="buttonPanel" layout-manager="GridBagLayout">
-        <constraints border-constraint="North"/>
+        <constraints border-constraint="Center"/>
         <properties/>
         <border type="none"/>
         <children>

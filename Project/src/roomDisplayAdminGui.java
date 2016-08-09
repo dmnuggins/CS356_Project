@@ -19,6 +19,7 @@ public class RoomDisplayAdminGUI extends JFrame {
         super("Meeting Rooms");
         setContentPane(rootPanel);
         pack();
+        setLocationRelativeTo(null);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

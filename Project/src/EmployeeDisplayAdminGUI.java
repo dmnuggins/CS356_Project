@@ -18,7 +18,8 @@ public class EmployeeDisplayAdminGUI extends JFrame{
         super("Employees");
         setContentPane(rootPanel);
         pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 
         comboBox1.addActionListener(new ActionListener() {
@@ -30,12 +31,16 @@ public class EmployeeDisplayAdminGUI extends JFrame{
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+;
+                new CreateEmployeeGUI();
+                dispose();
             }
         });
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new EditEmployeeGUI();
+                dispose();
 
             }
         });

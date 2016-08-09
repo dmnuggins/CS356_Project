@@ -4,7 +4,9 @@
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <preferredSize width="400" height="300"/>
+    </properties>
     <border type="none"/>
     <children>
       <grid id="acd94" binding="textFieldPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
@@ -21,7 +23,7 @@
         </children>
       </grid>
       <grid id="74a99" binding="buttonPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-        <constraints border-constraint="Center"/>
+        <constraints border-constraint="South"/>
         <properties/>
         <border type="none"/>
         <children>
