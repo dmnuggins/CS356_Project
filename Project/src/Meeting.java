@@ -13,6 +13,9 @@ public class Meeting {
 
     }
 
+    /**
+     * Should meeting include a TIME?
+     */
     public Meeting(int r, Date s, Date e) {
         room = r;
         start = s;

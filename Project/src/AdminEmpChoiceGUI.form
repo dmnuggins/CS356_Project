@@ -13,7 +13,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="16ddd" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+          <grid id="16ddd" binding="adminMenuPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -29,7 +29,7 @@
               </component>
             </children>
           </grid>
-          <grid id="fd246" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+          <grid id="fd246" binding="employeeMenuPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -45,7 +45,7 @@
               </component>
             </children>
           </grid>
-          <grid id="92a3b" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+          <grid id="92a3b" binding="logOutPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
