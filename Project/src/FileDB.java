@@ -14,7 +14,7 @@ public class FileDB {
     public FileDB(String fn) {
         filename = fn;
         try {
-            file = new RandomAccessFile(filename, "rw");
+            file = new RandomAccessFile(filename + ".dbfile", "rw");
         } catch (java.io.FileNotFoundException e) {
             e.printStackTrace();
         }

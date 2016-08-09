@@ -14,7 +14,7 @@ public class MeetingDB extends FileDB {
     }
 
     protected MeetingDB() {
-        super("meetingdb.txt");
+        super("meeting");
     }
 
     public static final MeetingDB getInstance() {
