@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by CesarRecinos on 8/7/2016.
  */
-public class RoomDisplayAdminGui extends JFrame {
+public class RoomDisplayAdminGUI extends JFrame {
     private JPanel rootPanel;
     private JPanel textPanel;
     private JPanel buttonPanel;
@@ -15,7 +15,7 @@ public class RoomDisplayAdminGui extends JFrame {
     private JButton cancelButton;
     private JComboBox listComboBox;
 
-    public RoomDisplayAdminGui(){
+    public RoomDisplayAdminGUI(){
         super("Meeting Rooms");
         setContentPane(rootPanel);
         pack();

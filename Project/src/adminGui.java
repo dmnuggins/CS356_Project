@@ -33,7 +33,7 @@ public class AdminGUI extends JFrame{
         meetingButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
 
-                RoomDisplayAdminGui roomDisplay =new RoomDisplayAdminGui();
+                RoomDisplayAdminGUI roomDisplay =new RoomDisplayAdminGUI();
 
             }
         });
