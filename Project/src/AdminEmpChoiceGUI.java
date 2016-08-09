@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by dmnguyen on 8/7/16.
  */
-public class AdminEmpChoiceGUI {
+public class AdminEmpChoiceGUI extends JFrame{
     private JPanel choicePanel;
     private JPanel northPanel;
     private JButton adminMenuButton;
@@ -22,7 +22,8 @@ public class AdminEmpChoiceGUI {
         employeeMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                EmployeeGUI empgui = new EmployeeGUI();
+                empgui.showGUI();
             }
         });
         logOutButton.addActionListener(new ActionListener() {
@@ -31,5 +32,13 @@ public class AdminEmpChoiceGUI {
 
             }
         });
+    }
+    public void showGUI() {
+        setTitle("New Meeting");
+        setContentPane(new AdminEmpChoiceGUI().choicePanel);
+        pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
+
     }
 }

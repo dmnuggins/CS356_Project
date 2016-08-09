@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
  * and current meetings that the user is a part of, allowing him to reply or manage
  * all that is displayed
  */
-public class EmployeeGUI {
-    private JPanel EmployeePanel;
+public class EmployeeGUI extends JFrame{
+    private JPanel employeePanel;
     private JPanel northPanel;
     private JButton displayScheduleButton;
     private JButton createMeetingButton;
@@ -18,6 +18,9 @@ public class EmployeeGUI {
     private JPanel acceptDeclinePanel;
     private JPanel newMeetingInvitePanel;
     private JPanel meetingSchedulePanel;
+    private JTable table1;
+    private JTable acc;
+    private JTable table3;
 
     public EmployeeGUI() {
         displayScheduleButton.addActionListener(new ActionListener() {
@@ -29,7 +32,8 @@ public class EmployeeGUI {
         createMeetingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                NewMeetingGUI nmgui = new NewMeetingGUI();
+                nmgui.showGUI();
             }
         });
         updateUserInfoButton.addActionListener(new ActionListener() {
@@ -38,5 +42,14 @@ public class EmployeeGUI {
 
             }
         });
+    }
+
+    public void showGUI() {
+        setTitle("New Meeting");
+        setContentPane(new EmployeeGUI().employeePanel);
+        pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
+
     }
 }
