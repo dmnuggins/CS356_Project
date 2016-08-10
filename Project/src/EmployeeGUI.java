@@ -14,8 +14,6 @@ public class EmployeeGUI extends JFrame{
     private JButton displayScheduleButton;
     private JButton createMeetingButton;
     private JButton changePasswordButton;
-    private JPanel southPanel;
-    private JPanel newMeetingInvitePanel;
     private JPanel displayButtonPanel;
     private JPanel createButtonPanel;
     private JPanel updateUserButtonPanel;
