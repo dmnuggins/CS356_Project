@@ -14,7 +14,7 @@ public class LoginDB extends FileDB{
     }
 
     protected LoginDB() {
-        super("logindb.txt");
+        super("login");
     }
 
     public static final LoginDB getInstance() {

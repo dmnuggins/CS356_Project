@@ -13,7 +13,7 @@ public class RoomDB extends FileDB {
     }
 
     protected RoomDB() {
-        super("roomdb.txt");
+        super("room");
     }
 
     public static final RoomDB getInstance() {

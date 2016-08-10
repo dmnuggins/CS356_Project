@@ -13,7 +13,7 @@ public class EmployeeDB extends FileDB{
         RESERVED
     }
 
-    protected EmployeeDB() { super("employeedb.txt"); }
+    protected EmployeeDB() { super("employee"); }
 
     public static final EmployeeDB getInstance() { return instance; }
 

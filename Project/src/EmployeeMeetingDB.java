@@ -15,7 +15,7 @@ public class EmployeeMeetingDB extends FileDB{
     }
 
     protected EmployeeMeetingDB() {
-        super("employeemeetingdb.txt");
+        super("employeemeeting");
     }
 
     public static final EmployeeMeetingDB getInstance() {
