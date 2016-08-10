@@ -48,7 +48,9 @@ public class Login extends Entity {
             Login l = loginList.get(i);
             if (l.username.equals(u) && l.password.equals(p)) {
                 EmployeeDB edb = EmployeeDB.getInstance();
-                return edb.load(l.ID);
+                Employee e = edb.load(l.ID);
+                e.setLogin(l);
+                return e;
             }
         }
 
