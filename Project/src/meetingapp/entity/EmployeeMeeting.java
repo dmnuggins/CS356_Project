@@ -8,22 +8,55 @@ import java.util.*;
 /**
  * Created by cthill on 8/7/16.
  */
-public class EmployeeMeeting {
+public class EmployeeMeeting extends Entity {
 
-    public int ID;
-    public int employeeID;
-    public int meetingID;
-    public boolean isOwner;
-    public boolean accepted;
+    protected int employeeID;
+    protected int meetingID;
+    protected boolean isOwner;
+    protected boolean accepted;
 
-    public EmployeeMeeting(int e, int m, boolean o) {
-        employeeID = e;
-        meetingID = m;
-        isOwner = o;
+    public EmployeeMeeting(int ID, int employeeID, int meetingID, boolean isOwner, boolean accepted) {
+        super(ID);
+
+        this.employeeID = employeeID;
+        this.meetingID = meetingID;
+        this.isOwner = isOwner;
+        this.accepted = accepted;
     }
 
-    public EmployeeMeeting() {
+    public int getEmployeeID() {
+        return employeeID;
+    }
 
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+        save();
+    }
+
+    public int getMeetingID() {
+        return meetingID;
+    }
+
+    public void setMeetingID(int meetingID) {
+        this.meetingID = meetingID;
+        save();
+    }
+
+    public boolean getIsOwner() {
+        return isOwner;
+    }
+
+    public boolean getAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+        save();
+    }
+
+    public void save() {
+        EmployeeMeetingDB.getInstance().save(this);
     }
 
     //Get all meetings a user is invited to (isOwner = false) or created (isOwner = true). Includes meeting invites not accepted yet

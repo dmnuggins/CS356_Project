@@ -85,7 +85,7 @@ public class FileDB {
     }
 
     //seeks to starting point of specific field in record
-    protected int seekField(int f, long end) throws IOException{
+    protected int seekField(int f, long end) throws IOException {
         while (file.getFilePointer() < end) {
             int l = file.readInt();
             int ordinal = file.readInt();
@@ -102,9 +102,14 @@ public class FileDB {
         return -1;
     }
 
-    protected void writeFieldHeader(int f, int length) throws IOException{
+    protected void writeFieldHeader(int f, int length) throws IOException {
         file.writeInt(length);
         file.writeInt(f);
+    }
+
+    protected void writeString(int f, String s) throws IOException {
+        writeFieldHeader(f, s.length());
+        file.writeBytes(s);
     }
 
     public int getNextID() {

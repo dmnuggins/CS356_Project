@@ -80,29 +80,22 @@ public class LoginDB extends FileDB {
             pass = new String(b);
         }
 
-        Login l = new Login();
-        l.employeeID = id;
-        l.username = user;
-        l.password = pass;
-
-        return l;
+        return new Login(id, user, pass);
     }
 
     public void save(Login l) {
         try {
-            eraseRecord(l.employeeID);
+            eraseRecord(l.getEmployeeID());
 
             long start = file.getFilePointer();
             file.writeInt(0); //placeholder for length
 
             writeFieldHeader(Field.ID.ordinal(), 4);
-            file.writeInt(l.employeeID);
+            file.writeInt(l.getEmployeeID());
 
-            writeFieldHeader(Field.USER.ordinal(), l.username.length());
-            file.writeBytes(l.username);
+            writeString(Field.USER.ordinal(), l.getUsername());
 
-            writeFieldHeader(Field.PASS.ordinal(), l.password.length());
-            file.writeBytes(l.password);
+            writeString(Field.PASS.ordinal(), l.getPassword());
 
             long end = file.getFilePointer();
             file.seek(start);

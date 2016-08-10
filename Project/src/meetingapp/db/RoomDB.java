@@ -69,22 +69,18 @@ public class RoomDB extends FileDB {
             cap = file.readInt();
         }
 
-        Room r = new Room();
-        r.num = id;
-        r.capacity = cap;
-
-        return r;
+        return new Room(id, cap);
     }
 
     public void save(Room r) {
         try {
-            eraseRecord(r.num);
+            eraseRecord(r.getID());
 
             long start = file.getFilePointer();
             file.writeInt(0); //placeholder for length
 
             writeFieldHeader(Field.ID.ordinal(), 4);
-            file.writeInt(r.num);
+            file.writeInt(r.getID());
 
             writeFieldHeader(Field.CAP.ordinal(), 4);
             file.writeInt(r.capacity);

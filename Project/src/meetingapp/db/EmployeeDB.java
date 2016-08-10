@@ -75,44 +75,38 @@ public class EmployeeDB extends FileDB {
             isAdmin = file.readBoolean();
         }
 
+        Employee e = new Employee(id, name, isAdmin);
+
         int reservedLen = seekField(Field.RESERVED.ordinal(), end);
-        List<Date> res = new ArrayList<Date>();
         if (reservedLen > 0) {
             Date d = new Date();
             d.setYear(file.readInt());
             d.setMonth(file.readInt());
             d.setDate(file.readInt());
-            res.add(d);
+            e.reserveDate(d);
         }
-
-        Employee e = new Employee();
-        e.ID = id;
-        e.name = name;
-        e.isAdmin = isAdmin;
-        e.reserved = res;
 
         return e;
     }
 
     public void save(Employee e) {
         try {
-            eraseRecord(e.ID);
+            eraseRecord(e.getID());
 
             long start = file.getFilePointer();
             file.writeInt(0); //placeholder for length
 
             writeFieldHeader(Field.ID.ordinal(), 4);
-            file.writeInt(e.ID);
+            file.writeInt(e.getID());
 
-            writeFieldHeader(Field.NAME.ordinal(), e.name.length());
-            file.writeBytes(e.name);
+            writeString(Field.NAME.ordinal(), e.getName());
 
             writeFieldHeader(Field.ADMIN.ordinal(), 1);
-            file.writeBoolean(e.isAdmin);
+            file.writeBoolean(e.getIsAdmin());
 
-            writeFieldHeader(Field.RESERVED.ordinal(), e.reserved.size() * 3 * 4); //3 ints per date, 4 bytes per int
-            for (int i = 0; i < e.reserved.size(); i++) {
-                Date d = e.reserved.get(i);
+            writeFieldHeader(Field.RESERVED.ordinal(), e.getReserved().size() * 3 * 4); //3 ints per date, 4 bytes per int
+            for (int i = 0; i < e.getReserved().size(); i++) {
+                Date d = e.getReserved().get(i);
                 file.writeInt(d.getYear());
                 file.writeInt(d.getMonth());
                 file.writeInt(d.getDate());

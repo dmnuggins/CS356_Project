@@ -5,20 +5,39 @@ import java.util.*;
 /**
  * Created by cthill on 7/26/16.
  */
-public class Employee {
-    public int ID;
-    public String name;
-    public boolean isAdmin;
-    public List<Date> reserved = new ArrayList<Date>(); //reserved days
+public class Employee extends Entity {
+
+    protected String name;
+    protected boolean isAdmin;
+    protected List<Date> reserved = new ArrayList<Date>(); //reserved days
 
 
-    public Employee() {
+    public Employee(int ID, String name, boolean isAdmin) {
+        super(ID);
+        this.name = name;
+        this.isAdmin = isAdmin;
     }
 
-    public Employee(int id, String n, boolean admin) {
-        ID = id;
-        name = n;
-        isAdmin = admin;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        save();
+    }
+
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+        save();
+    }
+
+    public List<Date> getReserved() {
+        return reserved;
     }
 
     public void reserveDate(Date d) {

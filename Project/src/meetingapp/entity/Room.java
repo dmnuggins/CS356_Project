@@ -1,17 +1,29 @@
 package meetingapp.entity;
 
+import meetingapp.db.RoomDB;
+
 /**
  * Created by cthill on 8/7/16.
  */
-public class Room {
+public class Room extends Entity {
 
-    public int num;
     public int capacity;
 
-    public Room(int num, int capacity) {
-        this.num = num;
+    public Room(int ID, int capacity) {
+        super(ID);
         this.capacity = capacity;
     }
 
-    public Room() {};
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+        save();
+    }
+
+    public void save() {
+        RoomDB.getInstance().save(this);
+    }
 }

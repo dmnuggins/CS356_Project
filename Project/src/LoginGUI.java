@@ -75,7 +75,7 @@ public class LoginGUI extends JFrame{
         }
     }
 
-    // method is called in meetingapp.entity.MeetingApp to initiate meetingapp.entity.Login User Interface
+    // method is called in meetingapp.MeetingApp to initiate meetingapp.entity.Login User Interface
     public void showGUI() {
         setTitle("meetingapp.entity.Login");
         setContentPane(new LoginGUI().loginPanel);

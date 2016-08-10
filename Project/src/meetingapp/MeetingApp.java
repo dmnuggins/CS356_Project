@@ -1,7 +1,9 @@
-package meetingapp.entity;
+package meetingapp;
 
 import meetingapp.db.EmployeeDB;
 import meetingapp.db.LoginDB;
+import meetingapp.entity.Employee;
+import meetingapp.entity.Login;
 
 /**
  * Created by cthill on 8/6/16.
