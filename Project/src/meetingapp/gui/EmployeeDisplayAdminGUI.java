@@ -46,7 +46,7 @@ public class EmployeeDisplayAdminGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 dispose();
 
-                new AdminGUI().setVisible(true);
+                //new AdminGUI().setVisible(true);
             }
         });
 
