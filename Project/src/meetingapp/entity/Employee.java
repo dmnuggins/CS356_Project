@@ -10,7 +10,7 @@ public class Employee extends Entity {
     protected String name;
     protected boolean isAdmin;
     protected List<Date> reserved = new ArrayList<Date>(); //reserved days
-
+    protected Login login;
 
     public Employee(int ID, String name, boolean isAdmin) {
         super(ID);
@@ -54,6 +54,14 @@ public class Employee extends Entity {
             }
         }
         save();
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public void setLogin(Login login) {
+        this.login = login;
     }
 
     public void save() {

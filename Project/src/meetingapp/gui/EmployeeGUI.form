@@ -52,7 +52,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="95748" class="javax.swing.JButton" binding="changePasswordButton" custom-create="true">
+              <component id="95748" class="javax.swing.JButton" binding="changePasswordButton">
                 <constraints/>
                 <properties>
                   <preferredSize width="140" height="32"/>
