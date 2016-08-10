@@ -1,3 +1,5 @@
+package meetingapp.gui;
+
 /**
  * Created by dmnguyen on 8/9/16.
  */

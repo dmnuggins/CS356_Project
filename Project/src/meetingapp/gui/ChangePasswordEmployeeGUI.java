@@ -1,3 +1,5 @@
+package meetingapp.gui;
+
 import javax.swing.*;
 
 /**

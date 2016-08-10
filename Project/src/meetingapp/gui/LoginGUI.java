@@ -1,3 +1,5 @@
+package meetingapp.gui;
+
 import meetingapp.entity.Employee;
 import meetingapp.entity.Login;
 
