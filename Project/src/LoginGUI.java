@@ -81,6 +81,7 @@ public class LoginGUI extends JFrame{
         pack();
         setVisible(true);
         setLocationRelativeTo(null);
+        setResizable(false);
 
     }
 }

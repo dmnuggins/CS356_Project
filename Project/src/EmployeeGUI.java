@@ -13,16 +13,11 @@ public class EmployeeGUI extends JFrame{
     private JPanel northPanel;
     private JButton displayScheduleButton;
     private JButton createMeetingButton;
-    private JButton updateUserInfoButton;
-    private JPanel southPanel;
-    private JPanel acceptDeclinePanel;
-    private JPanel newMeetingInvitePanel;
-    private JPanel meetingSchedulePanel;
-    private JTable invitesTabel;
-    private JTable accDecTabel;
-    private JTable scheduleTable;
-    private JPanel buttonPanel;
-    private JScrollPane scheduleScrollPane;
+    private JButton changePasswordButton;
+    private JPanel displayButtonPanel;
+    private JPanel createButtonPanel;
+    private JPanel updateUserButtonPanel;
+    private JButton manageMeetingsButton;
 
     public EmployeeGUI() {
         displayScheduleButton.addActionListener(new ActionListener() {
@@ -34,11 +29,11 @@ public class EmployeeGUI extends JFrame{
         createMeetingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NewMeetingGUI nmgui = new NewMeetingGUI();
+                NewMeetingEmployeeGUI nmgui = new NewMeetingEmployeeGUI();
                 nmgui.showGUI();
             }
         });
-        updateUserInfoButton.addActionListener(new ActionListener() {
+        changePasswordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -53,5 +48,9 @@ public class EmployeeGUI extends JFrame{
         setVisible(true);
         setLocationRelativeTo(null);
 
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
