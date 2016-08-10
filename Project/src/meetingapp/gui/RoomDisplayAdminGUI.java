@@ -1,26 +1,31 @@
 package meetingapp.gui;
+
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 /**
  * Created by CesarRecinos on 8/7/2016.
  */
-public class EmployeeDisplayAdminGUI extends JFrame{
+public class RoomDisplayAdminGUI extends JFrame {
     private JPanel rootPanel;
-    private JPanel textFieldPanel;
+    private JPanel textPanel;
     private JPanel buttonPanel;
-    private JComboBox comboBox1;
-    private JButton createButton;
-    private JButton editButton;
+    private JButton createRoom;
+    private JButton editRoom;
     private JButton cancelButton;
+    private JComboBox comboBox1;
 
-    public EmployeeDisplayAdminGUI(){
-        super("Employees");
+
+    public RoomDisplayAdminGUI(){
+        super("Meeting Rooms");
         setContentPane(rootPanel);
         pack();
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
         comboBox1.addActionListener(new ActionListener() {
@@ -29,22 +34,20 @@ public class EmployeeDisplayAdminGUI extends JFrame{
 
             }
         });
-        createButton.addActionListener(new ActionListener() {
+        createRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-;
-                new CreateEmployeeGUI();
-                dispose();
-            }
-        });
-        editButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new EditEmployeeGUI();
-                dispose();
 
             }
         });
+
+        editRoom.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
