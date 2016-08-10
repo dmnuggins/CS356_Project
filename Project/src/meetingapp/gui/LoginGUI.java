@@ -67,11 +67,11 @@ public class LoginGUI extends JFrame {
             if (emp.getIsAdmin()) {
                 AdminEmpChoiceGUI aegui = new AdminEmpChoiceGUI(emp);
                 aegui.showGUI();
-                nextWindow();
+                dispose();
             } else {
                 EmployeeGUI egui = new EmployeeGUI(emp);
                 egui.showGUI();
-                nextWindow();
+                dispose();
             }
         } else {
             //show failed login text
@@ -87,10 +87,5 @@ public class LoginGUI extends JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
-    }
-
-    private void nextWindow() {
-        setVisible(false);
-        dispose();
     }
 }
