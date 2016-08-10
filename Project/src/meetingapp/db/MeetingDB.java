@@ -82,33 +82,27 @@ public class MeetingDB extends FileDB {
         }
         Date e = new Date(file.readLong());
 
-        Meeting m = new Meeting();
-        m.id = id;
-        m.room = r;
-        m.start = s;
-        m.end = e;
-
-        return m;
+        return new Meeting(id, r, s, e);
     }
 
     public void save(Meeting m) {
         try {
-            eraseRecord(m.id);
+            eraseRecord(m.getID());
 
             long start = file.getFilePointer();
             file.writeInt(0); //placeholder for length
 
             writeFieldHeader(Field.ID.ordinal(), 4);
-            file.writeInt(m.id);
+            file.writeInt(m.getID());
 
             writeFieldHeader(Field.ROOM.ordinal(), 4);
-            file.writeInt(m.room);
+            file.writeInt(m.getRoomID());
 
             writeFieldHeader(Field.START.ordinal(), 8);
-            file.writeLong(m.start.getTime());
+            file.writeLong(m.getStart().getTime());
 
             writeFieldHeader(Field.END.ordinal(), 8);
-            file.writeLong(m.end.getTime());
+            file.writeLong(m.getEnd().getTime());
 
             long end = file.getFilePointer();
             file.seek(start);

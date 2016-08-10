@@ -90,37 +90,30 @@ public class EmployeeMeetingDB extends FileDB {
             acc = file.readBoolean();
         }
 
-        EmployeeMeeting em = new EmployeeMeeting();
-        em.ID = id;
-        em.employeeID = empid;
-        em.meetingID = mid;
-        em.isOwner = isOwner;
-        em.accepted = acc;
-
-        return em;
+        return new EmployeeMeeting(id, empid, mid, isOwner, acc);
     }
 
     public void save(EmployeeMeeting em) {
         try {
-            eraseRecord(em.ID);
+            eraseRecord(em.getID());
 
             long start = file.getFilePointer();
             file.writeInt(0); //placeholder for length
 
             writeFieldHeader(Field.ID.ordinal(), 4);
-            file.writeInt(em.ID);
+            file.writeInt(em.getID());
 
             writeFieldHeader(Field.EMPLOYEE.ordinal(), 4);
-            file.writeInt(em.employeeID);
+            file.writeInt(em.getEmployeeID());
 
             writeFieldHeader(Field.MEETING.ordinal(), 4);
-            file.writeInt(em.meetingID);
+            file.writeInt(em.getMeetingID());
 
             writeFieldHeader(Field.ISOWNER.ordinal(), 1);
-            file.writeBoolean(em.isOwner);
+            file.writeBoolean(em.getIsOwner());
 
             writeFieldHeader(Field.ACCEPTED.ordinal(), 1);
-            file.writeBoolean(em.accepted);
+            file.writeBoolean(em.getAccepted());
 
             long end = file.getFilePointer();
             file.seek(start);
