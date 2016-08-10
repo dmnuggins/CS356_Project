@@ -1,5 +1,7 @@
 package meetingapp.gui;
 
+import meetingapp.entity.Employee;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,9 +23,13 @@ public class EmployeeGUI extends JFrame{
     private JPanel updateUserButtonPanel;
     private JButton manageMeetingsButton;
 
-    public EmployeeGUI() {
+    private Employee employee;
+
+    public EmployeeGUI(Employee e) {
         super("Employee Menu");
-        System.out.println("Test");
+
+        employee = e;
+
         displayScheduleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,7 +46,8 @@ public class EmployeeGUI extends JFrame{
         changePasswordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ChangePasswordEmployeeGUI cpgui = new ChangePasswordEmployeeGUI(employee);
+                cpgui.showGUI();
             }
         });
     }
@@ -51,7 +58,6 @@ public class EmployeeGUI extends JFrame{
         pack();
         setVisible(true);
         setLocationRelativeTo(null);
-
     }
 
     private void createUIComponents() {
