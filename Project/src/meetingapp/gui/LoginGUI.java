@@ -64,10 +64,10 @@ public class LoginGUI extends JFrame{
         Employee emp = Login.authenticate(userNameField.getText(),new String(passwordField.getPassword()));
         if(emp != null) {
             if (emp.getIsAdmin()) {
-                AdminEmpChoiceGUI aegui = new AdminEmpChoiceGUI();
+                AdminEmpChoiceGUI aegui = new AdminEmpChoiceGUI(emp);
                 aegui.showGUI();
             } else {
-                EmployeeGUI egui = new EmployeeGUI();
+                EmployeeGUI egui = new EmployeeGUI(emp);
                 egui.showGUI();
                 //ChangePasswordEmployeeGUI cpg = new ChangePasswordEmployeeGUI();
                 //cpg.showGUI();
