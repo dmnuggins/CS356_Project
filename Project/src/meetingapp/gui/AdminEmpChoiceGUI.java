@@ -1,5 +1,7 @@
 package meetingapp.gui;
 
+import meetingapp.entity.Employee;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +19,13 @@ public class AdminEmpChoiceGUI extends JFrame{
     private JPanel employeeMenuPanel;
     private JPanel logOutPanel;
 
-    public AdminEmpChoiceGUI() {
+    private Employee employee;
+
+    public AdminEmpChoiceGUI(final Employee employee) {
+
+
+        this.employee = employee;
+
         adminMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -27,7 +35,7 @@ public class AdminEmpChoiceGUI extends JFrame{
         employeeMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EmployeeGUI empgui = new EmployeeGUI();
+                EmployeeGUI empgui = new EmployeeGUI(employee);
                 empgui.showGUI();
             }
         });
