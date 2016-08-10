@@ -39,7 +39,7 @@ public class EmployeeGUI extends JFrame{
         createMeetingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NewMeetingEmployeeGUI nmgui = new NewMeetingEmployeeGUI();
+                NewMeetingEmployeeGUI nmgui = new NewMeetingEmployeeGUI(employee);
                 nmgui.showGUI();
             }
         });
