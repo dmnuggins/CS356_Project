@@ -1,10 +1,8 @@
 package meetingapp;
 
 import meetingapp.gui.*;
-import meetingapp.db.EmployeeDB;
-import meetingapp.db.LoginDB;
-import meetingapp.entity.Employee;
-import meetingapp.entity.Login;
+import meetingapp.db.*;
+import meetingapp.entity.*;
 
 /**
  * Created by cthill on 8/6/16.
@@ -23,19 +21,14 @@ public class MeetingApp {
         Login userLogin = new Login(1, "user", "password");
         LoginDB.getInstance().save(userLogin);
 
+        Room room = new Room(101, 5);
+        RoomDB.getInstance().save(room);
+        Room room1 = new Room(102, 3);
+        RoomDB.getInstance().save(room1);
+        Room room2 = new Room(103, 10);
+        RoomDB.getInstance().save(room2);
+
         LoginGUI lg = new LoginGUI();
         lg.showGUI();
-
-//        meetingapp.db.EmployeeMeetingDB emd = meetingapp.db.EmployeeMeetingDB.getInstance();
-//
-//        meetingapp.entity.EmployeeMeeting em1 = new meetingapp.entity.EmployeeMeeting();
-//        em1.meetingID = 0;
-//        em1.employeeID = 0;
-//        em1.isOwner = false;
-//        em1.ID = 0;
-//
-//        emd.save(em1);
-//
-//        meetingapp.entity.EmployeeMeeting eml = emd.load(0);
     }
 }

@@ -9,7 +9,7 @@ import java.awt.event.*;
 /**
  * Created by dmnguyen on 7/7/16.
  */
-public class LoginGUI extends JFrame{
+public class LoginGUI extends JFrame {
     private JPanel loginPanel;
     private JPanel westLabelPanel;
     private JPanel southButtonPanel;
@@ -20,6 +20,7 @@ public class LoginGUI extends JFrame{
     private JLabel userNameLabel;
     private JLabel passwordLabel;
     private JLabel loginText;
+    private JButton button2;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
@@ -61,16 +62,16 @@ public class LoginGUI extends JFrame{
     }
 
     public void login() {
-        Employee emp = Login.authenticate(userNameField.getText(),new String(passwordField.getPassword()));
-        if(emp != null) {
+        Employee emp = Login.authenticate(userNameField.getText(), new String(passwordField.getPassword()));
+        if (emp != null) {
             if (emp.getIsAdmin()) {
                 AdminEmpChoiceGUI aegui = new AdminEmpChoiceGUI(emp);
                 aegui.showGUI();
+                dispose();
             } else {
                 EmployeeGUI egui = new EmployeeGUI(emp);
                 egui.showGUI();
-                //ChangePasswordEmployeeGUI cpg = new ChangePasswordEmployeeGUI();
-                //cpg.showGUI();
+                dispose();
             }
         } else {
             //show failed login text

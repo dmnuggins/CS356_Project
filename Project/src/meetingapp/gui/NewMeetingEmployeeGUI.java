@@ -1,8 +1,13 @@
 package meetingapp.gui;
 
+import meetingapp.entity.*;
+import meetingapp.db.*;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
 
 /**
  * Created by Dylan Nguyen on 8/8/2016.
@@ -22,9 +27,21 @@ public class NewMeetingEmployeeGUI extends JFrame{
     private JButton Create;
     private JButton backButton;
 
+    private Employee employee;
 
-    public NewMeetingEmployeeGUI() {
+    private ArrayList<Room> allRooms;
+
+    public NewMeetingEmployeeGUI(Employee employee) {
         super("newMeetingPanel");
+
+        this.employee = employee;
+        //get all employees
+        allRooms = (ArrayList<Room>) RoomDB.getInstance().loadAll();
+        for (int i = 0; i < allRooms.size(); i++) {
+            roomComboBox.addItem(Integer.toString(allRooms.get(i).getID()));
+        }
+
+
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -33,9 +50,10 @@ public class NewMeetingEmployeeGUI extends JFrame{
         });
     }
 
+
     public void showGUI() {
         setTitle("New Meeting");
-        setContentPane(new NewMeetingEmployeeGUI().newMeetingPanel);
+        setContentPane(newMeetingPanel);
         pack();
         setVisible(true);
         setLocationRelativeTo(null);

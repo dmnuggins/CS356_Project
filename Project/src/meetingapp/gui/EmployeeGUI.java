@@ -22,6 +22,7 @@ public class EmployeeGUI extends JFrame{
     private JPanel createButtonPanel;
     private JPanel updateUserButtonPanel;
     private JButton manageMeetingsButton;
+    private JButton backButton;
 
     private Employee employee;
 
@@ -39,7 +40,7 @@ public class EmployeeGUI extends JFrame{
         createMeetingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NewMeetingEmployeeGUI nmgui = new NewMeetingEmployeeGUI();
+                NewMeetingEmployeeGUI nmgui = new NewMeetingEmployeeGUI(employee);
                 nmgui.showGUI();
             }
         });
@@ -48,6 +49,14 @@ public class EmployeeGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 ChangePasswordEmployeeGUI cpgui = new ChangePasswordEmployeeGUI(employee);
                 cpgui.showGUI();
+            }
+        });
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LoginGUI().showGUI();
+                dispose();
             }
         });
     }
