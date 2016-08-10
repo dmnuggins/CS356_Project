@@ -4,10 +4,7 @@ import meetingapp.entity.Employee;
 import meetingapp.entity.Login;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 /**
  * Created by dmnguyen on 7/7/16.
@@ -70,8 +67,10 @@ public class LoginGUI extends JFrame{
                 AdminEmpChoiceGUI aegui = new AdminEmpChoiceGUI();
                 aegui.showGUI();
             } else {
-                EmployeeGUI egui = new EmployeeGUI();
-                egui.showGUI();
+                //EmployeeGUI egui = new EmployeeGUI();
+                //egui.showGUI();
+                ChangePasswordEmployeeGUI cpg = new ChangePasswordEmployeeGUI();
+                cpg.showGUI();
             }
         } else {
             //show failed login text
@@ -87,6 +86,5 @@ public class LoginGUI extends JFrame{
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
-
     }
 }
