@@ -20,6 +20,7 @@ public class LoginGUI extends JFrame {
     private JLabel userNameLabel;
     private JLabel passwordLabel;
     private JLabel loginText;
+    private JButton button2;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
