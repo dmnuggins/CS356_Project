@@ -38,7 +38,7 @@ public class ChangePasswordEmployeeGUI extends JFrame{
     }
 
     public void tryChange() {
-        if (oldPasswordField )
+        //if (oldPasswordField )
     }
 
     public void showGUI() {

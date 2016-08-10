@@ -67,10 +67,10 @@ public class LoginGUI extends JFrame{
                 AdminEmpChoiceGUI aegui = new AdminEmpChoiceGUI();
                 aegui.showGUI();
             } else {
-                //EmployeeGUI egui = new EmployeeGUI();
-                //egui.showGUI();
-                ChangePasswordEmployeeGUI cpg = new ChangePasswordEmployeeGUI();
-                cpg.showGUI();
+                EmployeeGUI egui = new EmployeeGUI();
+                egui.showGUI();
+                //ChangePasswordEmployeeGUI cpg = new ChangePasswordEmployeeGUI();
+                //cpg.showGUI();
             }
         } else {
             //show failed login text
