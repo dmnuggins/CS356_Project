@@ -18,9 +18,9 @@ public class MeetingApp {
         Login adminLogin = new Login(0, "admin", "password");
         LoginDB.getInstance().save(adminLogin);
 
-        Employee user = new Employee(0, "User", false);
+        Employee user = new Employee(1, "User", false);
         EmployeeDB.getInstance().save(user);
-        Login userLogin = new Login(0, "user", "password");
+        Login userLogin = new Login(1, "user", "password");
         LoginDB.getInstance().save(userLogin);
 
         LoginGUI lg = new LoginGUI();
