@@ -40,7 +40,7 @@ public class AdminEmpChoiceGUI extends JFrame{
     }
     public void showGUI() {
         setTitle("Choose Menu Type");
-        setContentPane(new AdminEmpChoiceGUI().choicePanel);
+        setContentPane(choicePanel);
         pack();
         setVisible(true);
         setLocationRelativeTo(null);
