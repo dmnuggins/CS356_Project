@@ -15,7 +15,7 @@
           <component id="5db07" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
             <constraints border-constraint="Center"/>
             <properties>
-              <toolTipText value="Select Employee..."/>
+              <toolTipText value="Select meetingapp.entity.Employee..."/>
             </properties>
           </component>
         </children>
@@ -28,13 +28,13 @@
           <component id="9b6cd" class="javax.swing.JButton" binding="createButton">
             <constraints/>
             <properties>
-              <text value="Create an Employee"/>
+              <text value="Create an meetingapp.entity.Employee"/>
             </properties>
           </component>
           <component id="e4b6f" class="javax.swing.JButton" binding="editButton">
             <constraints/>
             <properties>
-              <text value="Edit Employee"/>
+              <text value="Edit meetingapp.entity.Employee"/>
             </properties>
           </component>
           <component id="e70f6" class="javax.swing.JButton" binding="cancelButton">

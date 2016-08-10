@@ -1,3 +1,6 @@
+package meetingapp.db;
+
+import meetingapp.entity.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
@@ -5,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created by cthill on 8/6/16.
  */
-public class LoginDB extends FileDB{
+public class LoginDB extends FileDB {
     protected static final LoginDB instance = new LoginDB();
     protected enum Field {
         ID,

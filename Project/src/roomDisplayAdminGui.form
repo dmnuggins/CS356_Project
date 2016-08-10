@@ -26,13 +26,13 @@
           <component id="d6bfa" class="javax.swing.JButton" binding="createRoom">
             <constraints/>
             <properties>
-              <text value="Create a New Room"/>
+              <text value="Create a New meetingapp.entity.Room"/>
             </properties>
           </component>
           <component id="602eb" class="javax.swing.JButton" binding="editRoom">
             <constraints/>
             <properties>
-              <text value="Edit Room"/>
+              <text value="Edit meetingapp.entity.Room"/>
             </properties>
           </component>
           <component id="c172a" class="javax.swing.JButton" binding="cancelButton">

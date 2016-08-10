@@ -27,7 +27,7 @@
                 <constraints/>
                 <properties>
                   <preferredSize width="142" height="32"/>
-                  <text value="View Employee"/>
+                  <text value="View meetingapp.entity.Employee"/>
                 </properties>
               </component>
             </children>
@@ -55,7 +55,7 @@
               <component id="a54e5" class="javax.swing.JButton" binding="meetingButton">
                 <constraints/>
                 <properties>
-                  <text value="View Meeting Rooms"/>
+                  <text value="View meetingapp.entity.Meeting Rooms"/>
                 </properties>
               </component>
             </children>

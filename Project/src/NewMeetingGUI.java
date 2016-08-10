@@ -32,7 +32,7 @@ public class NewMeetingGUI extends JFrame{
     }
 
     public void showGUI() {
-        setTitle("New Meeting");
+        setTitle("New meetingapp.entity.Meeting");
         setContentPane(new NewMeetingGUI().newMeetingPanel);
         pack();
         setVisible(true);

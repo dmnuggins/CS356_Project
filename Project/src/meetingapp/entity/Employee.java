@@ -1,3 +1,6 @@
+package meetingapp.entity;
+
+import meetingapp.db.*;
 import java.util.*;
 /**
  * Created by cthill on 7/26/16.

@@ -40,7 +40,7 @@
                 <constraints/>
                 <properties>
                   <preferredSize width="140" height="32"/>
-                  <text value="Employee Menu"/>
+                  <text value="meetingapp.entity.Employee Menu"/>
                 </properties>
               </component>
             </children>

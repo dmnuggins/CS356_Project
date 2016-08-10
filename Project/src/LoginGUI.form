@@ -44,7 +44,7 @@
           <component id="4bd65" class="javax.swing.JButton" binding="loginButton">
             <constraints/>
             <properties>
-              <text value="Login"/>
+              <text value="meetingapp.entity.Login"/>
             </properties>
           </component>
         </children>

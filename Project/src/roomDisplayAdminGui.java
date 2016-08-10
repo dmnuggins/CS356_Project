@@ -16,7 +16,7 @@ public class RoomDisplayAdminGUI extends JFrame {
     private JComboBox listComboBox;
 
     public RoomDisplayAdminGUI(){
-        super("Meeting Rooms");
+        super("meetingapp.entity.Meeting Rooms");
         setContentPane(rootPanel);
         pack();
 

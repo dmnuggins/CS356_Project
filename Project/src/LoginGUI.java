@@ -1,3 +1,6 @@
+import meetingapp.entity.Employee;
+import meetingapp.entity.Login;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,9 +75,9 @@ public class LoginGUI extends JFrame{
         }
     }
 
-    // method is called in MeetingApp to initiate Login User Interface
+    // method is called in meetingapp.entity.MeetingApp to initiate meetingapp.entity.Login User Interface
     public void showGUI() {
-        setTitle("Login");
+        setTitle("meetingapp.entity.Login");
         setContentPane(new LoginGUI().loginPanel);
         pack();
         setVisible(true);

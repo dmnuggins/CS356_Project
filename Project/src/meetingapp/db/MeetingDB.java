@@ -1,3 +1,6 @@
+package meetingapp.db;
+
+import meetingapp.entity.*;
 import java.io.IOException;
 import java.util.*;
 

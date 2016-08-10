@@ -1,10 +1,14 @@
+package meetingapp.db;
+
+import meetingapp.entity.Employee;
+
 import java.io.IOException;
 import java.util.*;
 
 /**
  * Created by cthill on 8/6/16.
  */
-public class EmployeeDB extends FileDB{
+public class EmployeeDB extends FileDB {
     protected static final EmployeeDB instance = new EmployeeDB();
     protected enum Field {
         ID,

@@ -47,7 +47,7 @@ public class EmployeeGUI extends JFrame{
     }
 
     public void showGUI() {
-        setTitle("New Meeting");
+        setTitle("New meetingapp.entity.Meeting");
         setContentPane(new EmployeeGUI().employeePanel);
         pack();
         setVisible(true);

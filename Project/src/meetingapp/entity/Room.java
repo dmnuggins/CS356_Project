@@ -1,3 +1,5 @@
+package meetingapp.entity;
+
 /**
  * Created by cthill on 8/7/16.
  */

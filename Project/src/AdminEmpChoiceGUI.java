@@ -37,7 +37,7 @@ public class AdminEmpChoiceGUI extends JFrame{
         });
     }
     public void showGUI() {
-        setTitle("New Meeting");
+        setTitle("New meetingapp.entity.Meeting");
         setContentPane(new AdminEmpChoiceGUI().choicePanel);
         pack();
         setVisible(true);

@@ -31,7 +31,7 @@
                 <constraints/>
                 <properties>
                   <preferredSize width="140" height="32"/>
-                  <text value="Create Meeting"/>
+                  <text value="Create meetingapp.entity.Meeting"/>
                 </properties>
               </component>
               <component id="95748" class="javax.swing.JButton" binding="updateUserInfoButton" default-binding="true">
