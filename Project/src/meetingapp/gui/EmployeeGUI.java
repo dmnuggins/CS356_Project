@@ -22,6 +22,8 @@ public class EmployeeGUI extends JFrame{
     private JButton manageMeetingsButton;
 
     public EmployeeGUI() {
+        super("Employee Menu");
+        System.out.println("Test");
         displayScheduleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,7 +47,7 @@ public class EmployeeGUI extends JFrame{
 
     public void showGUI() {
         setTitle("New meetingapp.entity.Meeting");
-        setContentPane(new EmployeeGUI().employeePanel);
+        setContentPane(employeePanel);
         pack();
         setVisible(true);
         setLocationRelativeTo(null);

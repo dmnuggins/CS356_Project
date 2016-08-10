@@ -1,5 +1,7 @@
 package meetingapp.db;
 
+import meetingapp.entity.Entity;
+
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
