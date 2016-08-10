@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by Dylan Nguyen on 8/8/2016.
  */
-public class NewMeetingGUI extends JFrame{
+public class NewMeetingEmployeeGUI extends JFrame{
     private JPanel newMeetingPanel;
     private JPanel northPanel;
     private JPanel southPanel;
@@ -21,7 +21,7 @@ public class NewMeetingGUI extends JFrame{
     private JButton backButton;
 
 
-    public NewMeetingGUI() {
+    public NewMeetingEmployeeGUI() {
         super("newMeetingPanel");
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -32,8 +32,8 @@ public class NewMeetingGUI extends JFrame{
     }
 
     public void showGUI() {
-        setTitle("New meetingapp.entity.Meeting");
-        setContentPane(new NewMeetingGUI().newMeetingPanel);
+        setTitle("New Meeting");
+        setContentPane(new NewMeetingEmployeeGUI().newMeetingPanel);
         pack();
         setVisible(true);
         setLocationRelativeTo(null);

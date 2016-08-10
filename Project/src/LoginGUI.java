@@ -20,6 +20,7 @@ public class LoginGUI extends JFrame{
     private JButton loginButton;
     private JLabel userNameLabel;
     private JLabel passwordLabel;
+    private JLabel loginText;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
@@ -72,6 +73,7 @@ public class LoginGUI extends JFrame{
             }
         } else {
             //show failed login text
+            loginText.setText("Incorrect login!");
         }
     }
 
@@ -82,6 +84,7 @@ public class LoginGUI extends JFrame{
         pack();
         setVisible(true);
         setLocationRelativeTo(null);
+        setResizable(false);
 
     }
 }
