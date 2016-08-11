@@ -47,6 +47,13 @@ public class EmployeeGUI extends MeetingAppGUI{
                 dispose();
             }
         });
+        manageMeetingsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MeetingManagerEmployeeGUI(employee);
+                dispose();
+            }
+        });
         changePasswordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

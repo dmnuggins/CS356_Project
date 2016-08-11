@@ -84,7 +84,7 @@ public class EmployeeMeeting extends Entity {
         return MeetingDB.getInstance().load(meetingID);
     }
 
-    public Meeting getEmployee() {
-        return MeetingDB.getInstance().load(employeeID);
+    public Employee getEmployee() {
+        return EmployeeDB.getInstance().load(employeeID);
     }
 }
