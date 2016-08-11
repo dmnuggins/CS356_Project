@@ -1,5 +1,6 @@
 package meetingapp.gui;
 
+import meetingapp.db.EmployeeDB;
 import meetingapp.db.MeetingDB;
 import meetingapp.entity.*;
 import java.util.*;
@@ -34,13 +35,13 @@ public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
         dateLabelStart.setText("Starts: " + m.getStart().toLocaleString());
         dateLabelEnd.setText("Ends: " + m.getEnd().toLocaleString());
 
-        ArrayList<Employee> attending = (ArrayList<Employee>) EmployeeMeeting.getAllEmployees(meeting.getMeetingID(), true, false);
+        ArrayList<EmployeeMeeting> attending = (ArrayList<EmployeeMeeting>) EmployeeMeeting.getAllEmployees(meeting.getMeetingID(), true, false);
 
         DefaultListModel<String> lm = new DefaultListModel<String>();
         invitedList.setModel(lm);
         
-        for (Employee e : attending) {
-            lm.addElement(e.getName());
+        for (EmployeeMeeting e : attending) {
+            lm.addElement(EmployeeDB.getInstance().load(e.getEmployeeID()).getName());
         }
 
         acceptButton.addActionListener(new ActionListener() {
