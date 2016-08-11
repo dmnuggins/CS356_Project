@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * Created by Dylan Nguyen on 8/8/2016.
  */
-public class NewMeetingEmployeeGUI extends JFrame{
+public class NewMeetingEmployeeGUI extends MeetingAppGUI{
     private JPanel newMeetingPanel;
     private JPanel northPanel;
     private JPanel southPanel;
@@ -27,16 +27,13 @@ public class NewMeetingEmployeeGUI extends JFrame{
     private JButton Create;
     private JButton backButton;
 
-    private Employee employee;
-
     private ArrayList<Room> allRooms;
 
-    public NewMeetingEmployeeGUI(Employee employee) {
-        setTitle("New Meeting");
+    public NewMeetingEmployeeGUI(final Employee employee) {
+        super("New Meeting", employee);
         setContentPane(newMeetingPanel);
         pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
+
 
         this.employee = employee;
         //get all employees
@@ -45,17 +42,14 @@ public class NewMeetingEmployeeGUI extends JFrame{
             roomComboBox.addItem(Integer.toString(allRooms.get(i).getID()));
         }
 
-
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                back();
+                new EmployeeGUI(employee);
+                dispose();
             }
         });
-    }
 
-    public void back() {
-        new EmployeeGUI(employee);
-        dispose();
+        setVisible(true);
     }
 }

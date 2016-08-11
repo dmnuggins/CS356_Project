@@ -9,7 +9,7 @@ import java.awt.event.*;
 /**
  * Created by dmnguyen on 7/7/16.
  */
-public class LoginGUI extends JFrame {
+public class LoginGUI extends MeetingAppGUI {
     private JPanel loginPanel;
     private JPanel westLabelPanel;
     private JPanel southButtonPanel;
@@ -27,14 +27,9 @@ public class LoginGUI extends JFrame {
     }
 
     public LoginGUI() {
-        setTitle("Login");
+        super("Login", null);
         setContentPane(loginPanel);
         pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
-        setResizable(false);
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         userNameField.addActionListener(new ActionListener() {
             @Override
@@ -66,7 +61,7 @@ public class LoginGUI extends JFrame {
                 login();
             }
         });
-
+        setVisible(true);
     }
 
     public void login() {

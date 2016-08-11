@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * Created by dmnguyen on 8/9/16.
  */
-public class ChangePasswordEmployeeGUI extends JFrame{
+public class ChangePasswordEmployeeGUI extends MeetingAppGUI{
     private JPanel updateUserPanel;
     private JPanel westPanel;
     private JPanel eastPanel;
@@ -24,17 +24,10 @@ public class ChangePasswordEmployeeGUI extends JFrame{
     private JLabel feedbackText;
     private JButton backButton;
 
-    private Employee employee;
-
-    public ChangePasswordEmployeeGUI(Employee e) {
-        setTitle("Change Password");
+    public ChangePasswordEmployeeGUI(final Employee employee) {
+        super("Change Password", employee);
         setContentPane(updateUserPanel);
         pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
-        setResizable(false);
-
-        employee = e;
 
         ActionListener tryChangeAL = new ActionListener() {
             @Override
@@ -55,6 +48,7 @@ public class ChangePasswordEmployeeGUI extends JFrame{
         reEnterNewPasswordField.addActionListener(tryChangeAL);
         changePasswordButton.addActionListener(tryChangeAL);
 
+        setVisible(true);
     }
 
     public void tryChange() {

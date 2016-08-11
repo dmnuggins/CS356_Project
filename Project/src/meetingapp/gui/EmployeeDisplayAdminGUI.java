@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by CesarRecinos on 8/7/2016.
  */
-public class EmployeeDisplayAdminGUI extends JFrame{
+public class EmployeeDisplayAdminGUI extends MeetingAppGUI{
     private JPanel rootPanel;
     private JPanel textFieldPanel;
     private JPanel buttonPanel;
@@ -21,14 +21,10 @@ public class EmployeeDisplayAdminGUI extends JFrame{
 
     ArrayList<Employee> allEmployees;
 
-    private Employee employee;
-
     public EmployeeDisplayAdminGUI(final Employee employee){
-        super("Employees");
+        super("Employees", employee);
         setContentPane(rootPanel);
         pack();
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         allEmployees = (ArrayList<Employee>) EmployeeDB.getInstance().loadAll();
         allEmployees.remove(employee);
@@ -47,8 +43,7 @@ public class EmployeeDisplayAdminGUI extends JFrame{
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-;
-                new CreateEmployeeGUI();
+                new CreateEmployeeGUI(employee);
                 dispose();
             }
         });

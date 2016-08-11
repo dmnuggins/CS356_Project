@@ -1,4 +1,6 @@
 package meetingapp.gui;
+import meetingapp.entity.Employee;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,7 +8,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by CesarRecinos on 8/9/2016.
  */
-public class CreateEmployeeGUI extends JFrame{
+public class CreateEmployeeGUI extends MeetingAppGUI{
     private JPanel rootPanel;
     private JPanel employeePanel;
     private JPanel gridPanel;
@@ -21,17 +23,11 @@ public class CreateEmployeeGUI extends JFrame{
     private JButton cancelButton;
     private JPasswordField passwordField;
 
-    public CreateEmployeeGUI(){
-        super("Create a New Employee");
+    public CreateEmployeeGUI(Employee employee){
+        super("Create a New Employee", employee);
         setContentPane(rootPanel);
         pack();
 
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        setLocationRelativeTo(null);
-
-
-        setVisible(true);
         nameField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,5 +61,7 @@ public class CreateEmployeeGUI extends JFrame{
                 //new EmployeeDisplayAdminGUI().setVisible(true);
             }
         });
+
+        setVisible(true);
     }
 }

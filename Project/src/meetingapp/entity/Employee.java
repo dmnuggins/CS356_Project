@@ -18,7 +18,6 @@ public class Employee extends Entity {
         this.isAdmin = isAdmin;
 
         login = LoginDB.getInstance().load(ID);
-        System.out.println(login == null);
     }
 
     public String getName() {

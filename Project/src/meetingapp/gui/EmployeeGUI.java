@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  * and current meetings that the user is a part of, allowing him to reply or manage
  * all that is displayed
  */
-public class EmployeeGUI extends JFrame{
+public class EmployeeGUI extends MeetingAppGUI{
     private JPanel employeePanel;
     private JPanel northPanel;
     private JButton displayScheduleButton;
@@ -25,18 +25,12 @@ public class EmployeeGUI extends JFrame{
     private JButton backButton;
     private JLabel topLabel;
 
-    private Employee employee;
-
-    public EmployeeGUI(Employee e) {
-        setTitle("Employee Menu");
+    public EmployeeGUI(final Employee employee) {
+        super("Employee Menu", employee);
         setContentPane(employeePanel);
         pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
 
-        employee = e;
-
-        topLabel.setText("Welcome, " + e.getName());
+        topLabel.setText("Welcome, " + employee.getName());
 
         displayScheduleButton.addActionListener(new ActionListener() {
             @Override
@@ -67,6 +61,7 @@ public class EmployeeGUI extends JFrame{
                 dispose();
             }
         });
-    }
 
+        setVisible(true);
+    }
 }

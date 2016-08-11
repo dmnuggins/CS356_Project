@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by CesarRecinos on 8/7/2016.
  */
-public class AdminGUI extends JFrame{
+public class AdminGUI extends MeetingAppGUI{
     private JPanel rootPanel;
     private JPanel employeePanel;
     private JPanel buttonPanel;
@@ -18,14 +18,10 @@ public class AdminGUI extends JFrame{
     private JButton meetingButton;
     private JButton goBack;
 
-    private Employee employee;
-
     public AdminGUI(final Employee employee) {
-
-        super("Admin Menu");
+        super("Admin Menu", employee);
         setContentPane(rootPanel);
         pack();
-        setLocationRelativeTo(null);
 
         employeeButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {

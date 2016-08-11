@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by CesarRecinos on 8/9/2016.
  */
-public class EditEmployeeGUI extends JFrame{
+public class EditEmployeeGUI extends MeetingAppGUI{
     private JPanel rootPanel;
     private JPanel employeePanel;
     private JPanel gridPanel;
@@ -25,15 +25,12 @@ public class EditEmployeeGUI extends JFrame{
     private JButton saveButton;
     private JButton cancelButton;
 
-    Employee employee;
     Employee editing;
 
     public EditEmployeeGUI(final Employee employee, final Employee editing){
-        super("Edit Employee");
+        super("Edit Employee", employee);
         setContentPane(rootPanel);
         pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
 
         this.editing = editing;
         nameField.setText(editing.getName());
@@ -100,5 +97,7 @@ public class EditEmployeeGUI extends JFrame{
                 dispose();
             }
         });
+
+        setVisible(true);
     }
 }

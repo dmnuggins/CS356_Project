@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by CesarRecinos on 8/7/2016.
  */
-public class RoomDisplayAdminGUI extends JFrame {
+public class RoomDisplayAdminGUI extends MeetingAppGUI {
     private JPanel rootPanel;
     private JPanel textPanel;
     private JPanel buttonPanel;
@@ -22,16 +22,10 @@ public class RoomDisplayAdminGUI extends JFrame {
     private JButton cancelButton;
     private JComboBox comboBox1;
 
-
-    private Employee employee;
-
     public RoomDisplayAdminGUI(final Employee employee){
-        super("Meeting Rooms");
+        super("Meeting Rooms", employee);
         setContentPane(rootPanel);
         pack();
-        setLocationRelativeTo(null);
-
-        this.employee = employee;
 
         ArrayList<Room> allRooms = (ArrayList<Room>) RoomDB.getInstance().loadAll();
         for (Room r : allRooms) {

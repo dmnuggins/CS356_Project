@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by dmnguyen on 8/7/16.
  */
-public class AdminEmpChoiceGUI extends JFrame{
+public class AdminEmpChoiceGUI extends MeetingAppGUI{
     private JPanel choicePanel;
     private JPanel northPanel;
     private JButton adminMenuButton;
@@ -19,14 +19,10 @@ public class AdminEmpChoiceGUI extends JFrame{
     private JPanel employeeMenuPanel;
     private JPanel logOutPanel;
 
-    private Employee employee;
-
     public AdminEmpChoiceGUI(final Employee employee) {
-        setTitle("Choose Menu Type");
+        super("Choose Menu Type", employee);
         setContentPane(choicePanel);
         pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
 
         this.employee = employee;
 
@@ -51,5 +47,7 @@ public class AdminEmpChoiceGUI extends JFrame{
                 dispose();
             }
         });
+
+        setVisible(true);
     }
 }
