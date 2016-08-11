@@ -15,8 +15,9 @@ public class EmployeeMeeting extends Entity {
     protected boolean isOwner;
     protected boolean accepted;
     protected boolean seen;
+    protected boolean seenByOwner;
 
-    public EmployeeMeeting(int ID, int employeeID, int meetingID, boolean isOwner, boolean accepted, boolean seen) {
+    public EmployeeMeeting(int ID, int employeeID, int meetingID, boolean isOwner, boolean accepted, boolean seen, boolean seenByOwner) {
         super(ID);
 
         this.employeeID = employeeID;
@@ -24,6 +25,7 @@ public class EmployeeMeeting extends Entity {
         this.isOwner = isOwner;
         this.accepted = accepted;
         this.seen = seen;
+        this.seenByOwner = seenByOwner;
     }
 
     public int getEmployeeID() {
@@ -66,6 +68,14 @@ public class EmployeeMeeting extends Entity {
         save();
     }
 
+    public boolean getSeenByOwner() {
+        return seenByOwner;
+    }
+
+    public void setSeenByOwner(boolean seenByOwner) {
+        this.seenByOwner = seenByOwner;
+    }
+
     public void save() {
         EmployeeMeetingDB.getInstance().save(this);
     }
@@ -89,18 +99,33 @@ public class EmployeeMeeting extends Entity {
     }
 
     //Get all meeting attendees. Owner is included if includeOwner argument is set
-    public static List<Employee> getAllEmployees(int meetingID, boolean includeOwner, boolean includeNotAccepted) {
-        List<Employee> l = new ArrayList<Employee>();
+    public static List<EmployeeMeeting> getAllEmployees(int meetingID, boolean includeOwner, boolean includeNotAccepted) {
+        List<EmployeeMeeting> out = new ArrayList<EmployeeMeeting>();
 
         List<EmployeeMeeting> eml = EmployeeMeetingDB.getInstance().loadAll();
         for (int i = 0; i < eml.size(); i++) {
             EmployeeMeeting em = eml.get(i);
             if (em.meetingID == meetingID && (!em.isOwner || includeOwner) && (em.accepted || includeNotAccepted)) {
-                l.add(EmployeeDB.getInstance().load(em.employeeID));
+                out.add(em);
             }
         }
 
-        return l;
+        return out;
+    }
+
+
+    public static List<EmployeeMeeting> getResponded(int meetingID, boolean includeOwner) {
+        List<EmployeeMeeting> out = new ArrayList<EmployeeMeeting>();
+
+        List<EmployeeMeeting> eml = EmployeeMeetingDB.getInstance().loadAll();
+        for (int i = 0; i < eml.size(); i++) {
+            EmployeeMeeting em = eml.get(i);
+            if (em.meetingID == meetingID && (!em.isOwner || includeOwner) && em.seen) {
+                out.add(em);
+            }
+        }
+
+        return out;
     }
 
     //get owner of meeting
