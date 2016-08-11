@@ -9,9 +9,43 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="9dc5e" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="9dc5e" binding="northPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="702c3" binding="buttonPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="43561" class="javax.swing.JButton" binding="setVisibilityButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Set Visibility"/>
+                </properties>
+              </component>
+              <component id="43dc9" class="javax.swing.JButton" binding="reserveTimeButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Reserve Time"/>
+                </properties>
+              </component>
+              <component id="94561" class="javax.swing.JButton" binding="unreserveTimeButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Unreserve Time"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="f18ec" binding="southPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="South"/>
         <properties/>
         <border type="none"/>
         <children/>
