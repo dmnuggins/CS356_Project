@@ -16,9 +16,9 @@ public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
     private JButton acceptButton;
     private JButton declineButton;
     private JPanel meetingInvitePanel;
-    private JTable invitedTable;
     private JLabel dateLabelStart;
     private JLabel dateLabelEnd;
+    private JList invitedList;
 
     EmployeeMeeting meeting;
 
@@ -36,12 +36,11 @@ public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
 
         ArrayList<Employee> attending = (ArrayList<Employee>) EmployeeMeeting.getAllEmployees(meeting.getMeetingID(), true, false);
 
-        DefaultTableModel def = new DefaultTableModel();
-        invitedTable.setModel(def);
-        def.addColumn("Name");
-
+        DefaultListModel<String> lm = new DefaultListModel<String>();
+        invitedList.setModel(lm);
+        
         for (Employee e : attending) {
-            def.addRow(new Object[] { e.getName() });
+            lm.addElement(e.getName());
         }
 
         acceptButton.addActionListener(new ActionListener() {
