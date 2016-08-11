@@ -23,7 +23,7 @@ public class CreateEmployeeGUI extends MeetingAppGUI{
     private JButton cancelButton;
     private JPasswordField passwordField;
 
-    public CreateEmployeeGUI(Employee employee){
+    public CreateEmployeeGUI(final Employee employee){
         super("Create a New Employee", employee);
         setContentPane(rootPanel);
         pack();
@@ -57,8 +57,7 @@ public class CreateEmployeeGUI extends MeetingAppGUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-
-                //new EmployeeDisplayAdminGUI().setVisible(true);
+                new EmployeeDisplayAdminGUI(employee);
             }
         });
 
