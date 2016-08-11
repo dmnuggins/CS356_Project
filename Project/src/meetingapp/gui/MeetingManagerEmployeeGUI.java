@@ -9,11 +9,24 @@ import javax.swing.*;
  */
 public class MeetingManagerEmployeeGUI extends MeetingAppGUI {
 
-    private JPanel mainPanel;
+    private JPanel meetingManagerRootPanel;
+    private JPanel northPanel;
+    private JPanel southPanel;
+    private JPanel centerPanel;
+    private JButton backButton;
+    private JPanel southButtonPanel;
+    private JTable ownMeetingTable;
+    private JTable participantMeetingTable;
+    private JButton cancelMeetingButton;
+    private JButton updateMeetingButton;
+    private JButton updateStatusButton;
+    private JButton meetingInfoButton;
+    private JScrollPane ownJScrollPane;
+    private JScrollPane partJScrollPane;
 
     public MeetingManagerEmployeeGUI (final Employee employee) {
         super("Meeting Manager", employee);
-        setContentPane(mainPanel);
+        setContentPane(meetingManagerRootPanel);
         pack();
 
         setVisible(true);
