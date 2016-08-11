@@ -1,11 +1,9 @@
 package meetingapp.gui;
 
 import meetingapp.db.EmployeeDB;
-import meetingapp.db.MeetingDB;
 import meetingapp.entity.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,26 +18,28 @@ public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
     private JLabel dateLabelStart;
     private JLabel dateLabelEnd;
     private JList invitedList;
+    private JLabel topLabel;
 
-    EmployeeMeeting meeting;
+    EmployeeMeeting employeeMeeting;
 
-    public NotifEmployeeInvitesGUI(final Employee employee, final EmployeeMeeting meeting) {
+    public NotifEmployeeInvitesGUI(final Employee employee, final EmployeeMeeting employeeMeeting) {
         super("Meeting Invite", employee, false);
         setContentPane(meetingInvitePanel);
         pack();
 
-        this.meeting = meeting;
-        meeting.setSeen(true);
+        this.employeeMeeting = employeeMeeting;
+        this.employeeMeeting.setSeen(true);
 
-        Meeting m = MeetingDB.getInstance().load(meeting.getMeetingID());
-        dateLabelStart.setText("Starts: " + m.getStart().toLocaleString());
-        dateLabelEnd.setText("Ends: " + m.getEnd().toLocaleString());
+        //populate text fields
+        topLabel.setText("Invite from: " + employeeMeeting.getMeeting().getOwner().getName());
+        Meeting meeting = employeeMeeting.getMeeting();
+        dateLabelStart.setText("Starts: " + meeting.getStart().toLocaleString());
+        dateLabelEnd.setText("Ends: " + meeting.getEnd().toLocaleString());
 
-        ArrayList<EmployeeMeeting> attending = (ArrayList<EmployeeMeeting>) EmployeeMeeting.getAllEmployees(meeting.getMeetingID(), true, false);
-
+        //build list of attending employees
+        ArrayList<EmployeeMeeting> attending = (ArrayList<EmployeeMeeting>) meeting.getAllAccepted(true);
         DefaultListModel<String> lm = new DefaultListModel<String>();
         invitedList.setModel(lm);
-        
         for (EmployeeMeeting e : attending) {
             lm.addElement(EmployeeDB.getInstance().load(e.getEmployeeID()).getName());
         }
@@ -47,7 +47,7 @@ public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
         acceptButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                meeting.setAccepted(true);
+                employeeMeeting.setAccepted(true);
                 dispose();
             }
         });

@@ -1,6 +1,5 @@
 package meetingapp.gui;
 
-import meetingapp.db.EmployeeMeetingDB;
 import meetingapp.entity.*;
 import java.util.*;
 
@@ -66,19 +65,23 @@ public class EmployeeGUI extends MeetingAppGUI{
 
         setVisible(true);
 
-        ArrayList<EmployeeMeeting> meetings = (ArrayList<EmployeeMeeting>) EmployeeMeeting.getAllMeetings(employee.getID(), false, false);
-
+        //get all meeting invites
+        ArrayList<EmployeeMeeting> meetings = (ArrayList<EmployeeMeeting>) employee.getAllMeetings(false, false);
         for (EmployeeMeeting em : meetings) {
             if (!em.getSeen()) {
+                //notify user of unseen invites
                 new NotifEmployeeInvitesGUI(employee, em);
             }
         }
 
-        ArrayList<EmployeeMeeting> meetingsOwned = (ArrayList<EmployeeMeeting>) EmployeeMeeting.getAllMeetings(employee.getID(), true, false);
+        //get all meetings owned
+        ArrayList<EmployeeMeeting> meetingsOwned = (ArrayList<EmployeeMeeting>) employee.getAllMeetings(true, false);
         for (EmployeeMeeting em : meetingsOwned) {
-            ArrayList<EmployeeMeeting> responded = (ArrayList<EmployeeMeeting>) EmployeeMeeting.getResponded(em.getMeetingID(), false);
+            //get list of users responded
+            ArrayList<EmployeeMeeting> responded = (ArrayList<EmployeeMeeting>) em.getMeeting().getAllSeenInvite();
             for (EmployeeMeeting r : responded) {
                 if (!r.getSeenByOwner()) {
+                    //nofiy owner of unseen responses
                     new NotifyMeetingOwner(employee, r);
                 }
             }
