@@ -1,9 +1,11 @@
 package meetingapp.gui;
 
 import javax.swing.*;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import meetingapp.entity.Employee;
 
 /**
  * Created by dmnguyen on 8/9/16.
@@ -16,18 +18,34 @@ public class ScheduleDisplayGUI extends JFrame{
     private JButton setVisibilityButton;
     private JButton reserveTimeButton;
     private JButton unreserveTimeButton;
+    private JButton backButton;
+    private JPanel tablePanel;
+    private JPanel lowerButtonPanel;
     private JTable scheduleTable;
 
-    public ScheduleDisplayGUI() {
-        String[] columns = {"Today", "Tomorrow"};
+    private Employee employee;
 
-        String[][] data = {{"Today's Meeting", "Tomorrow's Meeting"},
-                {"Today's Meeting", "Tomorrow's Meeting"},
-                {"Today's Meeting", "Tomorrow's Meeting"},
-                {"Today's Meeting", "Tomorrow's Meeting"},
-                {"Today's Meeting", "Tomorrow's Meeting"},
-                {"Today's Meeting", "Tomorrow's Meeting"},
-                {"Today's Meeting", "Tomorrow's Meeting"},
+    public ScheduleDisplayGUI(Employee e) {
+        super("Schedule");
+
+        employee = e;
+
+        String[] columns = {"Sunday", "Monday", "Tuesday", "Wednesday","Thursday","Friday", "Saturday"};
+
+        String[][] data = {{"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
+                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"}
         };
 
         scheduleTable = new JTable(data, columns) {
@@ -45,11 +63,20 @@ public class ScheduleDisplayGUI extends JFrame{
                 return c;
             }
         };
-        scheduleTable.setPreferredScrollableViewportSize(new Dimension(450,200));
+        scheduleTable.setPreferredScrollableViewportSize(new Dimension(550,300));
         scheduleTable.setFillsViewportHeight(true);
 
         JScrollPane jsp = new JScrollPane(scheduleTable);
-        southPanel.add(jsp);
+        tablePanel.add(jsp);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                EmployeeGUI empgui = new EmployeeGUI(employee);
+                empgui.showGUI();
+                dispose();
+            }
+        });
     }
 
     public void showGUI() {

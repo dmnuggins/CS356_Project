@@ -34,7 +34,7 @@ public class EmployeeGUI extends JFrame{
         displayScheduleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ScheduleDisplayGUI sdgui = new ScheduleDisplayGUI();
+                ScheduleDisplayGUI sdgui = new ScheduleDisplayGUI(employee);
                 sdgui.showGUI();
                 dispose();
             }
