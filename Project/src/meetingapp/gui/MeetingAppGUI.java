@@ -17,4 +17,14 @@ public class MeetingAppGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.employee = employee;
     }
+
+    public MeetingAppGUI(String title, final Employee employee, boolean exitOnClose) {
+        super(title);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        if (exitOnClose) {
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+        this.employee = employee;
+    }
 }

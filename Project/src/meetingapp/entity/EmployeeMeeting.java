@@ -14,14 +14,16 @@ public class EmployeeMeeting extends Entity {
     protected int meetingID;
     protected boolean isOwner;
     protected boolean accepted;
+    protected boolean seen;
 
-    public EmployeeMeeting(int ID, int employeeID, int meetingID, boolean isOwner, boolean accepted) {
+    public EmployeeMeeting(int ID, int employeeID, int meetingID, boolean isOwner, boolean accepted, boolean seen) {
         super(ID);
 
         this.employeeID = employeeID;
         this.meetingID = meetingID;
         this.isOwner = isOwner;
         this.accepted = accepted;
+        this.seen = seen;
     }
 
     public int getEmployeeID() {
@@ -55,27 +57,35 @@ public class EmployeeMeeting extends Entity {
         save();
     }
 
+    public boolean getSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
+        save();
+    }
+
     public void save() {
         EmployeeMeetingDB.getInstance().save(this);
     }
 
     //Get all meetings a user is invited to (isOwner = false) or created (isOwner = true). Includes meeting invites not accepted yet
     //if includePast argument is set to true, the method will return meetings that already happened
-    public static List<Meeting> getAllMeetings(int employeeID, boolean isOwner, boolean includePast) {
-        List<Meeting> l = new ArrayList<Meeting>();
+    public static List<EmployeeMeeting> getAllMeetings(int employeeID, boolean isOwner, boolean includePast) {
+        List<EmployeeMeeting> out = new ArrayList<EmployeeMeeting>();
 
         List<EmployeeMeeting> eml = EmployeeMeetingDB.getInstance().loadAll();
-        for (int i = 0; i < eml.size(); i++) {
-            EmployeeMeeting em = eml.get(i);
+        for (EmployeeMeeting em : eml) {
             if (em.employeeID == employeeID && em.isOwner == isOwner) {
                 Meeting m = MeetingDB.getInstance().load(em.meetingID);
-                if (includePast || m.end.before(new Date())) {
-                    l.add(m);
+                if (includePast || m.end.after(new Date())) {
+                    out.add(em);
                 }
             }
         }
 
-        return l;
+        return out;
     }
 
     //Get all meeting attendees. Owner is included if includeOwner argument is set
@@ -85,7 +95,7 @@ public class EmployeeMeeting extends Entity {
         List<EmployeeMeeting> eml = EmployeeMeetingDB.getInstance().loadAll();
         for (int i = 0; i < eml.size(); i++) {
             EmployeeMeeting em = eml.get(i);
-            if (em.meetingID == meetingID && (em.isOwner || includeOwner) && (em.accepted || includeNotAccepted)) {
+            if (em.meetingID == meetingID && (!em.isOwner || includeOwner) && (em.accepted || includeNotAccepted)) {
                 l.add(EmployeeDB.getInstance().load(em.employeeID));
             }
         }
