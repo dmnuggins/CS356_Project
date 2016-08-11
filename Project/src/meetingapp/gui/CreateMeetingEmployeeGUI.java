@@ -4,6 +4,8 @@ import meetingapp.entity.*;
 import meetingapp.db.*;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,27 +14,29 @@ import java.util.*;
 /**
  * Created by Dylan Nguyen on 8/8/2016.
  */
-public class NewMeetingEmployeeGUI extends JFrame{
+public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
     private JPanel newMeetingPanel;
     private JPanel northPanel;
     private JPanel southPanel;
     private JPanel titlePanel;
     private JPanel comboBoxPanel;
     private JComboBox roomComboBox;
-    private JComboBox startDateComboBox;
-    private JComboBox endDateComboBox;
     private JLabel roomLabel;
-    private JLabel startDateLabel;
-    private JLabel endDateLabel;
     private JButton Create;
     private JButton backButton;
-
-    private Employee employee;
+    private JTable inviteListTable;
+    private JButton removeEmployeesButton;
+    private JButton changeTimeButton;
+    private JButton addEmployeesButton;
+    private JLabel meetingDateLabel;
 
     private ArrayList<Room> allRooms;
 
-    public NewMeetingEmployeeGUI(Employee employee) {
-        super("newMeetingPanel");
+    public CreateMeetingEmployeeGUI(final Employee employee) {
+        super("New Meeting", employee);
+        setContentPane(newMeetingPanel);
+        pack();
+
 
         this.employee = employee;
         //get all employees
@@ -41,26 +45,22 @@ public class NewMeetingEmployeeGUI extends JFrame{
             roomComboBox.addItem(Integer.toString(allRooms.get(i).getID()));
         }
 
+        DefaultTableModel model = new DefaultTableModel();
+        inviteListTable.setModel(model);
+
+        model.addColumn("Name");
+        model.addRow(new Object[] { employee.getName() });
+
+        meetingDateLabel.setText(new Date().toLocaleString());
 
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EmployeeGUI empgui = new EmployeeGUI(employee);
-                empgui.showGUI();
+                new EmployeeGUI(employee);
                 dispose();
             }
         });
-    }
 
-
-    public void showGUI() {
-        setTitle("New Meeting");
-        setContentPane(newMeetingPanel);
-        pack();
         setVisible(true);
-        setLocationRelativeTo(null);
-
     }
-
-
 }

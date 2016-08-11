@@ -46,7 +46,7 @@ public class LoginDB extends FileDB {
         int length = seekRecord(id);
         if (length > 0) {
             try {
-                readRecord(length);
+                return readRecord(length);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }

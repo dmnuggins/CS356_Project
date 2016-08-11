@@ -1,4 +1,6 @@
 package meetingapp.gui;
+import meetingapp.entity.Employee;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,7 +8,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by CesarRecinos on 8/9/2016.
  */
-public class EditEmployeeGUI extends JFrame{
+public class EditEmployeeGUI extends MeetingAppGUI{
     private JPanel rootPanel;
     private JPanel employeePanel;
     private JPanel gridPanel;
@@ -23,13 +25,18 @@ public class EditEmployeeGUI extends JFrame{
     private JButton saveButton;
     private JButton cancelButton;
 
-    public EditEmployeeGUI(){
-        super("Edit Employee");
+    Employee editing;
+
+    public EditEmployeeGUI(final Employee employee, final Employee editing){
+        super("Edit Employee", employee);
         setContentPane(rootPanel);
         pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setVisible(true);
+
+        this.editing = editing;
+        nameField.setText(editing.getName());
+        usernameField.setText(editing.getLogin().getUsername());
+        passwordField.setText(editing.getLogin().getPassword());
+        isAdminCheckBox.setSelected(editing.getIsAdmin());
 
 
         nameField.addActionListener(new ActionListener() {
@@ -75,7 +82,10 @@ public class EditEmployeeGUI extends JFrame{
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                editing.setIsAdmin(isAdminCheckBox.isSelected());
+                editing.setName(nameField.getText());
+                editing.getLogin().setPassword(new String(passwordField.getPassword()));
+                editing.getLogin().setUsername(usernameField.getText());
             }
         });
 
@@ -83,9 +93,11 @@ public class EditEmployeeGUI extends JFrame{
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new EmployeeDisplayAdminGUI();
+                new EmployeeDisplayAdminGUI(employee);
                 dispose();
             }
         });
+
+        setVisible(true);
     }
 }

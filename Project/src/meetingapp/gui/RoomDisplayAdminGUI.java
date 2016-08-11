@@ -1,15 +1,19 @@
 package meetingapp.gui;
 
+import meetingapp.db.RoomDB;
+import meetingapp.entity.*;
+
 import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 /**
  * Created by CesarRecinos on 8/7/2016.
  */
-public class RoomDisplayAdminGUI extends JFrame {
+public class RoomDisplayAdminGUI extends MeetingAppGUI {
     private JPanel rootPanel;
     private JPanel textPanel;
     private JPanel buttonPanel;
@@ -18,14 +22,15 @@ public class RoomDisplayAdminGUI extends JFrame {
     private JButton cancelButton;
     private JComboBox comboBox1;
 
-
-    public RoomDisplayAdminGUI(){
-        super("Meeting Rooms");
+    public RoomDisplayAdminGUI(final Employee employee){
+        super("Meeting Rooms", employee);
         setContentPane(rootPanel);
         pack();
-        setLocationRelativeTo(null);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ArrayList<Room> allRooms = (ArrayList<Room>) RoomDB.getInstance().loadAll();
+        for (Room r : allRooms) {
+            comboBox1.addItem("Room " + r.getID());
+        }
 
 
         comboBox1.addActionListener(new ActionListener() {
@@ -51,9 +56,8 @@ public class RoomDisplayAdminGUI extends JFrame {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new AdminGUI(employee);
                 dispose();
-
-                new AdminGUI().setVisible(true);
             }
         });
 

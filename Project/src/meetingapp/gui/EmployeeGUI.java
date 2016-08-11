@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  * and current meetings that the user is a part of, allowing him to reply or manage
  * all that is displayed
  */
-public class EmployeeGUI extends JFrame{
+public class EmployeeGUI extends MeetingAppGUI{
     private JPanel employeePanel;
     private JPanel northPanel;
     private JButton displayScheduleButton;
@@ -23,55 +23,45 @@ public class EmployeeGUI extends JFrame{
     private JPanel updateUserButtonPanel;
     private JButton manageMeetingsButton;
     private JButton backButton;
+    private JLabel topLabel;
 
-    private Employee employee;
+    public EmployeeGUI(final Employee employee) {
+        super("Employee Menu", employee);
+        setContentPane(employeePanel);
+        pack();
 
-    public EmployeeGUI(Employee e) {
-        super("Employee Menu");
-
-        employee = e;
+        topLabel.setText("Welcome, " + employee.getName());
 
         displayScheduleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ScheduleDisplayGUI sdgui = new ScheduleDisplayGUI(employee);
-                sdgui.showGUI();
+                new ScheduleDisplayGUI(employee);
                 dispose();
             }
         });
         createMeetingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NewMeetingEmployeeGUI nmgui = new NewMeetingEmployeeGUI(employee);
-                nmgui.showGUI();
+                new CreateMeetingEmployeeGUI(employee);
+                dispose();
             }
         });
         changePasswordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChangePasswordEmployeeGUI cpgui = new ChangePasswordEmployeeGUI(employee);
-                cpgui.showGUI();
+                new ChangePasswordEmployeeGUI(employee);
+                dispose();
             }
         });
 
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new LoginGUI().showGUI();
+                new LoginGUI();
                 dispose();
             }
         });
-    }
 
-    public void showGUI() {
-        setTitle("New meetingapp.entity.Meeting");
-        setContentPane(employeePanel);
-        pack();
         setVisible(true);
-        setLocationRelativeTo(null);
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }

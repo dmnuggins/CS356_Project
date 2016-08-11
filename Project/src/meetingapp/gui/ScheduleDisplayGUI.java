@@ -10,7 +10,7 @@ import meetingapp.entity.Employee;
 /**
  * Created by dmnguyen on 8/9/16.
  */
-public class ScheduleDisplayGUI extends JFrame{
+public class ScheduleDisplayGUI extends MeetingAppGUI{
     private JPanel scheduleDisplayPanel;
     private JPanel southPanel;
     private JPanel northPanel;
@@ -23,12 +23,10 @@ public class ScheduleDisplayGUI extends JFrame{
     private JPanel lowerButtonPanel;
     private JTable scheduleTable;
 
-    private Employee employee;
-
-    public ScheduleDisplayGUI(Employee e) {
-        super("Schedule");
-
-        employee = e;
+    public ScheduleDisplayGUI(final Employee employee) {
+        super("Schedule", employee);
+        setContentPane(scheduleDisplayPanel);
+        pack();
 
         String[] columns = {"Sunday", "Monday", "Tuesday", "Wednesday","Thursday","Friday", "Saturday"};
 
@@ -71,20 +69,12 @@ public class ScheduleDisplayGUI extends JFrame{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                EmployeeGUI empgui = new EmployeeGUI(employee);
-                empgui.showGUI();
+                new EmployeeGUI(employee);
                 dispose();
             }
         });
+
+        setVisible(true);
     }
 
-    public void showGUI() {
-        setTitle("Schedule");
-        setContentPane(scheduleDisplayPanel);
-        pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
-        setResizable(false);
-    }
 }

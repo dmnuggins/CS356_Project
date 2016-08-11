@@ -27,6 +27,11 @@ public class Login extends Entity {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+        save();
+    }
+
     public String getPassword() {
         return password;
     }
@@ -47,10 +52,7 @@ public class Login extends Entity {
         for (int i = 0; i < loginList.size(); i++) {
             Login l = loginList.get(i);
             if (l.username.equals(u) && l.password.equals(p)) {
-                EmployeeDB edb = EmployeeDB.getInstance();
-                Employee e = edb.load(l.ID);
-                e.setLogin(l);
-                return e;
+                return EmployeeDB.getInstance().load(l.ID);
             }
         }
 
