@@ -34,7 +34,7 @@ public class MeetingApp {
         EmployeeMeetingDB.getInstance().save(new EmployeeMeeting(3, 3, 0, false, false, false, false));
         EmployeeMeetingDB.getInstance().save(new EmployeeMeeting(4, 4, 0, false, false, false, false));
         EmployeeMeetingDB.getInstance().save(new EmployeeMeeting(5, 5, 0, false, true, true, true));
-        EmployeeMeetingDB.getInstance().save(new EmployeeMeeting(6, 6, 0, false, true, true, false));
+        EmployeeMeetingDB.getInstance().save(new EmployeeMeeting(6, 6, 0, false, true, true, true));
 
         Room room = new Room(101, 5);
         RoomDB.getInstance().save(room);
