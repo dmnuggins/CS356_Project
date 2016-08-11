@@ -1,6 +1,7 @@
 package meetingapp.gui;
 
-import meetingapp.entity.Employee;
+import meetingapp.entity.*;
+import java.util.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -63,5 +64,13 @@ public class EmployeeGUI extends MeetingAppGUI{
         });
 
         setVisible(true);
+
+        ArrayList<EmployeeMeeting> meetings = (ArrayList<EmployeeMeeting>) EmployeeMeeting.getAllMeetings(employee.getID(), false, false);
+
+        for (EmployeeMeeting em : meetings) {
+            if (!em.getSeen()) {
+                new NotifEmployeeInvitesGUI(employee, em);
+            }
+        }
     }
 }
