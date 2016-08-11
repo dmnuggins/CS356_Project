@@ -42,7 +42,7 @@ public class EmployeeGUI extends MeetingAppGUI{
         createMeetingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new NewMeetingEmployeeGUI(employee);
+                new CreateMeetingEmployeeGUI(employee);
                 dispose();
             }
         });

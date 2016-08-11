@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * Created by Dylan Nguyen on 8/8/2016.
  */
-public class NewMeetingEmployeeGUI extends MeetingAppGUI{
+public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
     private JPanel newMeetingPanel;
     private JPanel northPanel;
     private JPanel southPanel;
@@ -29,7 +29,7 @@ public class NewMeetingEmployeeGUI extends MeetingAppGUI{
 
     private ArrayList<Room> allRooms;
 
-    public NewMeetingEmployeeGUI(final Employee employee) {
+    public CreateMeetingEmployeeGUI(final Employee employee) {
         super("New Meeting", employee);
         setContentPane(newMeetingPanel);
         pack();
