@@ -86,6 +86,8 @@ public class EditEmployeeGUI extends MeetingAppGUI{
                 editing.setName(nameField.getText());
                 editing.getLogin().setPassword(new String(passwordField.getPassword()));
                 editing.getLogin().setUsername(usernameField.getText());
+                new EmployeeDisplayAdminGUI(employee);
+                dispose();
             }
         });
 
