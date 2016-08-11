@@ -1,6 +1,7 @@
 package meetingapp.gui;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,53 +20,47 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
     private JButton reserveTimeButton;
     private JButton unreserveTimeButton;
     private JButton backButton;
-    private JPanel tablePanel;
-    private JPanel lowerButtonPanel;
+    private JPanel centerPanel;
+    private JPanel titlePanel;
     private JTable scheduleTable;
+    private JButton confirmScheduleButton;
 
     public ScheduleDisplayGUI(final Employee employee) {
         super("Schedule", employee);
         setContentPane(scheduleDisplayPanel);
         pack();
 
-        String[] columns = {"Sunday", "Monday", "Tuesday", "Wednesday","Thursday","Friday", "Saturday"};
+        DefaultTableModel model = new DefaultTableModel();
+        scheduleTable.setModel(model);
 
-        String[][] data = {{"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"},
-                {"event1", "event2", "event3", "event4", "event5", "event6", "event7"}
-        };
+        String[] columns = {"Monday", "Tuesday", "Wednesday","Thursday","Friday"};
 
-        scheduleTable = new JTable(data, columns) {
-            public boolean isCellEditable(int data, int columns) {
-                return false;
-            }
+        for(int i=0;i<columns.length;i++) {
+            model.addColumn(columns[i]);
+        }
+        model.addRow(new Object[] {"event1", "event2", "event3", "event4", "event5"});
 
-            public Component prepareRenderer(TableCellRenderer r, int data, int columns) {
-                Component c = super.prepareRenderer(r, data, columns);
+//        scheduleTable = new JTable(data, columns) {
+//            public boolean isCellEditable(int data, int columns) {
+//                return false;
+//            }
+//
+//            public Component prepareRenderer(TableCellRenderer r, int data, int columns) {
+//                Component c = super.prepareRenderer(r, data, columns);
+//
+//                if(data % 2 == 0)
+//                    c.setBackground(Color.WHITE);
+//                else
+//                    c.setBackground(Color.LIGHT_GRAY);
+//                return c;
+//            }
+//        };
+//        scheduleTable.setPreferredScrollableViewportSize(new Dimension(550,300));
+//        scheduleTable.setFillsViewportHeight(true);
+//
+//        JScrollPane jsp = new JScrollPane(scheduleTable);
+//        centerPanel.add(jsp);
 
-                if(data % 2 == 0)
-                    c.setBackground(Color.WHITE);
-                else
-                    c.setBackground(Color.LIGHT_GRAY);
-                return c;
-            }
-        };
-        scheduleTable.setPreferredScrollableViewportSize(new Dimension(550,300));
-        scheduleTable.setFillsViewportHeight(true);
-
-        JScrollPane jsp = new JScrollPane(scheduleTable);
-        tablePanel.add(jsp);
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
