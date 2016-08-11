@@ -1,4 +1,6 @@
 package meetingapp.gui;
+import meetingapp.entity.Employee;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,18 +18,18 @@ public class AdminGUI extends JFrame{
     private JButton meetingButton;
     private JButton goBack;
 
-    public AdminGUI() {
+    private Employee employee;
+
+    public AdminGUI(final Employee employee) {
 
         super("Admin Menu");
         setContentPane(rootPanel);
         pack();
         setLocationRelativeTo(null);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         employeeButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                EmployeeDisplayAdminGUI empDisplay = new EmployeeDisplayAdminGUI();
+                new EmployeeDisplayAdminGUI(employee);
                 dispose();
             }
         });
@@ -35,16 +37,15 @@ public class AdminGUI extends JFrame{
 
         meetingButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-
-                RoomDisplayAdminGUI roomDisplay =new RoomDisplayAdminGUI();
+                new RoomDisplayAdminGUI(employee);
                 dispose();
-
             }
         });
 
         goBack.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-
+                new AdminEmpChoiceGUI(employee);
+                dispose();
             }
         });
 

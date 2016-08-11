@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="meetingapp.gui.AdminEmpChoiceGUI">
   <grid id="27dc6" binding="choicePanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="220" height="110"/>
+      <xy x="20" y="20" width="250" height="110"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -39,8 +39,9 @@
               <component id="2e46e" class="javax.swing.JButton" binding="employeeMenuButton" default-binding="true">
                 <constraints/>
                 <properties>
+                  <opaque value="true"/>
                   <preferredSize width="140" height="32"/>
-                  <text value="meetingapp.entity.Employee Menu"/>
+                  <text value="Employee Menu"/>
                 </properties>
               </component>
             </children>

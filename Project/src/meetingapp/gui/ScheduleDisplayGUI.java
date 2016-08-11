@@ -26,7 +26,12 @@ public class ScheduleDisplayGUI extends JFrame{
     private Employee employee;
 
     public ScheduleDisplayGUI(Employee e) {
-        super("Schedule");
+        setTitle("Schedule");
+        setContentPane(scheduleDisplayPanel);
+        pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setResizable(false);
 
         employee = e;
 
@@ -72,19 +77,10 @@ public class ScheduleDisplayGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                EmployeeGUI empgui = new EmployeeGUI(employee);
-                empgui.showGUI();
+                new EmployeeGUI(employee);
                 dispose();
             }
         });
     }
 
-    public void showGUI() {
-        setTitle("Schedule");
-        setContentPane(scheduleDisplayPanel);
-        pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
-        setResizable(false);
-    }
 }

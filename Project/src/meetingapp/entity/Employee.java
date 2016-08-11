@@ -16,6 +16,9 @@ public class Employee extends Entity {
         super(ID);
         this.name = name;
         this.isAdmin = isAdmin;
+
+        login = LoginDB.getInstance().load(ID);
+        System.out.println(login == null);
     }
 
     public String getName() {
@@ -58,10 +61,6 @@ public class Employee extends Entity {
 
     public Login getLogin() {
         return login;
-    }
-
-    public void setLogin(Login login) {
-        this.login = login;
     }
 
     public void save() {

@@ -32,7 +32,11 @@ public class NewMeetingEmployeeGUI extends JFrame{
     private ArrayList<Room> allRooms;
 
     public NewMeetingEmployeeGUI(Employee employee) {
-        super("newMeetingPanel");
+        setTitle("New Meeting");
+        setContentPane(newMeetingPanel);
+        pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
 
         this.employee = employee;
         //get all employees
@@ -45,22 +49,13 @@ public class NewMeetingEmployeeGUI extends JFrame{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EmployeeGUI empgui = new EmployeeGUI(employee);
-                empgui.showGUI();
-                dispose();
+                back();
             }
         });
     }
 
-
-    public void showGUI() {
-        setTitle("New Meeting");
-        setContentPane(newMeetingPanel);
-        pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
-
+    public void back() {
+        new EmployeeGUI(employee);
+        dispose();
     }
-
-
 }

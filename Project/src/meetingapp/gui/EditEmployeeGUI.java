@@ -1,4 +1,6 @@
 package meetingapp.gui;
+import meetingapp.entity.Employee;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,13 +25,21 @@ public class EditEmployeeGUI extends JFrame{
     private JButton saveButton;
     private JButton cancelButton;
 
-    public EditEmployeeGUI(){
+    Employee employee;
+    Employee editing;
+
+    public EditEmployeeGUI(final Employee employee, final Employee editing){
         super("Edit Employee");
         setContentPane(rootPanel);
         pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+
+        this.editing = editing;
+        nameField.setText(editing.getName());
+        usernameField.setText(editing.getLogin().getUsername());
+        passwordField.setText(editing.getLogin().getPassword());
+        isAdminCheckBox.setSelected(editing.getIsAdmin());
 
 
         nameField.addActionListener(new ActionListener() {
@@ -75,7 +85,10 @@ public class EditEmployeeGUI extends JFrame{
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                editing.setIsAdmin(isAdminCheckBox.isSelected());
+                editing.setName(nameField.getText());
+                editing.getLogin().setPassword(new String(passwordField.getPassword()));
+                editing.getLogin().setUsername(usernameField.getText());
             }
         });
 
@@ -83,7 +96,7 @@ public class EditEmployeeGUI extends JFrame{
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new EmployeeDisplayAdminGUI();
+                new EmployeeDisplayAdminGUI(employee);
                 dispose();
             }
         });

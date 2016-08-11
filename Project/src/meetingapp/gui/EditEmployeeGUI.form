@@ -54,6 +54,7 @@
                 </constraints>
                 <properties>
                   <label value="Admin"/>
+                  <selected value="false"/>
                   <text value="Admin"/>
                 </properties>
               </component>

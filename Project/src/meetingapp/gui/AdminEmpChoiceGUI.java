@@ -22,39 +22,34 @@ public class AdminEmpChoiceGUI extends JFrame{
     private Employee employee;
 
     public AdminEmpChoiceGUI(final Employee employee) {
-
-
-        this.employee = employee;
-
-        adminMenuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new AdminGUI();
-                dispose();
-
-
-            }
-        });
-        employeeMenuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                EmployeeGUI empgui = new EmployeeGUI(employee);
-                empgui.showGUI();
-            }
-        });
-        logOutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-    }
-    public void showGUI() {
         setTitle("Choose Menu Type");
         setContentPane(choicePanel);
         pack();
         setVisible(true);
         setLocationRelativeTo(null);
 
+        this.employee = employee;
+
+        adminMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AdminGUI(employee);
+                dispose();
+            }
+        });
+        employeeMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new EmployeeGUI(employee);
+                dispose();
+            }
+        });
+        logOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LoginGUI();
+                dispose();
+            }
+        });
     }
 }

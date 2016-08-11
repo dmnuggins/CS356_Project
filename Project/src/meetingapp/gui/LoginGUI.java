@@ -27,7 +27,15 @@ public class LoginGUI extends JFrame {
     }
 
     public LoginGUI() {
-        super("loginPanel");
+        setTitle("Login");
+        setContentPane(loginPanel);
+        pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setResizable(false);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         userNameField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,27 +73,15 @@ public class LoginGUI extends JFrame {
         Employee emp = Login.authenticate(userNameField.getText(), new String(passwordField.getPassword()));
         if (emp != null) {
             if (emp.getIsAdmin()) {
-                AdminEmpChoiceGUI aegui = new AdminEmpChoiceGUI(emp);
-                aegui.showGUI();
+                new AdminEmpChoiceGUI(emp);
                 dispose();
             } else {
-                EmployeeGUI egui = new EmployeeGUI(emp);
-                egui.showGUI();
+                new EmployeeGUI(emp);
                 dispose();
             }
         } else {
             //show failed login text
             loginText.setText("Incorrect login!");
         }
-    }
-
-    // method is called in meetingapp.MeetingApp to initiate meetingapp.entity.Login User Interface
-    public void showGUI() {
-        setTitle("meetingapp.entity.Login");
-        setContentPane(loginPanel);
-        pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
-        setResizable(false);
     }
 }

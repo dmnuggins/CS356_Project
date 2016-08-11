@@ -23,55 +23,50 @@ public class EmployeeGUI extends JFrame{
     private JPanel updateUserButtonPanel;
     private JButton manageMeetingsButton;
     private JButton backButton;
+    private JLabel topLabel;
 
     private Employee employee;
 
     public EmployeeGUI(Employee e) {
-        super("Employee Menu");
+        setTitle("Employee Menu");
+        setContentPane(employeePanel);
+        pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
 
         employee = e;
+
+        topLabel.setText("Welcome, " + e.getName());
 
         displayScheduleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ScheduleDisplayGUI sdgui = new ScheduleDisplayGUI(employee);
-                sdgui.showGUI();
+                new ScheduleDisplayGUI(employee);
                 dispose();
             }
         });
         createMeetingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NewMeetingEmployeeGUI nmgui = new NewMeetingEmployeeGUI(employee);
-                nmgui.showGUI();
+                new NewMeetingEmployeeGUI(employee);
+                dispose();
             }
         });
         changePasswordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChangePasswordEmployeeGUI cpgui = new ChangePasswordEmployeeGUI(employee);
-                cpgui.showGUI();
+                new ChangePasswordEmployeeGUI(employee);
+                dispose();
             }
         });
 
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new LoginGUI().showGUI();
+                new LoginGUI();
                 dispose();
             }
         });
     }
 
-    public void showGUI() {
-        setTitle("New meetingapp.entity.Meeting");
-        setContentPane(employeePanel);
-        pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }

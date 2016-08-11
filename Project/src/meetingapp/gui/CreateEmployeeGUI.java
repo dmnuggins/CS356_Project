@@ -62,7 +62,7 @@ public class CreateEmployeeGUI extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 dispose();
 
-                new EmployeeDisplayAdminGUI().setVisible(true);
+                //new EmployeeDisplayAdminGUI().setVisible(true);
             }
         });
     }

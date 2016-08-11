@@ -15,4 +15,10 @@ public abstract class Entity {
     }
 
     abstract void save();
+
+    @Override
+    public boolean equals(Object other) {
+        Employee eOther = (Employee) other;
+        return eOther.getID() == ID;
+    }
 }
