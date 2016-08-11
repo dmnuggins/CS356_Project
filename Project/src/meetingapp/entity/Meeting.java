@@ -37,9 +37,9 @@ public class Meeting extends Entity{
     }
 
     //returns attendees of meeting. Includes owner
-    public List<Employee> getAttendees() {
-        return EmployeeMeeting.getAllEmployees(ID, true, true);
-    }
+//    public List<Employee> getAttendees() {
+//        return EmployeeMeeting.getAllEmployees(ID, true, true);
+//    }
 
     public Employee getOwner() {
         return EmployeeMeeting.getOwner(ID);
