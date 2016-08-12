@@ -1,7 +1,7 @@
 package meetingapp.gui;
 
 import meetingapp.entity.Employee;
-import meetingapp.entity.EmployeeMeeting;
+import meetingapp.entity.Participant;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,16 +37,16 @@ public class MeetingManagerEmployeeGUI extends MeetingAppGUI {
         DefaultTableModel ownModel = new DefaultTableModel();
         ownMeetingTable.setModel(ownModel);
         ownModel.addColumn("Meeting");
-        List<EmployeeMeeting> meetings =  employee.getAllMeetings(true, false);
-        for (EmployeeMeeting em : meetings) {
+        List<Participant> meetings =  employee.getAllMeetings(true, false);
+        for (Participant em : meetings) {
             ownModel.addRow(new Object[] { em.getMeeting().getStart().toLocaleString() } );
         }
 
         DefaultTableModel invitedModel = new DefaultTableModel();
         participantMeetingTable.setModel(invitedModel);
         invitedModel.addColumn("Meeting");
-        List<EmployeeMeeting> invited =  employee.getAllMeetings(false, false);
-        for (EmployeeMeeting em : invited) {
+        List<Participant> invited =  employee.getAllMeetings(false, false);
+        for (Participant em : invited) {
             invitedModel.addRow(new Object[] { em.getMeeting().getStart().toLocaleString() } );
         }
 

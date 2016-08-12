@@ -19,34 +19,34 @@ public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
     private JList invitedList;
     private JLabel topLabel;
 
-    EmployeeMeeting employeeMeeting;
+    Participant participant;
 
-    public NotifEmployeeInvitesGUI(final Employee employee, final EmployeeMeeting employeeMeeting) {
+    public NotifEmployeeInvitesGUI(final Employee employee, final Participant participant) {
         super("Meeting Invite", employee, false);
         setContentPane(meetingInvitePanel);
         pack();
 
-        this.employeeMeeting = employeeMeeting;
-        this.employeeMeeting.setSeen(true);
+        this.participant = participant;
+        this.participant.setSeen(true);
 
         //populate text fields
-        topLabel.setText("Invite from: " + employeeMeeting.getMeeting().getOwner().getName());
-        Meeting meeting = employeeMeeting.getMeeting();
+        topLabel.setText("Invite from: " + participant.getMeeting().getOwner().getName());
+        Meeting meeting = participant.getMeeting();
         dateLabelStart.setText("Starts: " + meeting.getStart().toLocaleString());
         dateLabelEnd.setText("Ends: " + meeting.getEnd().toLocaleString());
 
         //build list of attending employees
-        ArrayList<EmployeeMeeting> attending = (ArrayList<EmployeeMeeting>) meeting.getAllAccepted(true);
+        ArrayList<Participant> attending = (ArrayList<Participant>) meeting.getAllAccepted(true);
         DefaultListModel<String> lm = new DefaultListModel<String>();
         invitedList.setModel(lm);
-        for (EmployeeMeeting e : attending) {
+        for (Participant e : attending) {
             lm.addElement(Employee.get(e.getEmployeeID()).getName());
         }
 
         acceptButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                employeeMeeting.setAccepted(true);
+                participant.setAccepted(true);
                 dispose();
             }
         });

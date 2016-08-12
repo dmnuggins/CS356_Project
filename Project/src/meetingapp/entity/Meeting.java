@@ -1,7 +1,7 @@
 package meetingapp.entity;
 
 import meetingapp.db.EmployeeDB;
-import meetingapp.db.EmployeeMeetingDB;
+import meetingapp.db.ParticipantDB;
 import meetingapp.db.MeetingDB;
 
 import java.util.*;
@@ -49,12 +49,12 @@ public class Meeting extends Entity{
     }
 
     //Get all meeting attendees. Owner is included if includeOwner argument is set
-    public List<EmployeeMeeting> getAllInvited(boolean includeOwner, boolean includeNotAccepted) {
-        List<EmployeeMeeting> out = new ArrayList<EmployeeMeeting>();
+    public List<Participant> getAllInvited(boolean includeOwner, boolean includeNotAccepted) {
+        List<Participant> out = new ArrayList<Participant>();
 
-        List<EmployeeMeeting> eml = (List<EmployeeMeeting>)(List<?>) EmployeeMeetingDB.getInstance().loadAll();
+        List<Participant> eml = (List<Participant>)(List<?>) ParticipantDB.getInstance().loadAll();
         for (int i = 0; i < eml.size(); i++) {
-            EmployeeMeeting em = eml.get(i);
+            Participant em = eml.get(i);
             if (em.meetingID == ID && (!em.isOwner || includeOwner) && (em.accepted || includeNotAccepted)) {
                 out.add(em);
             }
@@ -63,15 +63,15 @@ public class Meeting extends Entity{
         return out;
     }
 
-    public List<EmployeeMeeting> getAllAccepted(boolean includeOwner) {
+    public List<Participant> getAllAccepted(boolean includeOwner) {
         return getAllInvited(includeOwner, false);
     }
 
     //get owner of meeting
     public Employee getOwner() {
-        List<EmployeeMeeting> eml = (List<EmployeeMeeting>)(List<?>) EmployeeMeetingDB.getInstance().loadAll();
+        List<Participant> eml = (List<Participant>)(List<?>) ParticipantDB.getInstance().loadAll();
         for (int i = 0; i < eml.size(); i++) {
-            EmployeeMeeting em = eml.get(i);
+            Participant em = eml.get(i);
             if (em.meetingID == ID && em.isOwner) {
                 return (Employee) EmployeeDB.getInstance().load(em.employeeID);
             }
@@ -80,12 +80,12 @@ public class Meeting extends Entity{
         return null;
     }
 
-    public List<EmployeeMeeting> getAllSeenInvite() {
-        List<EmployeeMeeting> out = new ArrayList<EmployeeMeeting>();
+    public List<Participant> getAllSeenInvite() {
+        List<Participant> out = new ArrayList<Participant>();
 
-        List<EmployeeMeeting> eml = (List<EmployeeMeeting>)(List<?>) EmployeeMeetingDB.getInstance().loadAll();
+        List<Participant> eml = (List<Participant>)(List<?>) ParticipantDB.getInstance().loadAll();
         for (int i = 0; i < eml.size(); i++) {
-            EmployeeMeeting em = eml.get(i);
+            Participant em = eml.get(i);
             if (em.meetingID == ID && !em.isOwner && em.seen) {
                 out.add(em);
             }

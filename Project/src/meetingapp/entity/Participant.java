@@ -1,14 +1,14 @@
 package meetingapp.entity;
 
 import meetingapp.db.EmployeeDB;
-import meetingapp.db.EmployeeMeetingDB;
+import meetingapp.db.ParticipantDB;
 import meetingapp.db.MeetingDB;
 
 import java.util.*;
 /**
  * Created by cthill on 8/7/16.
  */
-public class EmployeeMeeting extends Entity {
+public class Participant extends Entity {
 
     protected int employeeID;
     protected int meetingID;
@@ -17,7 +17,7 @@ public class EmployeeMeeting extends Entity {
     protected boolean seen;
     protected boolean seenByOwner;
 
-    public EmployeeMeeting(int ID, int employeeID, int meetingID, boolean isOwner, boolean accepted, boolean seen, boolean seenByOwner) {
+    public Participant(int ID, int employeeID, int meetingID, boolean isOwner, boolean accepted, boolean seen, boolean seenByOwner) {
         super(ID);
 
         this.employeeID = employeeID;
@@ -77,7 +77,7 @@ public class EmployeeMeeting extends Entity {
     }
 
     protected void save() {
-        EmployeeMeetingDB.getInstance().save(this);
+        ParticipantDB.getInstance().save(this);
     }
 
     public Meeting getMeeting() {
@@ -89,11 +89,11 @@ public class EmployeeMeeting extends Entity {
     }
 
 
-    public static EmployeeMeeting get(int id) {
-        return (EmployeeMeeting) EmployeeMeetingDB.getInstance().load(id);
+    public static Participant get(int id) {
+        return (Participant) ParticipantDB.getInstance().load(id);
     }
 
-    public static List<EmployeeMeeting> getAll() {
-        return (List<EmployeeMeeting>)(List<?>) EmployeeMeetingDB.getInstance().loadAll();
+    public static List<Participant> getAll() {
+        return (List<Participant>)(List<?>) ParticipantDB.getInstance().loadAll();
     }
 }

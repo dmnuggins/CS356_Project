@@ -68,11 +68,11 @@ public class Employee extends Entity {
 
     //Get all meetings a user is invited to (isOwner = false) or created (isOwner = true). Includes meeting invites not accepted yet
     //if includePast argument is set to true, the method will return meetings that already happened
-    public List<EmployeeMeeting> getAllMeetings(boolean isOwner, boolean includePast) {
-        List<EmployeeMeeting> out = new ArrayList<EmployeeMeeting>();
+    public List<Participant> getAllMeetings(boolean isOwner, boolean includePast) {
+        List<Participant> out = new ArrayList<Participant>();
 
-        List<EmployeeMeeting> eml = (List<EmployeeMeeting>)(List<?>) EmployeeMeetingDB.getInstance().loadAll();
-        for (EmployeeMeeting em : eml) {
+        List<Participant> eml = (List<Participant>)(List<?>) ParticipantDB.getInstance().loadAll();
+        for (Participant em : eml) {
             if (em.employeeID == ID && em.isOwner == isOwner) {
                 Meeting m = (Meeting) MeetingDB.getInstance().load(em.meetingID);
                 if (includePast || m.end.after(new Date())) {
