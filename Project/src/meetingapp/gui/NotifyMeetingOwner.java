@@ -1,7 +1,7 @@
 package meetingapp.gui;
 
 import meetingapp.entity.Employee;
-import meetingapp.entity.EmployeeMeeting;
+import meetingapp.entity.Participant;
 import meetingapp.entity.Meeting;
 
 import javax.swing.*;
@@ -13,28 +13,28 @@ import java.awt.event.ActionListener;
  */
 public class NotifyMeetingOwner extends MeetingAppGUI {
 
-    protected EmployeeMeeting employeeMeeting;
+    protected Participant participant;
     private JPanel mainPanel;
     private JButton dismissButton;
     private JTextPane messageTextPane;
 
-    public NotifyMeetingOwner(final Employee employee, final EmployeeMeeting employeeMeeting) {
+    public NotifyMeetingOwner(final Employee employee, final Participant participant) {
         super("Response", employee, false);
         setContentPane(mainPanel);
         pack();
 
-        this.employeeMeeting = employeeMeeting;
-        this.employeeMeeting.setSeenByOwner(true);
+        this.participant = participant;
+        this.participant.setSeenByOwner(true);
 
-        Employee emp = Employee.get(employeeMeeting.getEmployeeID());
+        Employee emp = Employee.get(participant.getEmployeeID());
         String empName = emp.getName();
         String accText = "declined";
-        if (employeeMeeting.getAccepted()) {
+        if (participant.getAccepted()) {
             accText = "accepted";
         }
 
         ;
-        String meetingDateText = Meeting.get(employeeMeeting.getMeetingID()).getStart().toLocaleString();
+        String meetingDateText = Meeting.get(participant.getMeetingID()).getStart().toLocaleString();
         messageTextPane.setText(empName + " has " + accText + " your meeting invite for " + meetingDateText + ".");
 
         dismissButton.addActionListener(new ActionListener() {

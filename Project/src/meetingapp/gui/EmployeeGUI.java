@@ -73,8 +73,8 @@ public class EmployeeGUI extends MeetingAppGUI{
         setVisible(true);
 
         //get all meeting invites
-        ArrayList<EmployeeMeeting> meetings = (ArrayList<EmployeeMeeting>) employee.getAllMeetings(false, false);
-        for (EmployeeMeeting em : meetings) {
+        ArrayList<Participant> meetings = (ArrayList<Participant>) employee.getAllMeetings(false, false);
+        for (Participant em : meetings) {
             if (!em.getSeen()) {
                 //notify user of unseen invites
                 new NotifEmployeeInvitesGUI(employee, em);
@@ -82,11 +82,11 @@ public class EmployeeGUI extends MeetingAppGUI{
         }
 
         //get all meetings owned
-        ArrayList<EmployeeMeeting> meetingsOwned = (ArrayList<EmployeeMeeting>) employee.getAllMeetings(true, false);
-        for (EmployeeMeeting em : meetingsOwned) {
+        ArrayList<Participant> meetingsOwned = (ArrayList<Participant>) employee.getAllMeetings(true, false);
+        for (Participant em : meetingsOwned) {
             //get list of users responded
-            ArrayList<EmployeeMeeting> responded = (ArrayList<EmployeeMeeting>) em.getMeeting().getAllSeenInvite();
-            for (EmployeeMeeting r : responded) {
+            ArrayList<Participant> responded = (ArrayList<Participant>) em.getMeeting().getAllSeenInvite();
+            for (Participant r : responded) {
                 if (!r.getSeenByOwner()) {
                     //nofiy owner of unseen responses
                     new NotifyMeetingOwner(employee, r);

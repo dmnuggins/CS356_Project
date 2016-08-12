@@ -28,13 +28,13 @@ public class MeetingApp {
         Meeting meet = new Meeting(0, 101, start, end);
         MeetingDB.getInstance().save(meet);
 
-        EmployeeMeetingDB.getInstance().save(new EmployeeMeeting(0, 0, 0, true, true, true, true));
-        EmployeeMeetingDB.getInstance().save(new EmployeeMeeting(1, 1, 0, false, false, false, false));
-        EmployeeMeetingDB.getInstance().save(new EmployeeMeeting(2, 2, 0, false, false, false, false));
-        EmployeeMeetingDB.getInstance().save(new EmployeeMeeting(3, 3, 0, false, false, false, false));
-        EmployeeMeetingDB.getInstance().save(new EmployeeMeeting(4, 4, 0, false, false, false, false));
-        EmployeeMeetingDB.getInstance().save(new EmployeeMeeting(5, 5, 0, false, true, true, true));
-        EmployeeMeetingDB.getInstance().save(new EmployeeMeeting(6, 6, 0, false, true, true, true));
+        ParticipantDB.getInstance().save(new Participant(0, 0, 0, true, true, true, true));
+        ParticipantDB.getInstance().save(new Participant(1, 1, 0, false, false, false, false));
+        ParticipantDB.getInstance().save(new Participant(2, 2, 0, false, false, false, false));
+        ParticipantDB.getInstance().save(new Participant(3, 3, 0, false, false, false, false));
+        ParticipantDB.getInstance().save(new Participant(4, 4, 0, false, false, false, false));
+        ParticipantDB.getInstance().save(new Participant(5, 5, 0, false, true, true, true));
+        ParticipantDB.getInstance().save(new Participant(6, 6, 0, false, true, true, true));
 
         Room room = new Room(101, 5);
         RoomDB.getInstance().save(room);
