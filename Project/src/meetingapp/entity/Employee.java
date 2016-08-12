@@ -17,7 +17,7 @@ public class Employee extends Entity {
         this.name = name;
         this.isAdmin = isAdmin;
 
-        login = LoginDB.getInstance().load(ID);
+        login = (Login) LoginDB.getInstance().load(ID);
     }
 
     public String getName() {
@@ -62,7 +62,7 @@ public class Employee extends Entity {
         return login;
     }
 
-    public void save() {
+    protected void save() {
         EmployeeDB.getInstance().save(this);
     }
 
@@ -71,10 +71,10 @@ public class Employee extends Entity {
     public List<EmployeeMeeting> getAllMeetings(boolean isOwner, boolean includePast) {
         List<EmployeeMeeting> out = new ArrayList<EmployeeMeeting>();
 
-        List<EmployeeMeeting> eml = EmployeeMeetingDB.getInstance().loadAll();
+        List<EmployeeMeeting> eml = (List<EmployeeMeeting>)(List<?>) EmployeeMeetingDB.getInstance().loadAll();
         for (EmployeeMeeting em : eml) {
             if (em.employeeID == ID && em.isOwner == isOwner) {
-                Meeting m = MeetingDB.getInstance().load(em.meetingID);
+                Meeting m = (Meeting) MeetingDB.getInstance().load(em.meetingID);
                 if (includePast || m.end.after(new Date())) {
                     out.add(em);
                 }
@@ -82,5 +82,13 @@ public class Employee extends Entity {
         }
 
         return out;
+    }
+
+    public static Employee get(int id) {
+        return (Employee) EmployeeDB.getInstance().load(id);
+    }
+
+    public static List<Employee> getAll() {
+        return (List<Employee>)(List<?>) EmployeeDB.getInstance().loadAll();
     }
 }

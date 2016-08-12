@@ -24,37 +24,6 @@ public class LoginDB extends FileDB {
         return instance;
     }
 
-    public List<Login> loadAll() {
-        List<Login> l = new ArrayList<Login>();
-
-        try {
-            file.seek(0);
-            while (!eof()) {
-                int length = file.readInt();
-                l.add(readRecord(length));
-            }
-
-            return l;
-        } catch (IOException ex){
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public Login load(int id) {
-        int length = seekRecord(id);
-        if (length > 0) {
-            try {
-                return readRecord(length);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
-
-        return null;
-    }
-
     protected Login readRecord(int length) throws IOException{
         long end = file.getFilePointer() + length;
 
@@ -83,7 +52,8 @@ public class LoginDB extends FileDB {
         return new Login(id, user, pass);
     }
 
-    public void save(Login l) {
+    public void writeRecord(Entity e) {
+        Login l = (Login) e;
         try {
             eraseRecord(l.getEmployeeID());
 
