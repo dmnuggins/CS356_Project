@@ -4,11 +4,13 @@ import meetingapp.entity.Entity;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by cthill on 8/7/16.
  */
-public class FileDB {
+public abstract class FileDB {
     protected String filename;
     protected RandomAccessFile file;
     protected enum Field {
@@ -22,6 +24,69 @@ public class FileDB {
         } catch (java.io.FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getNextID() {
+        int nextID = -1;
+        try {
+            file.seek(0);
+            while (!eof()) {
+                int length = file.readInt();
+                long start = file.getFilePointer();
+                int idlen = seekField(Field.ID.ordinal(), start + length);
+                if (idlen > 0) {
+                    int id = file.readInt();
+                    if (id > nextID) {
+                        nextID = id;
+                    }
+                }
+                file.seek(start + length); //seek to next record
+            }
+
+            return nextID + 1;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return -1;
+    }
+
+    abstract void writeRecord(Entity e);
+
+    abstract Entity readRecord(int length) throws IOException;
+
+    public Entity load(int id) {
+        int length = seekRecord(id);
+        if (length > 0) {
+            try {
+                return readRecord(length);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    public List<Entity> loadAll() {
+        List<Entity> l = new ArrayList<>();
+
+        try {
+            file.seek(0);
+            while (!eof()) {
+                int length = file.readInt();
+                l.add(readRecord(length));
+            }
+
+            return l;
+        } catch (IOException ex){
+            ex.printStackTrace();
+        }
+
+        return null;
+    };
+
+    public void save(Entity e) {
+        writeRecord(e);
     }
 
     //seeks a record by id and returns its length. Returns -1 if it does not exist
@@ -82,10 +147,6 @@ public class FileDB {
         return false;
     }
 
-    protected boolean eof() throws IOException {
-        return file.getFilePointer() == file.length();
-    }
-
     //seeks to starting point of specific field in record
     protected int seekField(int f, long end) throws IOException {
         while (file.getFilePointer() < end) {
@@ -114,27 +175,7 @@ public class FileDB {
         file.writeBytes(s);
     }
 
-    public int getNextID() {
-        int nextID = -1;
-        try {
-            file.seek(0);
-            while (!eof()) {
-                int length = file.readInt();
-                long start = file.getFilePointer();
-                int idlen = seekField(Field.ID.ordinal(), start + length);
-                if (idlen > 0) {
-                    int id = file.readInt();
-                    if (id > nextID) {
-                        nextID = id;
-                    }
-                }
-                file.seek(start + length); //seek to next record
-            }
-
-            return nextID + 1;
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return -1;
+    protected boolean eof() throws IOException {
+        return file.getFilePointer() == file.length();
     }
 }

@@ -27,37 +27,6 @@ public class EmployeeMeetingDB extends FileDB {
         return instance;
     }
 
-    public List<EmployeeMeeting> loadAll() {
-        List<EmployeeMeeting> l = new ArrayList<EmployeeMeeting>();
-
-        try {
-            file.seek(0);
-            while (!eof()) {
-                int length = file.readInt();
-                l.add(readRecord(length));
-            }
-
-            return l;
-        } catch (IOException ex){
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public EmployeeMeeting load(int id) {
-        int length = seekRecord(id);
-        if (length > 0) {
-            try {
-                return readRecord(length);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
-
-        return null;
-    }
-
     protected EmployeeMeeting readRecord(int length) throws IOException{
         long end = length + file.getFilePointer();
 
@@ -107,7 +76,8 @@ public class EmployeeMeetingDB extends FileDB {
         return new EmployeeMeeting(id, empid, mid, isOwner, acc, seen, seen2);
     }
 
-    public void save(EmployeeMeeting em) {
+    public void writeRecord(Entity e) {
+        EmployeeMeeting em = (EmployeeMeeting) e;
         try {
             eraseRecord(em.getID());
 

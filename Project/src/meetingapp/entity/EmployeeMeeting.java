@@ -76,15 +76,24 @@ public class EmployeeMeeting extends Entity {
         this.seenByOwner = seenByOwner;
     }
 
-    public void save() {
+    protected void save() {
         EmployeeMeetingDB.getInstance().save(this);
     }
 
     public Meeting getMeeting() {
-        return MeetingDB.getInstance().load(meetingID);
+        return (Meeting) MeetingDB.getInstance().load(meetingID);
     }
 
     public Employee getEmployee() {
-        return EmployeeDB.getInstance().load(employeeID);
+        return (Employee) EmployeeDB.getInstance().load(employeeID);
+    }
+
+
+    public static EmployeeMeeting get(int id) {
+        return (EmployeeMeeting) EmployeeMeetingDB.getInstance().load(id);
+    }
+
+    public static List<EmployeeMeeting> getAll() {
+        return (List<EmployeeMeeting>)(List<?>) EmployeeMeetingDB.getInstance().loadAll();
     }
 }

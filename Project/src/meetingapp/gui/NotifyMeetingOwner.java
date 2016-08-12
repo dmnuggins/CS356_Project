@@ -1,10 +1,8 @@
 package meetingapp.gui;
 
-import meetingapp.db.EmployeeDB;
-import meetingapp.db.EmployeeMeetingDB;
-import meetingapp.db.MeetingDB;
 import meetingapp.entity.Employee;
 import meetingapp.entity.EmployeeMeeting;
+import meetingapp.entity.Meeting;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -27,14 +25,16 @@ public class NotifyMeetingOwner extends MeetingAppGUI {
 
         this.employeeMeeting = employeeMeeting;
         this.employeeMeeting.setSeenByOwner(true);
-        EmployeeMeetingDB.getInstance().save(this.employeeMeeting);
 
-        String empName = EmployeeDB.getInstance().load(employeeMeeting.getEmployeeID()).getName();
+        Employee emp = Employee.get(employeeMeeting.getEmployeeID());
+        String empName = emp.getName();
         String accText = "declined";
         if (employeeMeeting.getAccepted()) {
             accText = "accepted";
         }
-        String meetingDateText = MeetingDB.getInstance().load(employeeMeeting.getMeetingID()).getStart().toLocaleString();
+
+        ;
+        String meetingDateText = Meeting.get(employeeMeeting.getMeetingID()).getStart().toLocaleString();
         messageTextPane.setText(empName + " has " + accText + " your meeting invite for " + meetingDateText + ".");
 
         dismissButton.addActionListener(new ActionListener() {

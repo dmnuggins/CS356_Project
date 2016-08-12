@@ -1,13 +1,12 @@
 package meetingapp.gui;
 
-import meetingapp.db.RoomDB;
 import meetingapp.entity.*;
 
 import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -27,7 +26,7 @@ public class RoomDisplayAdminGUI extends MeetingAppGUI {
         setContentPane(rootPanel);
         pack();
 
-        ArrayList<Room> allRooms = (ArrayList<Room>) RoomDB.getInstance().loadAll();
+        List<Room> allRooms = Room.getAll();
         for (Room r : allRooms) {
             comboBox1.addItem("Room " + r.getID());
         }

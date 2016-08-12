@@ -1,5 +1,6 @@
 package meetingapp.db;
 
+import com.sun.xml.internal.ws.api.model.MEP;
 import meetingapp.entity.*;
 import java.io.IOException;
 import java.util.*;
@@ -22,37 +23,6 @@ public class MeetingDB extends FileDB {
 
     public static final MeetingDB getInstance() {
         return instance;
-    }
-
-    public List<Meeting> loadAll() {
-        List<Meeting> l = new ArrayList<Meeting>();
-
-        try {
-            file.seek(0);
-            while (!eof()) {
-                int length = file.readInt();
-                l.add(readRecord(length));
-            }
-
-            return l;
-        } catch (IOException ex){
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public Meeting load(int id) {
-        int length = seekRecord(id);
-        if (length > 0) {
-            try {
-                return readRecord(length);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
-
-        return null;
     }
 
     protected Meeting readRecord(int length) throws IOException{
@@ -85,7 +55,8 @@ public class MeetingDB extends FileDB {
         return new Meeting(id, r, s, e);
     }
 
-    public void save(Meeting m) {
+    public void writeRecord(Entity e) {
+        Meeting m = (Meeting) e;
         try {
             eraseRecord(m.getID());
 

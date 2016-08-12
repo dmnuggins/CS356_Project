@@ -34,7 +34,7 @@ public class Meeting extends Entity{
         return end;
     }
 
-    public void save() {
+    protected void save() {
         MeetingDB.getInstance().save(this);
     }
 
@@ -52,7 +52,7 @@ public class Meeting extends Entity{
     public List<EmployeeMeeting> getAllInvited(boolean includeOwner, boolean includeNotAccepted) {
         List<EmployeeMeeting> out = new ArrayList<EmployeeMeeting>();
 
-        List<EmployeeMeeting> eml = EmployeeMeetingDB.getInstance().loadAll();
+        List<EmployeeMeeting> eml = (List<EmployeeMeeting>)(List<?>) EmployeeMeetingDB.getInstance().loadAll();
         for (int i = 0; i < eml.size(); i++) {
             EmployeeMeeting em = eml.get(i);
             if (em.meetingID == ID && (!em.isOwner || includeOwner) && (em.accepted || includeNotAccepted)) {
@@ -69,11 +69,11 @@ public class Meeting extends Entity{
 
     //get owner of meeting
     public Employee getOwner() {
-        List<EmployeeMeeting> eml = EmployeeMeetingDB.getInstance().loadAll();
+        List<EmployeeMeeting> eml = (List<EmployeeMeeting>)(List<?>) EmployeeMeetingDB.getInstance().loadAll();
         for (int i = 0; i < eml.size(); i++) {
             EmployeeMeeting em = eml.get(i);
             if (em.meetingID == ID && em.isOwner) {
-                return EmployeeDB.getInstance().load(em.employeeID);
+                return (Employee) EmployeeDB.getInstance().load(em.employeeID);
             }
         }
 
@@ -83,7 +83,7 @@ public class Meeting extends Entity{
     public List<EmployeeMeeting> getAllSeenInvite() {
         List<EmployeeMeeting> out = new ArrayList<EmployeeMeeting>();
 
-        List<EmployeeMeeting> eml = EmployeeMeetingDB.getInstance().loadAll();
+        List<EmployeeMeeting> eml = (List<EmployeeMeeting>)(List<?>) EmployeeMeetingDB.getInstance().loadAll();
         for (int i = 0; i < eml.size(); i++) {
             EmployeeMeeting em = eml.get(i);
             if (em.meetingID == ID && !em.isOwner && em.seen) {
@@ -92,5 +92,13 @@ public class Meeting extends Entity{
         }
 
         return out;
+    }
+
+    public static Meeting get(int id) {
+        return (Meeting) MeetingDB.getInstance().load(id);
+    }
+
+    public static List<Meeting> getAll() {
+        return (List<Meeting>)(List<?>) MeetingDB.getInstance().loadAll();
     }
 }

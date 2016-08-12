@@ -1,6 +1,5 @@
 package meetingapp.gui;
 
-import meetingapp.db.EmployeeDB;
 import meetingapp.entity.*;
 import java.util.*;
 import javax.swing.*;
@@ -41,7 +40,7 @@ public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
         DefaultListModel<String> lm = new DefaultListModel<String>();
         invitedList.setModel(lm);
         for (EmployeeMeeting e : attending) {
-            lm.addElement(EmployeeDB.getInstance().load(e.getEmployeeID()).getName());
+            lm.addElement(Employee.get(e.getEmployeeID()).getName());
         }
 
         acceptButton.addActionListener(new ActionListener() {
