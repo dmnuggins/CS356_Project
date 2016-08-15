@@ -1,6 +1,7 @@
 package meetingapp.db;
 
 import meetingapp.entity.Employee;
+import meetingapp.entity.Entity;
 
 import java.io.IOException;
 import java.util.*;
@@ -20,37 +21,6 @@ public class EmployeeDB extends FileDB {
     protected EmployeeDB() { super("employee"); }
 
     public static final EmployeeDB getInstance() { return instance; }
-
-    public List<Employee> loadAll() {
-        List<Employee> l = new ArrayList<Employee>();
-
-        try {
-            file.seek(0);
-            while (!eof()) {
-                int length = file.readInt();
-                l.add(readRecord(length));
-            }
-
-            return l;
-        } catch (IOException ex){
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public Employee load(int id) {
-        int length = seekRecord(id);
-        if (length > 0) {
-            try {
-                return readRecord(length);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
-
-        return null;
-    }
 
     protected Employee readRecord(int length) throws IOException{
         long end = length + file.getFilePointer();
@@ -89,7 +59,8 @@ public class EmployeeDB extends FileDB {
         return e;
     }
 
-    public void save(Employee e) {
+    public void writeRecord(Entity ent) {
+        Employee e = (Employee) ent;
         try {
             eraseRecord(e.getID());
 

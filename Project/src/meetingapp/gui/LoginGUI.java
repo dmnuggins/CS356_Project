@@ -9,7 +9,7 @@ import java.awt.event.*;
 /**
  * Created by dmnguyen on 7/7/16.
  */
-public class LoginGUI extends JFrame {
+public class LoginGUI extends MeetingAppGUI {
     private JPanel loginPanel;
     private JPanel westLabelPanel;
     private JPanel southButtonPanel;
@@ -27,7 +27,10 @@ public class LoginGUI extends JFrame {
     }
 
     public LoginGUI() {
-        super("loginPanel");
+        super("Login", null);
+        setContentPane(loginPanel);
+        pack();
+
         userNameField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,34 +61,22 @@ public class LoginGUI extends JFrame {
                 login();
             }
         });
-
+        setVisible(true);
     }
 
     public void login() {
         Employee emp = Login.authenticate(userNameField.getText(), new String(passwordField.getPassword()));
         if (emp != null) {
             if (emp.getIsAdmin()) {
-                AdminEmpChoiceGUI aegui = new AdminEmpChoiceGUI(emp);
-                aegui.showGUI();
+                new AdminEmpChoiceGUI(emp);
                 dispose();
             } else {
-                EmployeeGUI egui = new EmployeeGUI(emp);
-                egui.showGUI();
+                new EmployeeGUI(emp);
                 dispose();
             }
         } else {
             //show failed login text
             loginText.setText("Incorrect login!");
         }
-    }
-
-    // method is called in meetingapp.MeetingApp to initiate meetingapp.entity.Login User Interface
-    public void showGUI() {
-        setTitle("meetingapp.entity.Login");
-        setContentPane(loginPanel);
-        pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
-        setResizable(false);
     }
 }

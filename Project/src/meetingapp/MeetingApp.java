@@ -3,6 +3,7 @@ package meetingapp;
 import meetingapp.gui.*;
 import meetingapp.db.*;
 import meetingapp.entity.*;
+import java.util.*;
 
 /**
  * Created by cthill on 8/6/16.
@@ -10,16 +11,30 @@ import meetingapp.entity.*;
 public class MeetingApp {
 
     public static void main(String args[]) {
-        //Create admin account
-        Employee admin = new Employee(0, "Admin", true);
-        EmployeeDB.getInstance().save(admin);
-        Login adminLogin = new Login(0, "admin", "password");
-        LoginDB.getInstance().save(adminLogin);
+        //Create accounts (only needs to be done once)
+        CreateAccount(0, "Admin", "admin", "password", true);
+        CreateAccount(1, "Christian Hill", "cthill", "password", false);
+        CreateAccount(2, "Dylan Nguyen", "dmnguyen", "password", false);
+        CreateAccount(3, "Cesar Recinos", "carecinos", "password", false);
+        CreateAccount(4, "User", "user", "password", false);
+        CreateAccount(5, "Bob Jones", "bob", "password", false);
+        CreateAccount(6, "John Smith", "john", "password", false);
 
-        Employee user = new Employee(1, "User", false);
-        EmployeeDB.getInstance().save(user);
-        Login userLogin = new Login(1, "user", "password");
-        LoginDB.getInstance().save(userLogin);
+
+        Date start = new Date();
+        start.setTime(1473475105000L);
+        Date end = new Date();
+        end.setTime(1473478705000L);
+        Meeting meet = new Meeting(0, 101, start, end);
+        MeetingDB.getInstance().save(meet);
+
+        ParticipantDB.getInstance().save(new Participant(0, 0, 0, true, true, true, true));
+        ParticipantDB.getInstance().save(new Participant(1, 1, 0, false, false, false, false));
+        ParticipantDB.getInstance().save(new Participant(2, 2, 0, false, false, false, false));
+        ParticipantDB.getInstance().save(new Participant(3, 3, 0, false, false, false, false));
+        ParticipantDB.getInstance().save(new Participant(4, 4, 0, false, false, false, false));
+        ParticipantDB.getInstance().save(new Participant(5, 5, 0, false, true, true, true));
+        ParticipantDB.getInstance().save(new Participant(6, 6, 0, false, true, true, true));
 
         Room room = new Room(101, 5);
         RoomDB.getInstance().save(room);
@@ -28,7 +43,11 @@ public class MeetingApp {
         Room room2 = new Room(103, 10);
         RoomDB.getInstance().save(room2);
 
-        LoginGUI lg = new LoginGUI();
-        lg.showGUI();
+        new LoginGUI();
+    }
+
+    public static void CreateAccount(int id, String name, String user, String pass, boolean admin) {
+        EmployeeDB.getInstance().save(new Employee(id, name, admin));
+        LoginDB.getInstance().save(new Login(id, user, pass));
     }
 }

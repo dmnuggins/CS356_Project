@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * Created by dmnguyen on 8/9/16.
  */
-public class ChangePasswordEmployeeGUI extends JFrame{
+public class ChangePasswordEmployeeGUI extends MeetingAppGUI{
     private JPanel updateUserPanel;
     private JPanel westPanel;
     private JPanel eastPanel;
@@ -22,13 +22,12 @@ public class ChangePasswordEmployeeGUI extends JFrame{
     private JPanel southPanel;
     private JButton changePasswordButton;
     private JLabel feedbackText;
+    private JButton backButton;
 
-    private Employee employee;
-
-    public ChangePasswordEmployeeGUI(Employee e) {
-        super("Change Password");
-
-        employee = e;
+    public ChangePasswordEmployeeGUI(final Employee employee) {
+        super("Change Password", employee);
+        setContentPane(updateUserPanel);
+        pack();
 
         ActionListener tryChangeAL = new ActionListener() {
             @Override
@@ -36,12 +35,20 @@ public class ChangePasswordEmployeeGUI extends JFrame{
                 tryChange();
             }
         };
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new EmployeeGUI(employee);
+                dispose();
+            }
+        });
 
         oldPasswordField.addActionListener(tryChangeAL);
         newPasswordField.addActionListener(tryChangeAL);
         reEnterNewPasswordField.addActionListener(tryChangeAL);
         changePasswordButton.addActionListener(tryChangeAL);
 
+        setVisible(true);
     }
 
     public void tryChange() {
@@ -64,14 +71,5 @@ public class ChangePasswordEmployeeGUI extends JFrame{
             feedbackText.setForeground(new Color(255, 0, 0));
             feedbackText.setText("Incorrect old password!");
         }
-    }
-
-    public void showGUI() {
-        setTitle("meetingapp.entity.Login");
-        setContentPane(updateUserPanel);
-        pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
-        setResizable(false);
     }
 }
