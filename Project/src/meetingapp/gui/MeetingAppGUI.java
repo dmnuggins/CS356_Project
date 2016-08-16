@@ -30,11 +30,5 @@ public class MeetingAppGUI extends JFrame {
         this.employee = employee;
     }
 
-    public MeetingAppGUI(String title, final Room room) {
-        super(title);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.room = room;
-    }
+
 }

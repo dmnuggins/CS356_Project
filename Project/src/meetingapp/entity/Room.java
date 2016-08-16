@@ -1,6 +1,8 @@
 package meetingapp.entity;
 
 import meetingapp.db.RoomDB;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -34,5 +36,13 @@ public class Room extends Entity {
 
     public static List<Room> getAll() {
         return (List<Room>)(List<?>) RoomDB.getInstance().loadAll();
+    }
+
+    public void delete(){
+        try {
+            RoomDB.getInstance().eraseRecord(this.getID());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
