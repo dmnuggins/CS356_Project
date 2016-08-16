@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by dmnguyen on 8/9/16.
  */
-public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
+public class NotifyEmployeeInvites extends MeetingAppGUI {
     private JPanel northPanel;
     private JButton acceptButton;
     private JButton declineButton;
@@ -21,7 +21,7 @@ public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
 
     Participant participant;
 
-    public NotifEmployeeInvitesGUI(final Employee employee, final Participant participant) {
+    public NotifyEmployeeInvites(final Employee employee, final Participant participant) {
         super("Meeting Invite", employee, false);
         setContentPane(meetingInvitePanel);
         pack();
