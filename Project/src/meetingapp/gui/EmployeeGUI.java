@@ -1,6 +1,7 @@
 package meetingapp.gui;
 
-import meetingapp.entity.Employee;
+import meetingapp.entity.*;
+import java.util.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
  * and current meetings that the user is a part of, allowing him to reply or manage
  * all that is displayed
  */
-public class EmployeeGUI extends JFrame{
+public class EmployeeGUI extends MeetingAppGUI{
     private JPanel employeePanel;
     private JPanel northPanel;
     private JButton displayScheduleButton;
@@ -22,45 +23,75 @@ public class EmployeeGUI extends JFrame{
     private JPanel createButtonPanel;
     private JPanel updateUserButtonPanel;
     private JButton manageMeetingsButton;
+    private JButton backButton;
+    private JLabel topLabel;
 
-    private Employee employee;
+    public EmployeeGUI(final Employee employee) {
+        super("Employee Menu", employee);
+        setContentPane(employeePanel);
+        pack();
 
-    public EmployeeGUI(Employee e) {
-        super("Employee Menu");
-
-        employee = e;
+        topLabel.setText("Welcome, " + employee.getName());
 
         displayScheduleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new ScheduleDisplayGUI(employee);
+                dispose();
             }
         });
         createMeetingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NewMeetingEmployeeGUI nmgui = new NewMeetingEmployeeGUI();
-                nmgui.showGUI();
+                new CreateMeetingEmployeeGUI(employee);
+                dispose();
+            }
+        });
+        manageMeetingsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MeetingManagerEmployeeGUI(employee);
+                dispose();
             }
         });
         changePasswordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChangePasswordEmployeeGUI cpgui = new ChangePasswordEmployeeGUI(employee);
-                cpgui.showGUI();
+                new ChangePasswordEmployeeGUI(employee);
+                dispose();
             }
         });
-    }
 
-    public void showGUI() {
-        setTitle("New meetingapp.entity.Meeting");
-        setContentPane(employeePanel);
-        pack();
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LoginGUI();
+                dispose();
+            }
+        });
+
         setVisible(true);
-        setLocationRelativeTo(null);
-    }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
+        //get all meeting invites
+        ArrayList<Participant> meetings = (ArrayList<Participant>) employee.getAllMeetings(false, false);
+        for (Participant em : meetings) {
+            if (!em.getSeen()) {
+                //notify user of unseen invites
+                new NotifEmployeeInvitesGUI(employee, em);
+            }
+        }
+
+        //get all meetings owned
+        ArrayList<Participant> meetingsOwned = (ArrayList<Participant>) employee.getAllMeetings(true, false);
+        for (Participant em : meetingsOwned) {
+            //get list of users responded
+            ArrayList<Participant> responded = (ArrayList<Participant>) em.getMeeting().getAllSeenInvite();
+            for (Participant r : responded) {
+                if (!r.getSeenByOwner()) {
+                    //nofiy owner of unseen responses
+                    new NotifyMeetingOwner(employee, r);
+                }
+            }
+        }
     }
 }

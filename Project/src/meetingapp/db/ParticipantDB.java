@@ -2,61 +2,31 @@ package meetingapp.db;
 
 import meetingapp.entity.*;
 import java.io.IOException;
-import java.util.*;
 
 /**
  * Created by cthill on 8/6/16.
  */
-public class EmployeeMeetingDB extends FileDB {
-    protected static final EmployeeMeetingDB instance = new EmployeeMeetingDB();
+public class ParticipantDB extends FileDB {
+    protected static final ParticipantDB instance = new ParticipantDB();
     protected enum Field {
         ID,
         EMPLOYEE,
         MEETING,
         ISOWNER,
-        ACCEPTED
+        ACCEPTED,
+        SEEN,
+        SEENOWNER
     }
 
-    protected EmployeeMeetingDB() {
-        super("employeemeeting");
+    protected ParticipantDB() {
+        super("participant");
     }
 
-    public static final EmployeeMeetingDB getInstance() {
+    public static final ParticipantDB getInstance() {
         return instance;
     }
 
-    public List<EmployeeMeeting> loadAll() {
-        List<EmployeeMeeting> l = new ArrayList<EmployeeMeeting>();
-
-        try {
-            file.seek(0);
-            while (!eof()) {
-                int length = file.readInt();
-                l.add(readRecord(length));
-            }
-
-            return l;
-        } catch (IOException ex){
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public EmployeeMeeting load(int id) {
-        int length = seekRecord(id);
-        if (length > 0) {
-            try {
-                return readRecord(length);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
-
-        return null;
-    }
-
-    protected EmployeeMeeting readRecord(int length) throws IOException{
+    protected Participant readRecord(int length) throws IOException{
         long end = length + file.getFilePointer();
 
         int len = seekField(Field.ID.ordinal(), end);
@@ -90,10 +60,23 @@ public class EmployeeMeetingDB extends FileDB {
             acc = file.readBoolean();
         }
 
-        return new EmployeeMeeting(id, empid, mid, isOwner, acc);
+        len = seekField(Field.SEEN.ordinal(), end);
+        boolean seen = false;
+        if (len > 0) {
+            seen = file.readBoolean();
+        }
+
+        len = seekField(Field.SEENOWNER.ordinal(), end);
+        boolean seen2 = false;
+        if (len > 0) {
+            seen2 = file.readBoolean();
+        }
+
+        return new Participant(id, empid, mid, isOwner, acc, seen, seen2);
     }
 
-    public void save(EmployeeMeeting em) {
+    public void writeRecord(Entity e) {
+        Participant em = (Participant) e;
         try {
             eraseRecord(em.getID());
 
@@ -114,6 +97,12 @@ public class EmployeeMeetingDB extends FileDB {
 
             writeFieldHeader(Field.ACCEPTED.ordinal(), 1);
             file.writeBoolean(em.getAccepted());
+
+            writeFieldHeader(Field.SEEN.ordinal(), 1);
+            file.writeBoolean(em.getSeen());
+
+            writeFieldHeader(Field.SEENOWNER.ordinal(), 1);
+            file.writeBoolean(em.getSeenByOwner());
 
             long end = file.getFilePointer();
             file.seek(start);

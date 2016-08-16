@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by dmnguyen on 8/7/16.
  */
-public class AdminEmpChoiceGUI extends JFrame{
+public class AdminEmpChoiceGUI extends MeetingAppGUI{
     private JPanel choicePanel;
     private JPanel northPanel;
     private JButton adminMenuButton;
@@ -19,42 +19,35 @@ public class AdminEmpChoiceGUI extends JFrame{
     private JPanel employeeMenuPanel;
     private JPanel logOutPanel;
 
-    private Employee employee;
-
     public AdminEmpChoiceGUI(final Employee employee) {
-
+        super("Choose Menu Type", employee);
+        setContentPane(choicePanel);
+        pack();
 
         this.employee = employee;
 
         adminMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AdminGUI();
+                new AdminGUI(employee);
                 dispose();
-
-
             }
         });
         employeeMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EmployeeGUI empgui = new EmployeeGUI(employee);
-                empgui.showGUI();
+                new EmployeeGUI(employee);
+                dispose();
             }
         });
         logOutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new LoginGUI();
+                dispose();
             }
         });
-    }
-    public void showGUI() {
-        setTitle("Choose Menu Type");
-        setContentPane(choicePanel);
-        pack();
-        setVisible(true);
-        setLocationRelativeTo(null);
 
+        setVisible(true);
     }
 }

@@ -27,6 +27,11 @@ public class Login extends Entity {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+        save();
+    }
+
     public String getPassword() {
         return password;
     }
@@ -36,24 +41,29 @@ public class Login extends Entity {
         save();
     }
 
-    public void save() {
+    protected void save() {
         LoginDB.getInstance().save(this);
     }
 
     //checks username and password. Returns employee
     public static Employee authenticate(String u, String p) {
         LoginDB db = LoginDB.getInstance();
-        List<Login> loginList = db.loadAll();
+        List<Login> loginList = (List<Login>)(List<?>) db.loadAll();
         for (int i = 0; i < loginList.size(); i++) {
             Login l = loginList.get(i);
             if (l.username.equals(u) && l.password.equals(p)) {
-                EmployeeDB edb = EmployeeDB.getInstance();
-                Employee e = edb.load(l.ID);
-                e.setLogin(l);
-                return e;
+                return (Employee) EmployeeDB.getInstance().load(l.ID);
             }
         }
 
         return null;
+    }
+
+    public static Login get(int id) {
+        return (Login) LoginDB.getInstance().load(id);
+    }
+
+    public static List<Login> getAll() {
+        return (List<Login>)(List<?>) LoginDB.getInstance().loadAll();
     }
 }
