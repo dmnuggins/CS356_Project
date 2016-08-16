@@ -21,9 +21,7 @@ public class NotifyMeetingSchedule extends MeetingAppGUI {
 
     public NotifyMeetingSchedule(final Employee employee) {
         super("Schedule", employee);
-        setContentPane(rootPanel);
-        pack();
-
+        setup(rootPanel);
 
         DefaultTableModel model = new DefaultTableModel();
         scheduleTable.setModel(model);

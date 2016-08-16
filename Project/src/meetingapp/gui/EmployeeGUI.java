@@ -28,8 +28,7 @@ public class EmployeeGUI extends MeetingAppGUI{
 
     public EmployeeGUI(final Employee employee) {
         super("Employee Menu", employee);
-        setContentPane(employeePanel);
-        pack();
+        setup(employeePanel);
 
         topLabel.setText("Welcome, " + employee.getName());
 

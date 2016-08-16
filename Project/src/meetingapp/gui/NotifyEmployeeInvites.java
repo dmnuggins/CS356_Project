@@ -23,8 +23,7 @@ public class NotifyEmployeeInvites extends MeetingAppGUI {
 
     public NotifyEmployeeInvites(final Employee employee, final Participant participant) {
         super("Meeting Invite", employee, false);
-        setContentPane(meetingInvitePanel);
-        pack();
+        setup(meetingInvitePanel);
 
         this.participant = participant;
         this.participant.setSeen(true);

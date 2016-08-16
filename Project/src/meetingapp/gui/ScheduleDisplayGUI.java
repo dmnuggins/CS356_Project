@@ -27,8 +27,7 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
 
     public ScheduleDisplayGUI(final Employee employee) {
         super("Schedule", employee);
-        setContentPane(scheduleDisplayPanel);
-        pack();
+        setup(scheduleDisplayPanel);
 
         DefaultTableModel model = new DefaultTableModel();
         scheduleTable.setModel(model);

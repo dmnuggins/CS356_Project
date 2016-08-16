@@ -20,8 +20,7 @@ public class NotifyMeetingOwner extends MeetingAppGUI {
 
     public NotifyMeetingOwner(final Employee employee, final Participant participant) {
         super("Response", employee, false);
-        setContentPane(mainPanel);
-        pack();
+        setup(mainPanel);
 
         this.participant = participant;
         this.participant.setSeenByOwner(true);

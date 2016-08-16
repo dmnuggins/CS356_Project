@@ -22,8 +22,7 @@ public class EmployeeDisplayAdminGUI extends MeetingAppGUI{
 
     public EmployeeDisplayAdminGUI(final Employee employee){
         super("Employees", employee);
-        setContentPane(rootPanel);
-        pack();
+        setup(rootPanel);
 
         allEmployees = Employee.getAll();
         allEmployees.remove(employee);

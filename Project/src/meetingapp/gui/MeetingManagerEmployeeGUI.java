@@ -32,8 +32,7 @@ public class MeetingManagerEmployeeGUI extends MeetingAppGUI {
 
     public MeetingManagerEmployeeGUI (final Employee employee) {
         super("Meeting Manager", employee);
-        setContentPane(meetingManagerRootPanel);
-        pack();
+        setup(meetingManagerRootPanel);
 
         DefaultTableModel ownModel = new DefaultTableModel();
         meetingTable.setModel(ownModel);

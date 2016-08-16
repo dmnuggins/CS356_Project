@@ -25,8 +25,7 @@ public class CreateEmployeeGUI extends MeetingAppGUI{
 
     public CreateEmployeeGUI(final Employee employee){
         super("Create a New Employee", employee);
-        setContentPane(rootPanel);
-        pack();
+        setup(rootPanel);
 
         nameField.addActionListener(new ActionListener() {
             @Override

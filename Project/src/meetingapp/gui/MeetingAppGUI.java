@@ -3,6 +3,7 @@ package meetingapp.gui;
 import meetingapp.entity.Employee;
 
 import javax.swing.JFrame;
+import java.awt.Container;
 
 /**
  * Created by cthill on 8/10/16.
@@ -26,5 +27,11 @@ public class MeetingAppGUI extends JFrame {
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
         this.employee = employee;
+    }
+
+    protected void setup(Container c) {
+        setContentPane(c);
+        pack();
+        setLocationRelativeTo(null);
     }
 }
