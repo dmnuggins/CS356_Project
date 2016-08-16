@@ -77,7 +77,7 @@ public class EmployeeGUI extends MeetingAppGUI{
         for (Participant em : meetings) {
             if (!em.getSeen()) {
                 //notify user of unseen invites
-                new NotifyEmployeeInvitesGUI(employee, em);
+                new NotifyEmployeeInvites(employee, em);
             }
         }
 
