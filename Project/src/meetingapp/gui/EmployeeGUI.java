@@ -28,8 +28,7 @@ public class EmployeeGUI extends MeetingAppGUI{
 
     public EmployeeGUI(final Employee employee) {
         super("Employee Menu", employee);
-        setContentPane(employeePanel);
-        pack();
+        setup(employeePanel);
 
         topLabel.setText("Welcome, " + employee.getName());
 
@@ -77,7 +76,7 @@ public class EmployeeGUI extends MeetingAppGUI{
         for (Participant em : meetings) {
             if (!em.getSeen()) {
                 //notify user of unseen invites
-                new NotifEmployeeInvitesGUI(employee, em);
+                new NotifyEmployeeInvites(employee, em);
             }
         }
 

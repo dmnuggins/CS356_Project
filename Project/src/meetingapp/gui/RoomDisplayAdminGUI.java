@@ -25,8 +25,7 @@ public class RoomDisplayAdminGUI extends MeetingAppGUI {
 
     public RoomDisplayAdminGUI(final Employee employee){
         super("Meeting Rooms", employee);
-        setContentPane(rootPanel);
-        pack();
+        setup(rootPanel);
 
         List<Room> allRooms = Room.getAll();
         for (Room r : allRooms) {

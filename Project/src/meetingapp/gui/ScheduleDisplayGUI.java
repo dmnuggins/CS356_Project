@@ -27,8 +27,7 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
 
     public ScheduleDisplayGUI(final Employee employee) {
         super("Schedule", employee);
-        setContentPane(scheduleDisplayPanel);
-        pack();
+        setup(scheduleDisplayPanel);
 
         DefaultTableModel model = new DefaultTableModel();
         scheduleTable.setModel(model);
@@ -40,26 +39,6 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
         }
         model.addRow(new Object[] {"event1", "event2", "event3", "event4", "event5"});
 
-//        scheduleTable = new JTable(data, columns) {
-//            public boolean isCellEditable(int data, int columns) {
-//                return false;
-//            }
-//
-//            public Component prepareRenderer(TableCellRenderer r, int data, int columns) {
-//                Component c = super.prepareRenderer(r, data, columns);
-//
-//                if(data % 2 == 0)
-//                    c.setBackground(Color.WHITE);
-//                else
-//                    c.setBackground(Color.LIGHT_GRAY);
-//                return c;
-//            }
-//        };
-//        scheduleTable.setPreferredScrollableViewportSize(new Dimension(550,300));
-//        scheduleTable.setFillsViewportHeight(true);
-//
-//        JScrollPane jsp = new JScrollPane(scheduleTable);
-//        centerPanel.add(jsp);
 
         backButton.addActionListener(new ActionListener() {
             @Override
