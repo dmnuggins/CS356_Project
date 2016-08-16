@@ -51,7 +51,10 @@ public class MeetingManagerEmployeeGUI extends MeetingAppGUI {
             invitedModel.addRow(new Object[] { em.getMeeting().getStart().toLocaleString() } );
         }
 
-        /** When a specific meeting (owned/invited) is selected, the corresponding option buttons will be highlighted */
+        /**
+         * When a specific meeting (owned/invited) is selected,
+         * the corresponding option buttons will be highlighted
+         */
         meetingTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
