@@ -43,14 +43,6 @@ public class MeetingManagerEmployeeGUI extends MeetingAppGUI {
             ownModel.addRow(new Object[] { em.getMeeting().getStart().toLocaleString() } );
         }
 
-        DefaultTableModel invitedModel = new DefaultTableModel();
-        participantMeetingTable.setModel(invitedModel);
-        invitedModel.addColumn("Meeting");
-        List<Participant> invited =  employee.getAllMeetings(false, false);
-        for (Participant em : invited) {
-            invitedModel.addRow(new Object[] { em.getMeeting().getStart().toLocaleString() } );
-        }
-
         /**
          * When a specific meeting (owned/invited) is selected,
          * the corresponding option buttons will be highlighted
