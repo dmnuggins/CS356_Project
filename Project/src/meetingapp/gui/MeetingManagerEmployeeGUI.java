@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,14 +22,13 @@ public class MeetingManagerEmployeeGUI extends MeetingAppGUI {
     private JPanel centerPanel;
     private JButton backButton;
     private JPanel southButtonPanel;
-    private JTable ownMeetingTable;
+    private JTable meetingTable;
     private JTable participantMeetingTable;
     private JButton cancelMeetingButton;
     private JButton updateMeetingButton;
     private JButton updateStatusButton;
-    private JButton meetingInfoButton;
     private JScrollPane ownJScrollPane;
-    private JScrollPane partJScrollPane;
+    private JButton meetingInfoButton;
 
     public MeetingManagerEmployeeGUI (final Employee employee) {
         super("Meeting Manager", employee);
@@ -35,7 +36,7 @@ public class MeetingManagerEmployeeGUI extends MeetingAppGUI {
         pack();
 
         DefaultTableModel ownModel = new DefaultTableModel();
-        ownMeetingTable.setModel(ownModel);
+        meetingTable.setModel(ownModel);
         ownModel.addColumn("Meeting");
         List<Participant> meetings =  employee.getAllMeetings(true, false);
         for (Participant em : meetings) {
@@ -49,6 +50,14 @@ public class MeetingManagerEmployeeGUI extends MeetingAppGUI {
         for (Participant em : invited) {
             invitedModel.addRow(new Object[] { em.getMeeting().getStart().toLocaleString() } );
         }
+
+        /** When a specific meeting (owned/invited) is selected, the corresponding option buttons will be highlighted */
+        meetingTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+            }
+        });
 
         backButton.addActionListener(new ActionListener() {
             @Override
