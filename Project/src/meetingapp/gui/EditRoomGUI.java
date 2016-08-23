@@ -24,8 +24,7 @@ public class EditRoomGUI extends MeetingAppGUI{
 
     public EditRoomGUI(final Employee employee, final Room editing) {
         super("Edit Room", employee);
-        setContentPane(rootPanel);
-        pack();
+        setup(rootPanel);
 
         this.editing = editing;
 

@@ -42,7 +42,8 @@ public class RoomDisplayAdminGUI extends MeetingAppGUI {
         createRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new CreateRoomGUI(employee);
+                dispose();
             }
         });
 
