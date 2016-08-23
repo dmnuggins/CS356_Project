@@ -1,6 +1,8 @@
 package meetingapp.entity;
 
 import meetingapp.db.*;
+
+import java.io.IOException;
 import java.util.*;
 /**
  * Created by cthill on 7/26/16.
@@ -12,7 +14,10 @@ public class Employee extends Entity {
     protected List<Date> reserved = new ArrayList<Date>(); //reserved days
     protected Login login;
 
+
+
     public Employee(int ID, String name, boolean isAdmin) {
+
         super(ID);
         this.name = name;
         this.isAdmin = isAdmin;
@@ -90,5 +95,13 @@ public class Employee extends Entity {
 
     public static List<Employee> getAll() {
         return (List<Employee>)(List<?>) EmployeeDB.getInstance().loadAll();
+    }
+
+    public void delete() {
+        try {
+            EmployeeDB.getInstance().eraseRecord(this.getID());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
