@@ -21,6 +21,8 @@ public class RoomDisplayAdminGUI extends MeetingAppGUI {
     private JButton cancelButton;
     private JComboBox comboBox1;
 
+
+
     public RoomDisplayAdminGUI(final Employee employee){
         super("Meeting Rooms", employee);
         setup(rootPanel);
@@ -47,6 +49,9 @@ public class RoomDisplayAdminGUI extends MeetingAppGUI {
         editRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Room selected = allRooms.get(comboBox1.getSelectedIndex());
+                new EditRoomGUI(employee, selected);
+                dispose();
 
             }
         });
