@@ -40,6 +40,7 @@ public class CreateRoomGUI extends MeetingAppGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 room = new Room(Integer.parseInt(numberField.getText()),Integer.parseInt(capacityField.getText()));
+                room.setCapacity(Integer.parseInt(capacityField.getText()));
                 new RoomDisplayAdminGUI(employee);
                 dispose();
             }
