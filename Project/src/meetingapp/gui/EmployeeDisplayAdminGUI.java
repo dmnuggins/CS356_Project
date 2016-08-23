@@ -1,11 +1,10 @@
 package meetingapp.gui;
-import meetingapp.db.EmployeeDB;
 import meetingapp.entity.Employee;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by CesarRecinos on 8/7/2016.
@@ -19,14 +18,13 @@ public class EmployeeDisplayAdminGUI extends MeetingAppGUI{
     private JButton editButton;
     private JButton cancelButton;
 
-    ArrayList<Employee> allEmployees;
+    List<Employee> allEmployees;
 
     public EmployeeDisplayAdminGUI(final Employee employee){
         super("Employees", employee);
-        setContentPane(rootPanel);
-        pack();
+        setup(rootPanel);
 
-        allEmployees = (ArrayList<Employee>) EmployeeDB.getInstance().loadAll();
+        allEmployees = Employee.getAll();
         allEmployees.remove(employee);
 
         for (Employee e : allEmployees) {

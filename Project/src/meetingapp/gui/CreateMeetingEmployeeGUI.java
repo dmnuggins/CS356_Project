@@ -1,15 +1,13 @@
 package meetingapp.gui;
 
 import meetingapp.entity.*;
-import meetingapp.db.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
+import java.util.List;
+import java.util.Date;
 
 /**
  * Created by Dylan Nguyen on 8/8/2016.
@@ -30,17 +28,15 @@ public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
     private JButton addEmployeesButton;
     private JLabel meetingDateLabel;
 
-    private ArrayList<Room> allRooms;
+    private List<Room> allRooms;
 
     public CreateMeetingEmployeeGUI(final Employee employee) {
         super("New Meeting", employee);
-        setContentPane(newMeetingPanel);
-        pack();
-
+        setup(newMeetingPanel);
 
         this.employee = employee;
         //get all employees
-        allRooms = (ArrayList<Room>) RoomDB.getInstance().loadAll();
+        allRooms = Room.getAll();
         for (int i = 0; i < allRooms.size(); i++) {
             roomComboBox.addItem(Integer.toString(allRooms.get(i).getID()));
         }

@@ -28,8 +28,7 @@ public class EmployeeGUI extends MeetingAppGUI{
 
     public EmployeeGUI(final Employee employee) {
         super("Employee Menu", employee);
-        setContentPane(employeePanel);
-        pack();
+        setup(employeePanel);
 
         topLabel.setText("Welcome, " + employee.getName());
 
@@ -44,6 +43,13 @@ public class EmployeeGUI extends MeetingAppGUI{
             @Override
             public void actionPerformed(ActionEvent e) {
                 new CreateMeetingEmployeeGUI(employee);
+                dispose();
+            }
+        });
+        manageMeetingsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MeetingManagerEmployeeGUI(employee);
                 dispose();
             }
         });
@@ -65,11 +71,25 @@ public class EmployeeGUI extends MeetingAppGUI{
 
         setVisible(true);
 
-        ArrayList<EmployeeMeeting> meetings = (ArrayList<EmployeeMeeting>) EmployeeMeeting.getAllMeetings(employee.getID(), false, false);
-
-        for (EmployeeMeeting em : meetings) {
+        //get all meeting invites
+        ArrayList<Participant> meetings = (ArrayList<Participant>) employee.getAllMeetings(false, false);
+        for (Participant em : meetings) {
             if (!em.getSeen()) {
-                new NotifEmployeeInvitesGUI(employee, em);
+                //notify user of unseen invites
+                new NotifyEmployeeInvites(employee, em);
+            }
+        }
+
+        //get all meetings owned
+        ArrayList<Participant> meetingsOwned = (ArrayList<Participant>) employee.getAllMeetings(true, false);
+        for (Participant em : meetingsOwned) {
+            //get list of users responded
+            ArrayList<Participant> responded = (ArrayList<Participant>) em.getMeeting().getAllSeenInvite();
+            for (Participant r : responded) {
+                if (!r.getSeenByOwner()) {
+                    //nofiy owner of unseen responses
+                    new NotifyMeetingOwner(employee, r);
+                }
             }
         }
     }

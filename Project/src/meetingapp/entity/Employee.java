@@ -17,7 +17,7 @@ public class Employee extends Entity {
         this.name = name;
         this.isAdmin = isAdmin;
 
-        login = LoginDB.getInstance().load(ID);
+        login = (Login) LoginDB.getInstance().load(ID);
     }
 
     public String getName() {
@@ -62,7 +62,33 @@ public class Employee extends Entity {
         return login;
     }
 
-    public void save() {
+    protected void save() {
         EmployeeDB.getInstance().save(this);
+    }
+
+    //Get all meetings a user is invited to (isOwner = false) or created (isOwner = true). Includes meeting invites not accepted yet
+    //if includePast argument is set to true, the method will return meetings that already happened
+    public List<Participant> getAllMeetings(boolean isOwner, boolean includePast) {
+        List<Participant> out = new ArrayList<Participant>();
+
+        List<Participant> eml = (List<Participant>)(List<?>) ParticipantDB.getInstance().loadAll();
+        for (Participant em : eml) {
+            if (em.employeeID == ID && em.isOwner == isOwner) {
+                Meeting m = (Meeting) MeetingDB.getInstance().load(em.meetingID);
+                if (includePast || m.end.after(new Date())) {
+                    out.add(em);
+                }
+            }
+        }
+
+        return out;
+    }
+
+    public static Employee get(int id) {
+        return (Employee) EmployeeDB.getInstance().load(id);
+    }
+
+    public static List<Employee> getAll() {
+        return (List<Employee>)(List<?>) EmployeeDB.getInstance().loadAll();
     }
 }

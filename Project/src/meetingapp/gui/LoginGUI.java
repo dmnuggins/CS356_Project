@@ -28,8 +28,7 @@ public class LoginGUI extends MeetingAppGUI {
 
     public LoginGUI() {
         super("Login", null);
-        setContentPane(loginPanel);
-        pack();
+        setup(loginPanel);
 
         userNameField.addActionListener(new ActionListener() {
             @Override

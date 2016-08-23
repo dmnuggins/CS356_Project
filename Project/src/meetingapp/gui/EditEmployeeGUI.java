@@ -29,8 +29,7 @@ public class EditEmployeeGUI extends MeetingAppGUI{
 
     public EditEmployeeGUI(final Employee employee, final Employee editing){
         super("Edit Employee", employee);
-        setContentPane(rootPanel);
-        pack();
+        setup(rootPanel);
 
         this.editing = editing;
         nameField.setText(editing.getName());
@@ -86,6 +85,8 @@ public class EditEmployeeGUI extends MeetingAppGUI{
                 editing.setName(nameField.getText());
                 editing.getLogin().setPassword(new String(passwordField.getPassword()));
                 editing.getLogin().setUsername(usernameField.getText());
+                new EmployeeDisplayAdminGUI(employee);
+                dispose();
             }
         });
 

@@ -23,37 +23,6 @@ public class RoomDB extends FileDB {
         return instance;
     }
 
-    public List<Room> loadAll() {
-        List<Room> l = new ArrayList<Room>();
-
-        try {
-            file.seek(0);
-            while (!eof()) {
-                int length = file.readInt();
-                l.add(readRecord(length));
-            }
-
-            return l;
-        } catch (IOException ex){
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public Room load(int id) {
-        int length = seekRecord(id);
-        if (length > 0) {
-            try {
-                return readRecord(length);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
-
-        return null;
-    }
-
     protected Room readRecord(int length) throws IOException{
         long end = file.getFilePointer() + length;
 
@@ -72,7 +41,8 @@ public class RoomDB extends FileDB {
         return new Room(id, cap);
     }
 
-    public void save(Room r) {
+    public void writeRecord(Entity e) {
+        Room r = (Room) e;
         try {
             eraseRecord(r.getID());
 

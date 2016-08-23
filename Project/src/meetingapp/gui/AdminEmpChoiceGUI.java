@@ -21,8 +21,7 @@ public class AdminEmpChoiceGUI extends MeetingAppGUI{
 
     public AdminEmpChoiceGUI(final Employee employee) {
         super("Choose Menu Type", employee);
-        setContentPane(choicePanel);
-        pack();
+        setup(choicePanel);
 
         this.employee = employee;
 

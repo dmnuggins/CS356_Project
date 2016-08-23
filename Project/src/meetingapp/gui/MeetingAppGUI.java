@@ -1,7 +1,9 @@
 package meetingapp.gui;
 
 import meetingapp.entity.Employee;
+import meetingapp.entity.Room;
 
+import java.awt.Container;
 import javax.swing.JFrame;
 
 /**
@@ -9,6 +11,7 @@ import javax.swing.JFrame;
  */
 public class MeetingAppGUI extends JFrame {
     protected Employee employee;
+    protected Room room;
 
     public MeetingAppGUI(String title, final Employee employee) {
         super(title);
@@ -27,4 +30,12 @@ public class MeetingAppGUI extends JFrame {
         }
         this.employee = employee;
     }
+
+    protected void setup(Container c) {
+        setContentPane(c);
+        pack();
+        setLocationRelativeTo(null);
+    }
+
+
 }

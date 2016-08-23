@@ -1,17 +1,15 @@
 package meetingapp.gui;
 
-import meetingapp.db.MeetingDB;
 import meetingapp.entity.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
  * Created by dmnguyen on 8/9/16.
  */
-public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
+public class NotifyEmployeeInvites extends MeetingAppGUI {
     private JPanel northPanel;
     private JButton acceptButton;
     private JButton declineButton;
@@ -19,34 +17,35 @@ public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
     private JLabel dateLabelStart;
     private JLabel dateLabelEnd;
     private JList invitedList;
+    private JLabel topLabel;
 
-    EmployeeMeeting meeting;
+    Participant participant;
 
-    public NotifEmployeeInvitesGUI(final Employee employee, final EmployeeMeeting meeting) {
+    public NotifyEmployeeInvites(final Employee employee, final Participant participant) {
         super("Meeting Invite", employee, false);
-        setContentPane(meetingInvitePanel);
-        pack();
+        setup(meetingInvitePanel);
 
-        this.meeting = meeting;
-        meeting.setSeen(true);
+        this.participant = participant;
+        this.participant.setSeen(true);
 
-        Meeting m = MeetingDB.getInstance().load(meeting.getMeetingID());
-        dateLabelStart.setText("Starts: " + m.getStart().toLocaleString());
-        dateLabelEnd.setText("Ends: " + m.getEnd().toLocaleString());
+        //populate text fields
+        topLabel.setText("Invite from: " + participant.getMeeting().getOwner().getName());
+        Meeting meeting = participant.getMeeting();
+        dateLabelStart.setText("Starts: " + meeting.getStart().toLocaleString());
+        dateLabelEnd.setText("Ends: " + meeting.getEnd().toLocaleString());
 
-        ArrayList<Employee> attending = (ArrayList<Employee>) EmployeeMeeting.getAllEmployees(meeting.getMeetingID(), true, false);
-
+        //build list of attending employees
+        ArrayList<Participant> attending = (ArrayList<Participant>) meeting.getAllAccepted(true);
         DefaultListModel<String> lm = new DefaultListModel<String>();
         invitedList.setModel(lm);
-        
-        for (Employee e : attending) {
-            lm.addElement(e.getName());
+        for (Participant e : attending) {
+            lm.addElement(Employee.get(e.getEmployeeID()).getName());
         }
 
         acceptButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                meeting.setAccepted(true);
+                participant.setAccepted(true);
                 dispose();
             }
         });
