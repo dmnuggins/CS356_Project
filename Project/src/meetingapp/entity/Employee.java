@@ -67,7 +67,11 @@ public class Employee extends Entity {
         return login;
     }
 
-    protected void save() {
+    public void setLogin(Login login){
+        this.login = login;
+    }
+
+    public void save() {
         EmployeeDB.getInstance().save(this);
     }
 

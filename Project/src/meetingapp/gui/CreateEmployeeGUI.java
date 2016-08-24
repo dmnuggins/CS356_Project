@@ -1,5 +1,6 @@
 package meetingapp.gui;
 import meetingapp.entity.Employee;
+import meetingapp.entity.Login;
 import meetingapp.db.EmployeeDB;
 
 import javax.swing.*;
@@ -52,10 +53,13 @@ public class CreateEmployeeGUI extends MeetingAppGUI{
         saveEmployee.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //int ID = EmployeeDB.getInstance().getNextID();
-                saving = new Employee(EmployeeDB.getInstance().getNextID(), nameField.getText(),isAdminCheckBox.isSelected());
-                saving.getLogin().setPassword(new String(passwordField.getPassword()));
-                saving.getLogin().setUsername(usernameField.getText());
+                int ID = EmployeeDB.getInstance().getNextID();
+                saving = new Employee(ID, nameField.getText(),isAdminCheckBox.isSelected());
+                Login login = new Login(ID, usernameField.getText(),
+                        new String(passwordField.getPassword()));
+                login.save();
+                saving.setLogin(login);
+                saving.save();
                 new EmployeeDisplayAdminGUI(employee);
                 dispose();
 
