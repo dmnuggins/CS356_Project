@@ -92,5 +92,8 @@ public class EmployeeGUI extends MeetingAppGUI{
                 }
             }
         }
+
+        //display upcoming meetings
+        new NotifyMeetingSchedule(employee);
     }
 }

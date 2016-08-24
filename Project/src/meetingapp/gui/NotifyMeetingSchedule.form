@@ -21,7 +21,7 @@
             </constraints>
             <properties>
               <font size="14" style="1"/>
-              <text value="Meeting Schedule"/>
+              <text value="Upcoming Meetings"/>
             </properties>
           </component>
         </children>

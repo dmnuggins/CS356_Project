@@ -3,6 +3,10 @@ package meetingapp.gui;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import meetingapp.entity.Employee;
+import meetingapp.entity.Participant;
+import meetingapp.entity.Meeting;
+
+import java.util.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,13 +29,29 @@ public class NotifyMeetingSchedule extends MeetingAppGUI {
 
         DefaultTableModel model = new DefaultTableModel();
         scheduleTable.setModel(model);
+        model.addColumn("Meeting Time");
 
-        String[] columns = {"Today", "Tomorrow"};
+        List<Participant> meetings = employee.getAllMeetings(false, false);
 
-        for(int i=0;i<columns.length;i++) {
-            model.addColumn(columns[i]);
+        int today = new Date().getDate();
+        Date twoDays = new Date();
+        twoDays.setHours(0);
+        twoDays.setMinutes(0);
+        twoDays.setSeconds(0);
+        twoDays.setDate(twoDays.getDay() + 2);
+
+        for (Participant p : meetings) {
+            Meeting m = p.getMeeting();
+            if (m.getStart().before(twoDays)) {
+                String prefixText = "Today, ";
+
+                if (m.getStart().getDate() != today) {
+                    prefixText = "Tomorrow, ";
+                }
+
+                model.addRow(new Object[] { m.getStart().getHours() + ":00" });
+            }
         }
-        model.addRow(new Object[] {"event1", "event2"});
 
 
         dismissButton.addActionListener(new ActionListener() {
@@ -40,6 +60,8 @@ public class NotifyMeetingSchedule extends MeetingAppGUI {
                 dispose();
             }
         });
+
+        setVisible(true);
     }
 
 }
