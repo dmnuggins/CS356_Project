@@ -17,6 +17,10 @@ public class CreateRoomGUI extends MeetingAppGUI {
     private JLabel capacityLabel;
     private JButton saveButton;
     private JButton cancelButton;
+    private JPanel buttonPanel;
+    private JPanel gridPanel;
+    private JPanel roomPanel;
+    private JPanel labelPanel;
 
     Room room;
     public CreateRoomGUI(final Employee employee){
@@ -55,4 +59,5 @@ public class CreateRoomGUI extends MeetingAppGUI {
 
         setVisible(true);
     }
+
 }
