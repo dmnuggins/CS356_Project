@@ -6,6 +6,8 @@ import meetingapp.entity.Employee;
 import meetingapp.entity.Participant;
 import meetingapp.entity.Meeting;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import java.awt.event.ActionEvent;
@@ -33,23 +35,18 @@ public class NotifyMeetingSchedule extends MeetingAppGUI {
 
         List<Participant> meetings = employee.getAllMeetings(false, false);
 
-        int today = new Date().getDate();
-        Date twoDays = new Date();
-        twoDays.setHours(0);
-        twoDays.setMinutes(0);
-        twoDays.setSeconds(0);
-        twoDays.setDate(twoDays.getDay() + 2);
+        LocalDateTime twoDays = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).plusDays(2);
 
         for (Participant p : meetings) {
             Meeting m = p.getMeeting();
-            if (m.getStart().before(twoDays)) {
+            if (m.getStart().isBefore(twoDays)) {
                 String prefixText = "Today, ";
 
-                if (m.getStart().getDate() != today) {
+                if (m.getStart().getDayOfMonth() != LocalDateTime.now().getDayOfMonth()) {
                     prefixText = "Tomorrow, ";
                 }
 
-                model.addRow(new Object[] { m.getStart().getHours() + ":00" });
+                model.addRow(new Object[] { prefixText + m.getStart().format(DateTimeFormatter.ISO_TIME) });
             }
         }
 

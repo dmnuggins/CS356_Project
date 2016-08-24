@@ -33,7 +33,7 @@ public class NotifyMeetingOwner extends MeetingAppGUI {
         }
 
         ;
-        String meetingDateText = Meeting.get(participant.getMeetingID()).getStart().toLocaleString();
+        String meetingDateText = Meeting.get(participant.getMeetingID()).getStart().toString();
         messageTextPane.setText(empName + " has " + accText + " your meeting invite for " + meetingDateText + ".");
 
         dismissButton.addActionListener(new ActionListener() {
