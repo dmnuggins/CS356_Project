@@ -20,7 +20,7 @@ public class RoomDisplayAdminGUI extends MeetingAppGUI {
     private JButton editRoom;
     private JButton cancelButton;
     private JComboBox comboBox1;
-
+    private JPanel labelPanel;
 
 
     public RoomDisplayAdminGUI(final Employee employee){
