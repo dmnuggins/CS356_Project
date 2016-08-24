@@ -94,6 +94,9 @@ public class EmployeeGUI extends MeetingAppGUI{
         }
 
         //display upcoming meetings
-        new NotifyMeetingSchedule(employee);
+        if (!employee.NotifiedOfUpcoming) {
+            new NotifyMeetingSchedule(employee);
+            employee.NotifiedOfUpcoming = true;
+        }
     }
 }
