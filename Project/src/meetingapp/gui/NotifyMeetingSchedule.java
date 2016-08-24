@@ -26,7 +26,7 @@ public class NotifyMeetingSchedule extends MeetingAppGUI {
 
 
     public NotifyMeetingSchedule(final Employee employee) {
-        super("Schedule", employee);
+        super("Schedule", employee, false);
         setup(rootPanel);
 
         DefaultTableModel model = new DefaultTableModel();
@@ -39,15 +39,17 @@ public class NotifyMeetingSchedule extends MeetingAppGUI {
 
         for (Participant p : meetings) {
             Meeting m = p.getMeeting();
-            if (m.getStart().isBefore(twoDays)) {
+            if (m.getStart().isBefore(twoDays) && p.getAccepted()) {
                 String prefixText = "Today, ";
-
                 if (m.getStart().getDayOfMonth() != LocalDateTime.now().getDayOfMonth()) {
                     prefixText = "Tomorrow, ";
                 }
-
                 model.addRow(new Object[] { prefixText + m.getStart().format(DateTimeFormatter.ISO_TIME) });
             }
+        }
+
+        if (model.getRowCount() == 0) {
+            model.addRow(new Object[] { "No upcoming meetings" });
         }
 
 

@@ -15,7 +15,6 @@ public class NotifyEmployeeInvites extends MeetingAppGUI {
     private JButton declineButton;
     private JPanel meetingInvitePanel;
     private JLabel dateLabelStart;
-    private JLabel dateLabelEnd;
     private JList invitedList;
     private JLabel topLabel;
 

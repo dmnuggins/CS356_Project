@@ -5,6 +5,7 @@ import meetingapp.db.ParticipantDB;
 import meetingapp.db.MeetingDB;
 
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.*;
 import java.time.*;
 /**
@@ -30,15 +31,11 @@ public class Meeting extends Entity{
     }
 
     public String getStartString() {
-        return start.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        return start.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT));
     }
 
     public LocalDateTime getStart() {
         return start;
-    }
-
-    public LocalDateTime getEnd() {
-        return end;
     }
 
     protected void save() {
