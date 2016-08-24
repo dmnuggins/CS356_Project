@@ -27,7 +27,7 @@ public class RoomDisplayAdminGUI extends MeetingAppGUI {
         super("Meeting Rooms", employee);
         setup(rootPanel);
 
-        final List<Room> allRooms = Room.getAll();
+        List<Room> allRooms = Room.getAll();
         for (Room r : allRooms) {
             comboBox1.addItem("Room " + r.getID());
         }
