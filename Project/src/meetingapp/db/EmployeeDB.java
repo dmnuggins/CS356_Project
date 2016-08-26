@@ -4,7 +4,7 @@ import meetingapp.entity.Employee;
 import meetingapp.entity.Entity;
 
 import java.io.IOException;
-import java.util.*;
+import java.time.*;
 
 /**
  * Created by cthill on 8/6/16.
@@ -48,12 +48,11 @@ public class EmployeeDB extends FileDB {
         Employee e = new Employee(id, name, isAdmin);
 
         int reservedLen = seekField(Field.RESERVED.ordinal(), end);
-        if (reservedLen > 0) {
-            Date d = new Date();
-            d.setYear(file.readInt());
-            d.setMonth(file.readInt());
-            d.setDate(file.readInt());
-            e.reserveDate(d);
+        if (reservedLen > 0 && reservedLen % 8 == 0) {
+            for (int i = 0; i < reservedLen % 8; i++) {
+                Long epochTime = file.readLong();
+                e.reserveDate(LocalDateTime.ofEpochSecond(epochTime, 0, ZoneOffset.UTC));
+            }
         }
 
         return e;
@@ -75,12 +74,9 @@ public class EmployeeDB extends FileDB {
             writeFieldHeader(Field.ADMIN.ordinal(), 1);
             file.writeBoolean(e.getIsAdmin());
 
-            writeFieldHeader(Field.RESERVED.ordinal(), e.getReserved().size() * 3 * 4); //3 ints per date, 4 bytes per int
-            for (int i = 0; i < e.getReserved().size(); i++) {
-                Date d = e.getReserved().get(i);
-                file.writeInt(d.getYear());
-                file.writeInt(d.getMonth());
-                file.writeInt(d.getDate());
+            writeFieldHeader(Field.RESERVED.ordinal(), e.getReserved().size() * 8); //8 bytes per date
+            for (LocalDateTime r : e.getReserved()) {
+                file.writeLong(r.toEpochSecond(ZoneOffset.UTC));
             }
 
             long end = file.getFilePointer();
