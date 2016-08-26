@@ -21,6 +21,7 @@ public class NotifyMeetingOwner extends MeetingAppGUI {
     public NotifyMeetingOwner(final Employee employee, final Participant participant) {
         super("Response", employee, false);
         setup(mainPanel);
+        this.setLocation(this.getX() - 250, this.getY());
 
         this.participant = participant;
         this.participant.setSeenByOwner(true);
@@ -33,7 +34,7 @@ public class NotifyMeetingOwner extends MeetingAppGUI {
         }
 
         ;
-        String meetingDateText = Meeting.get(participant.getMeetingID()).getStart().toLocaleString();
+        String meetingDateText = Meeting.get(participant.getMeetingID()).getStart().toString();
         messageTextPane.setText(empName + " has " + accText + " your meeting invite for " + meetingDateText + ".");
 
         dismissButton.addActionListener(new ActionListener() {

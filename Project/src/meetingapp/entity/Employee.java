@@ -13,7 +13,7 @@ public class Employee extends Entity {
     protected boolean isAdmin;
     protected List<Date> reserved = new ArrayList<Date>(); //reserved days
     protected Login login;
-
+    public boolean NotifiedOfUpcoming;
 
 
     public Employee(int ID, String name, boolean isAdmin) {
@@ -84,7 +84,7 @@ public class Employee extends Entity {
         for (Participant em : eml) {
             if (em.employeeID == ID && em.isOwner == isOwner) {
                 Meeting m = (Meeting) MeetingDB.getInstance().load(em.meetingID);
-                if (includePast || m.end.after(new Date())) {
+                if (includePast || !m.isPast()) {
                     out.add(em);
                 }
             }

@@ -3,6 +3,12 @@ package meetingapp.gui;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import meetingapp.entity.Employee;
+import meetingapp.entity.Participant;
+import meetingapp.entity.Meeting;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,18 +26,31 @@ public class NotifyMeetingSchedule extends MeetingAppGUI {
 
 
     public NotifyMeetingSchedule(final Employee employee) {
-        super("Schedule", employee);
+        super("Schedule", employee, false);
         setup(rootPanel);
 
         DefaultTableModel model = new DefaultTableModel();
         scheduleTable.setModel(model);
+        model.addColumn("Meeting Time");
 
-        String[] columns = {"Today", "Tomorrow"};
+        List<Participant> meetings = employee.getAllMeetings(false, false);
 
-        for(int i=0;i<columns.length;i++) {
-            model.addColumn(columns[i]);
+        LocalDateTime twoDays = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).plusDays(2);
+
+        for (Participant p : meetings) {
+            Meeting m = p.getMeeting();
+            if (m.getStart().isBefore(twoDays) && p.getAccepted()) {
+                String prefixText = "Today, ";
+                if (m.getStart().getDayOfMonth() != LocalDateTime.now().getDayOfMonth()) {
+                    prefixText = "Tomorrow, ";
+                }
+                model.addRow(new Object[] { prefixText + m.getStart().format(DateTimeFormatter.ISO_TIME) });
+            }
         }
-        model.addRow(new Object[] {"event1", "event2"});
+
+        if (model.getRowCount() == 0) {
+            model.addRow(new Object[] { "No upcoming meetings" });
+        }
 
 
         dismissButton.addActionListener(new ActionListener() {
@@ -40,6 +59,8 @@ public class NotifyMeetingSchedule extends MeetingAppGUI {
                 dispose();
             }
         });
+
+        setVisible(true);
     }
 
 }

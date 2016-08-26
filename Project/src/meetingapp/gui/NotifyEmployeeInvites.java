@@ -15,7 +15,6 @@ public class NotifyEmployeeInvites extends MeetingAppGUI {
     private JButton declineButton;
     private JPanel meetingInvitePanel;
     private JLabel dateLabelStart;
-    private JLabel dateLabelEnd;
     private JList invitedList;
     private JLabel topLabel;
 
@@ -24,6 +23,7 @@ public class NotifyEmployeeInvites extends MeetingAppGUI {
     public NotifyEmployeeInvites(final Employee employee, final Participant participant) {
         super("Meeting Invite", employee, false);
         setup(meetingInvitePanel);
+        this.setLocation(this.getX() + 250, this.getY());
 
         this.participant = participant;
         this.participant.setSeen(true);
@@ -31,8 +31,8 @@ public class NotifyEmployeeInvites extends MeetingAppGUI {
         //populate text fields
         topLabel.setText("Invite from: " + participant.getMeeting().getOwner().getName());
         Meeting meeting = participant.getMeeting();
-        dateLabelStart.setText("Starts: " + meeting.getStart().toLocaleString());
-        dateLabelEnd.setText("Ends: " + meeting.getEnd().toLocaleString());
+        dateLabelStart.setText("Starts: " + meeting.getStartString());
+        //dateLabelEnd.setText("Ends: " + meeting.getEnd());
 
         //build list of attending employees
         ArrayList<Participant> attending = (ArrayList<Participant>) meeting.getAllAccepted(true);

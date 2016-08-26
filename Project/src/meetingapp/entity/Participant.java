@@ -96,4 +96,17 @@ public class Participant extends Entity {
     public static List<Participant> getAll() {
         return (List<Participant>)(List<?>) ParticipantDB.getInstance().loadAll();
     }
+
+    public static List<Participant> getInvitesPending(Employee e) {
+        List<Participant> all = getAll();
+        List<Participant> pending = new ArrayList<>();
+
+        for (Participant p : all) {
+            if (p.getEmployeeID() == e.getID() && !p.getSeen()) {
+                pending.add(p);
+            }
+        }
+
+        return pending;
+    }
 }
