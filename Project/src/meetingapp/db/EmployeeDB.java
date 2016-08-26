@@ -22,7 +22,7 @@ public class EmployeeDB extends FileDB {
 
     public static final EmployeeDB getInstance() { return instance; }
 
-    protected Employee readRecord(int length) throws IOException{
+    protected Employee readRecord(int length) throws IOException {
         long end = length + file.getFilePointer();
 
         int idLen = seekField(Field.ID.ordinal(), end);
@@ -49,9 +49,10 @@ public class EmployeeDB extends FileDB {
 
         int reservedLen = seekField(Field.RESERVED.ordinal(), end);
         if (reservedLen > 0 && reservedLen % 8 == 0) {
-            for (int i = 0; i < reservedLen % 8; i++) {
+            for (int i = 0; i < reservedLen / 8; i++) {
                 Long epochTime = file.readLong();
-                e.reserveDate(LocalDateTime.ofEpochSecond(epochTime, 0, ZoneOffset.UTC));
+                //don't use reserve date here because it will call save();
+                e.getReserved().add(LocalDateTime.ofEpochSecond(epochTime, 0, ZoneOffset.UTC));
             }
         }
 
