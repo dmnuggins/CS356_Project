@@ -26,8 +26,7 @@ public class ChangePasswordEmployeeGUI extends MeetingAppGUI{
 
     public ChangePasswordEmployeeGUI(final Employee employee) {
         super("Change Password", employee);
-        setContentPane(updateUserPanel);
-        pack();
+        setup(updateUserPanel);
 
         ActionListener tryChangeAL = new ActionListener() {
             @Override

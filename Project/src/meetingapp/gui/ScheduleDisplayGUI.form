@@ -27,6 +27,7 @@
               <component id="43561" class="javax.swing.JButton" binding="setVisibilityButton" default-binding="true">
                 <constraints/>
                 <properties>
+                  <enabled value="false"/>
                   <preferredSize width="127" height="32"/>
                   <text value="Set Visibility"/>
                 </properties>
@@ -108,6 +109,9 @@
                   <cellSelectionEnabled value="false"/>
                   <columnSelectionAllowed value="false"/>
                   <rowHeight value="40"/>
+                  <rowSelectionAllowed value="false"/>
+                  <showHorizontalLines value="true"/>
+                  <verifyInputWhenFocusTarget value="true"/>
                 </properties>
               </component>
             </children>

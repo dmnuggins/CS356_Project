@@ -3,7 +3,8 @@ package meetingapp;
 import meetingapp.gui.*;
 import meetingapp.db.*;
 import meetingapp.entity.*;
-import java.util.*;
+
+import java.time.*;
 
 /**
  * Created by cthill on 8/6/16.
@@ -20,12 +21,13 @@ public class MeetingApp {
         CreateAccount(5, "Bob Jones", "bob", "password", false);
         CreateAccount(6, "John Smith", "john", "password", false);
 
+        Employee admin = (Employee) EmployeeDB.getInstance().load(0);
+        admin.reserveDate(LocalDateTime.of(2016, 8, 26, 12, 0));
+        boolean[][] s = admin.getSchedule(LocalDate.of(2016, 8, 22), 5, false);
 
-        Date start = new Date();
-        start.setTime(1473475105000L);
-        Date end = new Date();
-        end.setTime(1473478705000L);
-        Meeting meet = new Meeting(0, 101, start, end);
+        LocalDateTime start = LocalDateTime.now().plusDays(1).withHour(14).withMinute(0).withSecond(0);
+
+        Meeting meet = new Meeting(0, 101, start);
         MeetingDB.getInstance().save(meet);
 
         ParticipantDB.getInstance().save(new Participant(0, 0, 0, true, true, true, true));

@@ -20,11 +20,12 @@ public class RoomDisplayAdminGUI extends MeetingAppGUI {
     private JButton editRoom;
     private JButton cancelButton;
     private JComboBox comboBox1;
+    private JPanel labelPanel;
+
 
     public RoomDisplayAdminGUI(final Employee employee){
         super("Meeting Rooms", employee);
-        setContentPane(rootPanel);
-        pack();
+        setup(rootPanel);
 
         List<Room> allRooms = Room.getAll();
         for (Room r : allRooms) {
@@ -41,13 +42,17 @@ public class RoomDisplayAdminGUI extends MeetingAppGUI {
         createRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new CreateRoomGUI(employee);
+                dispose();
             }
         });
 
         editRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Room selected = allRooms.get(comboBox1.getSelectedIndex());
+                new EditRoomGUI(employee, selected);
+                dispose();
 
             }
         });

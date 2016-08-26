@@ -32,9 +32,7 @@ public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
 
     public CreateMeetingEmployeeGUI(final Employee employee) {
         super("New Meeting", employee);
-        setContentPane(newMeetingPanel);
-        pack();
-
+        setup(newMeetingPanel);
 
         this.employee = employee;
         //get all employees

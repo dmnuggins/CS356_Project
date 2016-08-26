@@ -41,7 +41,7 @@ public class Login extends Entity {
         save();
     }
 
-    protected void save() {
+    public void save() {
         LoginDB.getInstance().save(this);
     }
 

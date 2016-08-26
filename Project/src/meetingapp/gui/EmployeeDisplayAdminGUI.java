@@ -17,13 +17,13 @@ public class EmployeeDisplayAdminGUI extends MeetingAppGUI{
     private JButton createButton;
     private JButton editButton;
     private JButton cancelButton;
+    private JLabel jLabel;
 
     List<Employee> allEmployees;
 
     public EmployeeDisplayAdminGUI(final Employee employee){
         super("Employees", employee);
-        setContentPane(rootPanel);
-        pack();
+        setup(rootPanel);
 
         allEmployees = Employee.getAll();
         allEmployees.remove(employee);

@@ -10,6 +10,8 @@ public abstract class Entity {
         this.ID = ID;
     }
 
+
+
     public int getID() {
         return ID;
     }

@@ -20,8 +20,7 @@ public class AdminGUI extends MeetingAppGUI{
 
     public AdminGUI(final Employee employee) {
         super("Admin Menu", employee);
-        setContentPane(rootPanel);
-        pack();
+        setup(rootPanel);
 
         employeeButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {

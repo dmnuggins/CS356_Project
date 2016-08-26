@@ -4,6 +4,7 @@ import com.sun.xml.internal.ws.api.model.MEP;
 import meetingapp.entity.*;
 import java.io.IOException;
 import java.util.*;
+import java.time.*;
 
 /**
  * Created by cthill on 8/7/16.
@@ -13,8 +14,7 @@ public class MeetingDB extends FileDB {
     protected enum Field {
         ID,
         ROOM,
-        START,
-        END
+        START
     }
 
     protected MeetingDB() {
@@ -44,15 +44,9 @@ public class MeetingDB extends FileDB {
         if (stimeLen != 8) {
             return null;
         }
-        Date s = new Date(file.readLong());
+        LocalDateTime s = LocalDateTime.ofEpochSecond(file.readLong(), 0, ZoneOffset.UTC);
 
-        int etimeLen = seekField(Field.END.ordinal(), end);
-        if (etimeLen != 8) {
-            return null;
-        }
-        Date e = new Date(file.readLong());
-
-        return new Meeting(id, r, s, e);
+        return new Meeting(id, r, s);
     }
 
     public void writeRecord(Entity e) {
@@ -70,10 +64,7 @@ public class MeetingDB extends FileDB {
             file.writeInt(m.getRoomID());
 
             writeFieldHeader(Field.START.ordinal(), 8);
-            file.writeLong(m.getStart().getTime());
-
-            writeFieldHeader(Field.END.ordinal(), 8);
-            file.writeLong(m.getEnd().getTime());
+            file.writeLong(m.getStart().toEpochSecond(ZoneOffset.UTC));
 
             long end = file.getFilePointer();
             file.seek(start);

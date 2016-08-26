@@ -9,22 +9,21 @@ import java.awt.event.ActionListener;
 /**
  * Created by dmnguyen on 8/9/16.
  */
-public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
+public class NotifyEmployeeInvites extends MeetingAppGUI {
     private JPanel northPanel;
     private JButton acceptButton;
     private JButton declineButton;
     private JPanel meetingInvitePanel;
     private JLabel dateLabelStart;
-    private JLabel dateLabelEnd;
     private JList invitedList;
     private JLabel topLabel;
 
     Participant participant;
 
-    public NotifEmployeeInvitesGUI(final Employee employee, final Participant participant) {
+    public NotifyEmployeeInvites(final Employee employee, final Participant participant) {
         super("Meeting Invite", employee, false);
-        setContentPane(meetingInvitePanel);
-        pack();
+        setup(meetingInvitePanel);
+        this.setLocation(this.getX() + 250, this.getY());
 
         this.participant = participant;
         this.participant.setSeen(true);
@@ -32,8 +31,8 @@ public class NotifEmployeeInvitesGUI extends MeetingAppGUI {
         //populate text fields
         topLabel.setText("Invite from: " + participant.getMeeting().getOwner().getName());
         Meeting meeting = participant.getMeeting();
-        dateLabelStart.setText("Starts: " + meeting.getStart().toLocaleString());
-        dateLabelEnd.setText("Ends: " + meeting.getEnd().toLocaleString());
+        dateLabelStart.setText("Starts: " + meeting.getStartString());
+        //dateLabelEnd.setText("Ends: " + meeting.getEnd());
 
         //build list of attending employees
         ArrayList<Participant> attending = (ArrayList<Participant>) meeting.getAllAccepted(true);
