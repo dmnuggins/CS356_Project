@@ -24,9 +24,6 @@ public class MeetingManagerEmployeeGUI extends MeetingAppGUI {
     private JPanel southButtonPanel;
     private JTable meetingTable;
     private JTable participantMeetingTable;
-    private JButton cancelMeetingButton;
-    private JButton updateMeetingButton;
-    private JButton updateStatusButton;
     private JScrollPane ownJScrollPane;
     private JButton meetingInfoButton;
 

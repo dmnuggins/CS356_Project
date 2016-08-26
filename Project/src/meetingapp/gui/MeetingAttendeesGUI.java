@@ -21,6 +21,8 @@ public class MeetingAttendeesGUI {
     private JLabel attendingLabel;
     private JLabel listLabel;
     private JList employeeList;
+    private JScrollPane listScroll;
+    private JScrollPane attendingScroll;
 
 
 }

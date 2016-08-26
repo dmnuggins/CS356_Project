@@ -14,6 +14,23 @@ import java.util.Date;
  */
 public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
     private JPanel rootPanel;
+    private JButton createButton;
+    private JButton cancelButton;
+    private JPanel labelPanel;
+    private JPanel buttonPanel;
+    private JPanel contentLabPan;
+    private JPanel attendingPanel;
+    private JList list1;
+    private JPanel roomPanel;
+    private JLabel roomlabel;
+    private JComboBox comboBox1;
+    private JLabel attendinglabel;
+    private JPanel whenPanel;
+    private JLabel dayLabel;
+    private JComboBox comboBox2;
+    private JLabel startLabel;
+    private JComboBox comboBox3;
+    private JButton manageButton;
 
 
     public CreateMeetingEmployeeGUI(final Employee employee) {
