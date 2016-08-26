@@ -19,13 +19,16 @@ public class EditRoomGUI extends MeetingAppGUI{
     private JButton saveButton;
     private JButton cancelButton;
     private JButton deleteButton;
+    private JPanel gridPanel;
+    private JPanel buttonPanel;
+    private JPanel deletePanel;
+    private JPanel roomPanel;
 
     Room editing;
 
     public EditRoomGUI(final Employee employee, final Room editing) {
         super("Edit Room", employee);
-        setContentPane(rootPanel);
-        pack();
+        setup(rootPanel);
 
         this.editing = editing;
 

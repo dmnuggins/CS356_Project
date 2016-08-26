@@ -72,25 +72,29 @@ public class EmployeeGUI extends MeetingAppGUI{
         setVisible(true);
 
         //get all meeting invites
-        ArrayList<Participant> meetings = (ArrayList<Participant>) employee.getAllMeetings(false, false);
-        for (Participant em : meetings) {
-            if (!em.getSeen()) {
-                //notify user of unseen invites
-                new NotifyEmployeeInvites(employee, em);
-            }
+        List<Participant> pending = Participant.getInvitesPending(employee);
+        for (Participant p : pending) {
+            //notify user of unseen invites
+            new NotifyEmployeeInvites(employee, p);
         }
 
         //get all meetings owned
-        ArrayList<Participant> meetingsOwned = (ArrayList<Participant>) employee.getAllMeetings(true, false);
+        List<Participant> meetingsOwned = employee.getAllMeetings(true, false);
         for (Participant em : meetingsOwned) {
             //get list of users responded
-            ArrayList<Participant> responded = (ArrayList<Participant>) em.getMeeting().getAllSeenInvite();
+            List<Participant> responded = em.getMeeting().getAllSeenInvite();
             for (Participant r : responded) {
                 if (!r.getSeenByOwner()) {
                     //nofiy owner of unseen responses
                     new NotifyMeetingOwner(employee, r);
                 }
             }
+        }
+
+        //display upcoming meetings
+        if (!employee.NotifiedOfUpcoming) {
+            new NotifyMeetingSchedule(employee);
+            employee.NotifiedOfUpcoming = true;
         }
     }
 }

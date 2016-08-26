@@ -4,34 +4,38 @@ import meetingapp.db.EmployeeDB;
 import meetingapp.db.ParticipantDB;
 import meetingapp.db.MeetingDB;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.*;
+import java.time.*;
 /**
  * Created by cthill on 8/7/16.
  */
 public class Meeting extends Entity{
 
     protected int roomID;
-    protected Date start;
-    protected Date end;
+    protected LocalDateTime start;
+    protected LocalDateTime end;
 
-    public Meeting(int ID, int roomID, Date start, Date end) {
+    public Meeting(int ID, int roomID, LocalDateTime start) {
         super(ID);
 
         this.roomID = roomID;
-        this.start = start;
-        this.end = end;
+        this.start = start.withMinute(0).withSecond(0);
+
+        this.end = this.start.plusHours(1);
     }
 
     public int getRoomID() {
         return roomID;
     }
 
-    public Date getStart() {
-        return start;
+    public String getStartString() {
+        return start.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT));
     }
 
-    public Date getEnd() {
-        return end;
+    public LocalDateTime getStart() {
+        return start;
     }
 
     protected void save() {
@@ -40,12 +44,12 @@ public class Meeting extends Entity{
 
     //returns true if meeting is over
     public boolean isPast() {
-        return end.before(new Date());
+        return end.isBefore(LocalDateTime.now());
     }
 
     //returns true if meeting is currently happening
     public boolean isCurrent() {
-        return start.before(new Date()) && end.after(new Date());
+        return start.isBefore(LocalDateTime.now()) && end.isAfter(LocalDateTime.now());
     }
 
     //Get all meeting attendees. Owner is included if includeOwner argument is set

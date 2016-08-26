@@ -73,7 +73,9 @@ public class EditEmployeeGUI extends MeetingAppGUI{
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                editing.delete();
+                new EmployeeDisplayAdminGUI(employee);
+                dispose();
             }
         });
 

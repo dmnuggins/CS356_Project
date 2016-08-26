@@ -39,7 +39,7 @@ public class MeetingManagerEmployeeGUI extends MeetingAppGUI {
         ownModel.addColumn("Meeting");
         List<Participant> meetings =  employee.getAllMeetings(true, false);
         for (Participant em : meetings) {
-            ownModel.addRow(new Object[] { em.getMeeting().getStart().toLocaleString() } );
+            ownModel.addRow(new Object[] { em.getMeeting().getStartString() } );
         }
 
         /**

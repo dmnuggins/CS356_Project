@@ -17,6 +17,7 @@ public class EmployeeDisplayAdminGUI extends MeetingAppGUI{
     private JButton createButton;
     private JButton editButton;
     private JButton cancelButton;
+    private JLabel jLabel;
 
     List<Employee> allEmployees;
 

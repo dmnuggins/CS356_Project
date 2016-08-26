@@ -20,7 +20,7 @@ public class RoomDisplayAdminGUI extends MeetingAppGUI {
     private JButton editRoom;
     private JButton cancelButton;
     private JComboBox comboBox1;
-
+    private JPanel labelPanel;
 
 
     public RoomDisplayAdminGUI(final Employee employee){
@@ -42,7 +42,8 @@ public class RoomDisplayAdminGUI extends MeetingAppGUI {
         createRoom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new CreateRoomGUI(employee);
+                dispose();
             }
         });
 
