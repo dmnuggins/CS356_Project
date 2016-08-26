@@ -111,7 +111,7 @@ public class Employee extends Entity {
         }
     }
 
-    public boolean[][] getSchedule(LocalDate startDay, int numDays) {
+    public boolean[][] getSchedule(LocalDate startDay, int numDays, boolean includeMeetings) {
         List<LocalDateTime> blockedTimes = new ArrayList<>();
 
         //get list of meetings
@@ -128,22 +128,24 @@ public class Employee extends Entity {
         }
 
         //get list of employee schedule reserved times
-        for (LocalDateTime r : reserved) {
-            if (!r.isBefore(startDay.atStartOfDay())) {
-                //exclude meetings after startDay + numDays
-                if (!r.isAfter(startDay.plusDays(numDays).atStartOfDay())) {
-                    blockedTimes.add(r);
+        if (includeMeetings) {
+            for (LocalDateTime r : reserved) {
+                if (!r.isBefore(startDay.atStartOfDay())) {
+                    //exclude meetings after startDay + numDays
+                    if (!r.isAfter(startDay.plusDays(numDays).atStartOfDay())) {
+                        blockedTimes.add(r);
+                    }
                 }
             }
         }
 
-        boolean[][] sched = new boolean[24][numDays];
+        boolean[][] sched = new boolean[numDays][24];
 
         //compute sched
         for (LocalDateTime d : blockedTimes) {
             int day = Period.between(startDay, d.toLocalDate()).getDays();
             int hour = d.getHour();
-            sched[hour][day] = true;
+            sched[day][hour] = true;
         }
 
         return sched;

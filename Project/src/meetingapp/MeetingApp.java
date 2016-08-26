@@ -4,8 +4,7 @@ import meetingapp.gui.*;
 import meetingapp.db.*;
 import meetingapp.entity.*;
 
-import java.time.LocalDateTime;
-import java.util.*;
+import java.time.*;
 
 /**
  * Created by cthill on 8/6/16.
@@ -21,6 +20,10 @@ public class MeetingApp {
         CreateAccount(4, "User", "user", "password", false);
         CreateAccount(5, "Bob Jones", "bob", "password", false);
         CreateAccount(6, "John Smith", "john", "password", false);
+
+        Employee admin = (Employee) EmployeeDB.getInstance().load(0);
+        admin.reserveDate(LocalDateTime.of(2016, 8, 26, 12, 0));
+        boolean[][] s = admin.getSchedule(LocalDate.of(2016, 8, 22), 5, false);
 
         LocalDateTime start = LocalDateTime.now().plusDays(1).withHour(14).withMinute(0).withSecond(0);
 
