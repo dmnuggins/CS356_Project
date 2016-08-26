@@ -12,7 +12,7 @@ public class Employee extends Entity {
 
     protected String name;
     protected boolean isAdmin;
-    protected List<LocalDateTime> reserved = new ArrayList<LocalDateTime>(); //reserved days
+    protected List<LocalDateTime> reserved; //reserved days
     protected Login login;
     public boolean NotifiedOfUpcoming;
 
@@ -22,7 +22,7 @@ public class Employee extends Entity {
         super(ID);
         this.name = name;
         this.isAdmin = isAdmin;
-
+        reserved = new ArrayList<LocalDateTime>();
         login = (Login) LoginDB.getInstance().load(ID);
     }
 
@@ -138,7 +138,7 @@ public class Employee extends Entity {
                 }
             }
         }
-        
+
         boolean[][] sched = new boolean[numDays][24];
 
         //compute sched
