@@ -13,30 +13,33 @@ import java.util.Date;
  * Created by Dylan Nguyen on 8/8/2016.
  */
 public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
-    private JPanel newMeetingPanel;
-    private JPanel northPanel;
-    private JPanel southPanel;
-    private JPanel titlePanel;
-    private JPanel comboBoxPanel;
-    private JComboBox roomComboBox;
-    private JLabel roomLabel;
-    private JButton Create;
-    private JButton backButton;
-    private JTable inviteListTable;
-    private JButton removeEmployeesButton;
-    private JButton changeTimeButton;
-    private JButton addEmployeesButton;
-    private JLabel meetingDateLabel;
+    private JPanel rootPanel;
+    private JButton createButton;
+    private JButton cancelButton;
+    private JPanel labelPanel;
+    private JPanel buttonPanel;
+    private JPanel contentLabPan;
+    private JPanel attendingPanel;
+    private JList list1;
+    private JPanel roomPanel;
+    private JLabel roomlabel;
+    private JComboBox comboBox1;
+    private JLabel attendinglabel;
+    private JPanel whenPanel;
+    private JLabel dayLabel;
+    private JComboBox comboBox2;
+    private JLabel startLabel;
+    private JComboBox comboBox3;
+    private JButton manageButton;
 
-    private List<Room> allRooms;
 
     public CreateMeetingEmployeeGUI(final Employee employee) {
         super("New Meeting", employee);
-        setup(newMeetingPanel);
+        setup(rootPanel);
 
         this.employee = employee;
         //get all employees
-        allRooms = Room.getAll();
+       /** allRooms = Room.getAll();
         for (int i = 0; i < allRooms.size(); i++) {
             roomComboBox.addItem(Integer.toString(allRooms.get(i).getID()));
         }
@@ -55,8 +58,12 @@ public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
                 new EmployeeGUI(employee);
                 dispose();
             }
-        });
+        });*/
+
+
+
 
         setVisible(true);
     }
+
 }

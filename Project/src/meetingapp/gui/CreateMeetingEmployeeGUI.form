@@ -1,155 +1,203 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="meetingapp.gui.CreateMeetingEmployeeGUI">
-  <grid id="27dc6" binding="newMeetingPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
     <properties>
       <name value="Create New meetingapp.entity.Meeting"/>
-      <preferredSize width="400" height="400"/>
+      <preferredSize width="400" height="300"/>
     </properties>
     <border type="none"/>
     <children>
-      <grid id="846ca" binding="northPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints border-constraint="North"/>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <grid id="fe66b" binding="titlePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="20" left="0" bottom="20" right="0"/>
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="b13ce" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <font size="14" style="1"/>
-                  <text value="New Meeting"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
-          <grid id="a347a" binding="comboBoxPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="50454" class="javax.swing.JLabel" binding="roomLabel">
-                <constraints/>
-                <properties>
-                  <text value="Room"/>
-                </properties>
-              </component>
-              <component id="89f19" class="javax.swing.JComboBox" binding="roomComboBox">
-                <constraints/>
-                <properties>
-                  <preferredSize width="150" height="26"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
-        </children>
-      </grid>
-      <grid id="bf5d7" binding="southPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+      <grid id="561f8" binding="buttonPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints border-constraint="South"/>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="ad3ef" class="javax.swing.JButton" binding="Create">
+          <component id="4863a" class="javax.swing.JButton" binding="createButton">
             <constraints/>
             <properties>
-              <enabled value="true"/>
-              <text value="Create"/>
+              <text value="Create Meeting"/>
             </properties>
           </component>
-          <component id="3908c" class="javax.swing.JButton" binding="backButton" default-binding="true">
+          <component id="ec008" class="javax.swing.JButton" binding="cancelButton">
             <constraints/>
             <properties>
-              <text value="Back"/>
+              <text value="Cancel"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="ec10c" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="15" bottom="0" right="15"/>
-        <constraints border-constraint="Center"/>
-        <properties>
-          <preferredSize width="265" height="125"/>
-        </properties>
+      <grid id="6ef75" binding="labelPanel" layout-manager="FlowLayout" hgap="20" vgap="20" flow-align="1">
+        <constraints border-constraint="North"/>
+        <properties/>
         <border type="none"/>
         <children>
-          <component id="c7dff" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
+          <component id="6fe85" class="javax.swing.JLabel">
+            <constraints/>
             <properties>
-              <text value="Invite List"/>
+              <font size="14" style="1"/>
+              <requestFocusEnabled value="true"/>
+              <text value="Create Meeting"/>
             </properties>
           </component>
-          <component id="a482a" class="javax.swing.JTable" binding="inviteListTable">
-            <constraints>
-              <grid row="1" column="0" row-span="6" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="120" height="50"/>
-              </grid>
-            </constraints>
+        </children>
+      </grid>
+      <grid id="76047" binding="contentLabPan" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="ab12c" binding="attendingPanel" layout-manager="GridBagLayout">
+            <constraints border-constraint="West"/>
             <properties/>
-          </component>
-          <component id="cf76a" class="javax.swing.JButton" binding="removeEmployeesButton" default-binding="true">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Remove Employees"/>
-            </properties>
-          </component>
-          <component id="a378b" class="javax.swing.JButton" binding="addEmployeesButton" default-binding="true">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Add Employees"/>
-            </properties>
-          </component>
-          <component id="75162" class="javax.swing.JButton" binding="changeTimeButton" default-binding="true">
-            <constraints>
-              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Change Time"/>
-            </properties>
-          </component>
-          <component id="a875c" class="javax.swing.JLabel" binding="meetingDateLabel">
-            <constraints>
-              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Meeting Date"/>
-            </properties>
-          </component>
-          <component id="25a30" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value=" "/>
-            </properties>
-          </component>
-          <component id="a63f" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value=" "/>
-            </properties>
-          </component>
+            <border type="none"/>
+            <children>
+              <component id="295bc" class="javax.swing.JLabel" binding="attendinglabel">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="Attending Employees:"/>
+                </properties>
+              </component>
+              <hspacer id="280e5">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+              </hspacer>
+              <component id="4e3bb" class="javax.swing.JList" binding="list1" default-binding="true">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <preferredSize width="200" height="100"/>
+                </properties>
+              </component>
+              <component id="ddc11" class="javax.swing.JButton" binding="manageButton">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <preferredSize width="200" height="32"/>
+                  <text value="Manage Attendees"/>
+                </properties>
+              </component>
+              <hspacer id="dedbf">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+              </hspacer>
+            </children>
+          </grid>
+          <grid id="671d9" binding="roomPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="East"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="2ab63" layout-manager="GridBagLayout">
+                <constraints border-constraint="North"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="238c5" class="javax.swing.JLabel" binding="roomlabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Room:"/>
+                    </properties>
+                  </component>
+                  <hspacer id="c4685">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                  </hspacer>
+                  <vspacer id="bd214">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="6d499" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <preferredSize width="150" height="26"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="a1b2" binding="whenPanel" layout-manager="GridBagLayout">
+                <constraints border-constraint="South"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <hspacer id="5e664">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                  </hspacer>
+                  <vspacer id="b9bd">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="393e4" class="javax.swing.JComboBox" binding="comboBox2" default-binding="true">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <preferredSize width="150" height="26"/>
+                    </properties>
+                  </component>
+                  <component id="f14dd" class="javax.swing.JLabel" binding="dayLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Date:"/>
+                    </properties>
+                  </component>
+                  <component id="1bcaf" class="javax.swing.JLabel" binding="startLabel">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <requestFocusEnabled value="true"/>
+                      <text value="Start Time:"/>
+                    </properties>
+                  </component>
+                  <component id="1451b" class="javax.swing.JComboBox" binding="comboBox3" default-binding="true">
+                    <constraints>
+                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <preferredSize width="150" height="26"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
         </children>
       </grid>
     </children>

@@ -39,6 +39,12 @@
             <properties/>
             <border type="none"/>
             <children>
+              <component id="1fcd7" class="javax.swing.JButton" binding="meetingInfoButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Meeting Info"/>
+                </properties>
+              </component>
               <component id="71bc7" class="javax.swing.JButton" binding="backButton" default-binding="true">
                 <constraints/>
                 <properties>
@@ -49,7 +55,7 @@
           </grid>
         </children>
       </grid>
-      <grid id="ad820" binding="centerPanel" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="ad820" binding="centerPanel" layout-manager="GridLayoutManager" row-count="7" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="10" bottom="0" right="10"/>
         <constraints border-constraint="Center"/>
         <properties/>
@@ -70,62 +76,6 @@
               </component>
             </children>
           </scrollpane>
-          <component id="f902" class="javax.swing.JButton" binding="cancelMeetingButton" default-binding="true">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Cancel Meeting"/>
-            </properties>
-          </component>
-          <component id="9bd4c" class="javax.swing.JButton" binding="updateMeetingButton" default-binding="true">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Update Meeting"/>
-            </properties>
-          </component>
-          <component id="4770e" class="javax.swing.JButton" binding="updateStatusButton" default-binding="true">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Update Status"/>
-            </properties>
-          </component>
-          <component id="9f6a1" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value=" "/>
-            </properties>
-          </component>
-          <component id="1fcd7" class="javax.swing.JButton" binding="meetingInfoButton" default-binding="true">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Meeting Info"/>
-            </properties>
-          </component>
-          <component id="e3c4" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value=" "/>
-            </properties>
-          </component>
-          <component id="b9ef5" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value=" "/>
-            </properties>
-          </component>
         </children>
       </grid>
     </children>
