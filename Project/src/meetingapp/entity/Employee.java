@@ -53,7 +53,7 @@ public class Employee extends Entity {
         save();
     }
 
-    public void unReserveDate(Date d) {
+    public void unreserveDate(LocalDateTime d) {
         reserved.remove(d);
 //        for (int i = 0; i < reserved.size(); i++) {
 //            LocalDateTime rd = reserved.get(i);
@@ -115,30 +115,30 @@ public class Employee extends Entity {
         List<LocalDateTime> blockedTimes = new ArrayList<>();
 
         //get list of meetings
-        List<Participant> allMeetings = this.getAllMeetings(true, true);
-        for (Participant p : allMeetings) {
-            LocalDateTime meetingStart = p.getMeeting().getStart();
-            //exclude meetings before startDay
-            if (!meetingStart.isBefore(startDay.atStartOfDay())) {
-                //exclude meetings after startDay + numDays
-                if (!meetingStart.isAfter(startDay.plusDays(numDays).atStartOfDay())) {
-                    blockedTimes.add(meetingStart);
-                }
-            }
-        }
-
-        //get list of employee schedule reserved times
         if (includeMeetings) {
-            for (LocalDateTime r : reserved) {
-                if (!r.isBefore(startDay.atStartOfDay())) {
+            List<Participant> allMeetings = this.getAllMeetings(true, true);
+            for (Participant p : allMeetings) {
+                LocalDateTime meetingStart = p.getMeeting().getStart();
+                //exclude meetings before startDay
+                if (!meetingStart.isBefore(startDay.atStartOfDay())) {
                     //exclude meetings after startDay + numDays
-                    if (!r.isAfter(startDay.plusDays(numDays).atStartOfDay())) {
-                        blockedTimes.add(r);
+                    if (!meetingStart.isAfter(startDay.plusDays(numDays).atStartOfDay())) {
+                        blockedTimes.add(meetingStart);
                     }
                 }
             }
         }
 
+        //get list of employee schedule reserved times
+        for (LocalDateTime r : reserved) {
+            if (!r.isBefore(startDay.atStartOfDay())) {
+                //exclude meetings after startDay + numDays
+                if (!r.isAfter(startDay.plusDays(numDays).atStartOfDay())) {
+                    blockedTimes.add(r);
+                }
+            }
+        }
+        
         boolean[][] sched = new boolean[numDays][24];
 
         //compute sched
