@@ -56,8 +56,7 @@ public class MeetingAttendeesGUI extends MeetingAppGUI {
                 }
             }
         });
-
-        JFrame window = this;
+        
         doneButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

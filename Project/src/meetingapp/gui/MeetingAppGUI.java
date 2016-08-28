@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 public class MeetingAppGUI extends JFrame {
     protected Employee employee;
     protected Room room;
+    protected JFrame window = this;
 
     public MeetingAppGUI(String title, final Employee employee) {
         super(title);
