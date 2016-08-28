@@ -2,15 +2,10 @@ package meetingapp.gui;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.text.DateFormatter;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
@@ -146,7 +141,7 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
             model.addColumn(columns[i]);
         }
 
-        boolean[][] reserved = employee.getSchedule(LocalDate.now(), 5, false);
+        boolean[][] reserved = employee.getSchedule(startDay, 5, false);
 
         for (int row = 0; row < 24; row++) {
             Object[] thisRow = new Object[6];
