@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="meetingapp.gui.ScheduleDisplayGUI">
   <grid id="27dc6" binding="scheduleDisplayPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="437" height="400"/>
+      <xy x="20" y="20" width="619" height="400"/>
     </constraints>
     <properties>
       <maximumSize width="1920" height="1080"/>
@@ -24,6 +24,19 @@
             <properties/>
             <border type="none"/>
             <children>
+              <component id="82474" class="javax.swing.JButton" binding="leftButton">
+                <constraints/>
+                <properties>
+                  <enabled value="false"/>
+                  <text value="&lt;--"/>
+                </properties>
+              </component>
+              <hspacer id="6aa4b">
+                <constraints/>
+              </hspacer>
+              <hspacer id="ecf34">
+                <constraints/>
+              </hspacer>
               <component id="43dc9" class="javax.swing.JButton" binding="reserveTimeButton" default-binding="true">
                 <constraints/>
                 <properties>
@@ -35,6 +48,18 @@
                 <constraints/>
                 <properties>
                   <text value="Unreserve Time"/>
+                </properties>
+              </component>
+              <hspacer id="67737">
+                <constraints/>
+              </hspacer>
+              <hspacer id="bc523">
+                <constraints/>
+              </hspacer>
+              <component id="efc57" class="javax.swing.JButton" binding="rightButton">
+                <constraints/>
+                <properties>
+                  <text value="--&gt;"/>
                 </properties>
               </component>
             </children>

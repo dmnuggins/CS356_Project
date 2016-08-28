@@ -3,11 +3,14 @@ package meetingapp.gui;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.text.DateFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
@@ -28,12 +31,15 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
     private JPanel titlePanel;
     private JTable scheduleTable;
     private JLabel updateText;
+    private JButton rightButton;
+    private JButton leftButton;
+    LocalDate originalStartDay = LocalDate.now();
+    LocalDate startDay = LocalDate.now();
 
     public ScheduleDisplayGUI(final Employee employee) {
         super("Schedule", employee);
         setup(scheduleDisplayPanel);
 
-        LocalDate startDay = LocalDate.now();
         populateTable(startDay);
         scheduleTable.getTableHeader().setReorderingAllowed(false);
 
@@ -81,6 +87,28 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
             }
         });
 
+        rightButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startDay = startDay.plusDays(1);
+                populateTable(startDay);
+                if (startDay.isAfter(originalStartDay)) {
+                    leftButton.setEnabled(true);
+                }
+            }
+        });
+
+        leftButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startDay = startDay.minusDays(1);
+                populateTable(startDay);
+                if (startDay.isEqual(originalStartDay)) {
+                    leftButton.setEnabled(false);
+                }
+            }
+        });
+
         setVisible(true);
     }
 
@@ -95,11 +123,17 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
             }
         };
         scheduleTable.setModel(model);
+        scheduleTable.setRowHeight(20);
 
         String[] columns = new String[6];
         columns[0] = "";
         for (int i = 0; i < 5; i++) {
-            columns[i + 1] = startDay.plusDays(i).getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+            LocalDate day = startDay.plusDays(i);
+            String dayOfWeek = day.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+            int dayOfMonth = day.getDayOfMonth();
+            int month = day.getMonthValue();
+
+            columns[i + 1] = dayOfWeek + ", " + month + "/" + dayOfMonth;
         }
 
         String[] times = {"12:00AM","01:00AM","02:00AM","03:00AM","04:00AM","05:00AM","06:00AM",
