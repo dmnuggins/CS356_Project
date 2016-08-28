@@ -5,6 +5,7 @@ import meetingapp.entity.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
@@ -19,7 +20,7 @@ public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
     private JPanel buttonPanel;
     private JPanel contentLabPan;
     private JPanel attendingPanel;
-    private JList list1;
+    private JList invitedList;
     private JPanel roomPanel;
     private JLabel roomlabel;
     private JComboBox comboBox1;
@@ -32,28 +33,32 @@ public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
     private JButton manageButton;
     private MeetingAttendeesGUI meetAttendGUI;
 
+    private List<Employee> invited;
+
 
     public CreateMeetingEmployeeGUI(final Employee employee) {
         super("New Meeting", employee);
         setup(rootPanel);
 
         this.employee = employee;
-
+        invited = new ArrayList<>();
 
         manageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (meetAttendGUI == null) {
-                    meetAttendGUI = new MeetingAttendeesGUI(employee);
+                    meetAttendGUI = new MeetingAttendeesGUI(employee, invited);
 
                     meetAttendGUI.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosing(WindowEvent e) {
-                            super.windowClosing(e);
                             //read out employees from other window
-
-
+                            invited = meetAttendGUI.getAttending();
+                            populateInvitedList(invited);
                             meetAttendGUI = null;
+
+                            //continue closing window
+                            super.windowClosing(e);
                         }
                     });
                 }
@@ -69,6 +74,14 @@ public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
         });
 
         setVisible(true);
+    }
+
+    private void populateInvitedList(List<Employee> invited) {
+        DefaultListModel model = new DefaultListModel();
+        for (Employee e : invited) {
+            model.addElement(e.getName());
+        }
+        invitedList.setModel(model);
     }
 
 }

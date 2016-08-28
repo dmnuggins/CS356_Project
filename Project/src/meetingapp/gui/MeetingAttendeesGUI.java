@@ -3,6 +3,7 @@ package meetingapp.gui;
 import meetingapp.entity.Employee;
 
 import javax.swing.*;
+import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,13 +24,14 @@ public class MeetingAttendeesGUI extends MeetingAppGUI {
     private List<Employee> all;
 
 
-    public MeetingAttendeesGUI(Employee employee) {
+    public MeetingAttendeesGUI(Employee employee, List<Employee> attending) {
         super("Meeting Attendees", employee, false);
         setup(rootPanel);
 
-        attending = new ArrayList<>();
+        this.attending = attending;
         all = Employee.getAll();
         all.remove(employee);
+        all.removeAll(attending);
 
         fillLists(all, attending);
 
@@ -55,10 +57,11 @@ public class MeetingAttendeesGUI extends MeetingAppGUI {
             }
         });
 
+        JFrame window = this;
         doneButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
             }
         });
 
