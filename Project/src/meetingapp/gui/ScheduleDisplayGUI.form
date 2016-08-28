@@ -24,14 +24,6 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="43561" class="javax.swing.JButton" binding="setVisibilityButton" default-binding="true">
-                <constraints/>
-                <properties>
-                  <enabled value="false"/>
-                  <preferredSize width="127" height="32"/>
-                  <text value="Set Visibility"/>
-                </properties>
-              </component>
               <component id="43dc9" class="javax.swing.JButton" binding="reserveTimeButton" default-binding="true">
                 <constraints/>
                 <properties>
@@ -47,7 +39,7 @@
               </component>
             </children>
           </grid>
-          <grid id="d7c05" binding="titlePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="d7c05" binding="titlePanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="20" left="0" bottom="20" right="0"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -64,6 +56,15 @@
                   <text value="Schedule"/>
                 </properties>
               </component>
+              <component id="2893c" class="javax.swing.JLabel" binding="updateText">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-16467200"/>
+                  <text value="  "/>
+                </properties>
+              </component>
             </children>
           </grid>
         </children>
@@ -73,19 +74,11 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="4c71c" class="javax.swing.JButton" binding="confirmScheduleButton" default-binding="true">
-            <constraints/>
-            <properties>
-              <label value="Save Schedule"/>
-              <preferredSize width="127" height="32"/>
-              <text value="Save Schedule"/>
-            </properties>
-          </component>
           <component id="e891d" class="javax.swing.JButton" binding="backButton" default-binding="true">
             <constraints/>
             <properties>
               <preferredSize width="127" height="32"/>
-              <text value="Back"/>
+              <text value="Done"/>
             </properties>
           </component>
         </children>

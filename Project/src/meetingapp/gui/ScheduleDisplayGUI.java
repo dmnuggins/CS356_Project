@@ -21,14 +21,13 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
     private JPanel southPanel;
     private JPanel northPanel;
     private JPanel buttonPanel;
-    private JButton setVisibilityButton;
     private JButton reserveTimeButton;
     private JButton unreserveTimeButton;
     private JButton backButton;
     private JPanel centerPanel;
     private JPanel titlePanel;
     private JTable scheduleTable;
-    private JButton confirmScheduleButton;
+    private JLabel updateText;
 
     public ScheduleDisplayGUI(final Employee employee) {
         super("Schedule", employee);
@@ -57,6 +56,9 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
                     scheduleTable.getModel().setValueAt("free", row, col);
                     LocalDateTime toUnreserve = startDay.atStartOfDay().plusDays(col - 1).plusHours(row);
                     employee.unreserveDate(toUnreserve);
+                    updateText.setText("Schedule Updated!");
+                } else {
+                    updateText.setText(" ");
                 }
                 scheduleTable.grabFocus();
             }
@@ -71,6 +73,9 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
                     scheduleTable.getModel().setValueAt("reserved", row, col);
                     LocalDateTime toReserve = startDay.atStartOfDay().plusDays(col - 1).plusHours(row);
                     employee.reserveDate(toReserve);
+                    updateText.setText("Schedule Updated!");
+                } else {
+                    updateText.setText(" ");
                 }
                 scheduleTable.grabFocus();
             }
@@ -80,6 +85,8 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
     }
 
     private void populateTable(LocalDate startDay) {
+        updateText.setText(" ");
+
         DefaultTableModel model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
