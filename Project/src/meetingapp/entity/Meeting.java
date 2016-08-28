@@ -38,7 +38,7 @@ public class Meeting extends Entity{
         return start;
     }
 
-    protected void save() {
+    public void save() {
         MeetingDB.getInstance().save(this);
     }
 

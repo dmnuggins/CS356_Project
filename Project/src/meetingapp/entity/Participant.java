@@ -76,7 +76,7 @@ public class Participant extends Entity {
         this.seenByOwner = seenByOwner;
     }
 
-    protected void save() {
+    public void save() {
         ParticipantDB.getInstance().save(this);
     }
 
