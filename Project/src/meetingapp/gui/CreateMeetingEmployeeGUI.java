@@ -124,7 +124,7 @@ public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
                                     start = availableTimesGUI.getSelectedTime();
                                     selectedTimeLabel.setText(start.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
                                 }
-
+                                availableTimesGUI = null;
                                 super.windowClosing(e);
                             }
                         });

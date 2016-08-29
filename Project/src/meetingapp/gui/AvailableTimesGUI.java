@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class AvailableTimesGUI extends MeetingAppGUI {
         super("Select a time", employee, false);
         setup(rootPanel);
 
-        this.invited = invited;
+        this.invited = new ArrayList<>(invited);
         this.invited.add(employee);
 
         populateTable(startDay);
@@ -44,8 +45,7 @@ public class AvailableTimesGUI extends MeetingAppGUI {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new EmployeeGUI(employee);
-                dispose();
+                dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
             }
         });
 
@@ -54,8 +54,8 @@ public class AvailableTimesGUI extends MeetingAppGUI {
             public void actionPerformed(ActionEvent e) {
                 int col = scheduleTable.getSelectedColumn();
                 int row = scheduleTable.getSelectedRow();
+
                 if (col > 0 && !availableTimes[col - 1][row]) {
-                    scheduleTable.getModel().setValueAt("free", row, col);
                     selected = startDay.atStartOfDay().plusDays(col - 1).plusHours(row);
                     dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
                 }
@@ -138,7 +138,11 @@ public class AvailableTimesGUI extends MeetingAppGUI {
                 if (col == 0) {
                     thisRow[0] = times[row];
                 } else {
-                    if (availableTimes[col - 1][row]) {
+                    int currHour = LocalDateTime.now().getHour();
+                    if (currHour >= row && startDay.plusDays(col - 1).isEqual(originalStartDay)) {
+                        thisRow[col] = "past";
+                        availableTimes[col - 1][row] = true;
+                    } else if (availableTimes[col - 1][row]) {
                         thisRow[col] = "-------";
                     } else {
                         thisRow[col] = "Available!";

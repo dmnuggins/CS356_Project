@@ -92,7 +92,9 @@
                 <children>
                   <component id="79016" class="javax.swing.JTable" binding="scheduleTable">
                     <constraints/>
-                    <properties/>
+                    <properties>
+                      <rowSelectionAllowed value="false"/>
+                    </properties>
                   </component>
                 </children>
               </scrollpane>
