@@ -6,6 +6,7 @@ import meetingapp.entity.Employee;
 import meetingapp.entity.Participant;
 import meetingapp.entity.Meeting;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -35,7 +36,7 @@ public class NotifyMeetingSchedule extends MeetingAppGUI {
 
         List<Participant> meetings = employee.getAllMeetings(false, false);
 
-        LocalDateTime twoDays = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).plusDays(2);
+        LocalDateTime twoDays = LocalDate.now().atStartOfDay().plusDays(2);
 
         for (Participant p : meetings) {
             Meeting m = p.getMeeting();
