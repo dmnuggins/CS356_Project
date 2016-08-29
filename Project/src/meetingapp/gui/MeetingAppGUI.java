@@ -2,7 +2,6 @@ package meetingapp.gui;
 
 import meetingapp.entity.Employee;
 import meetingapp.entity.Room;
-import oracle.jvm.hotspot.jfr.JFR;
 
 import java.awt.Container;
 import javax.swing.JFrame;
