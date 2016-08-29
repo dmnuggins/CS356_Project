@@ -26,7 +26,7 @@ public class Room extends Entity {
         save();
     }
 
-    protected void save() {
+    public void save() {
         RoomDB.getInstance().save(this);
     }
 

@@ -1,14 +1,16 @@
 package meetingapp.entity;
 
+import com.sun.xml.internal.ws.wsdl.writer.document.Part;
 import meetingapp.db.EmployeeDB;
 import meetingapp.db.ParticipantDB;
 import meetingapp.db.MeetingDB;
 
+import java.io.IOException;
 import java.util.*;
 /**
  * Created by cthill on 8/7/16.
  */
-public class Participant extends Entity {
+public class Participant extends Entity implements Comparable<Participant> {
 
     protected int employeeID;
     protected int meetingID;
@@ -74,9 +76,10 @@ public class Participant extends Entity {
 
     public void setSeenByOwner(boolean seenByOwner) {
         this.seenByOwner = seenByOwner;
+        save();
     }
 
-    protected void save() {
+    public void save() {
         ParticipantDB.getInstance().save(this);
     }
 
@@ -108,5 +111,24 @@ public class Participant extends Entity {
         }
 
         return pending;
+    }
+
+    public void delete() {
+        try {
+            ParticipantDB.getInstance().eraseRecord(this.getID());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public int compareTo(final Participant other) {
+        if (this.equals(other)) {
+            return 0;
+        } else if (getMeeting().getStart().isBefore(other.getMeeting().getStart())) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 }

@@ -1,13 +1,16 @@
 package meetingapp.gui;
 
+import meetingapp.db.MeetingDB;
+import meetingapp.db.ParticipantDB;
 import meetingapp.entity.*;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
 /**
  * Created by Dylan Nguyen on 8/8/2016.
@@ -20,17 +23,23 @@ public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
     private JPanel buttonPanel;
     private JPanel contentLabPan;
     private JPanel attendingPanel;
-    private JList list1;
+    private JList invitedList;
     private JPanel roomPanel;
     private JLabel roomlabel;
-    private JComboBox comboBox1;
+    private JComboBox roomComboBox;
     private JLabel attendinglabel;
     private JPanel whenPanel;
-    private JLabel dayLabel;
-    private JComboBox comboBox2;
-    private JLabel startLabel;
-    private JComboBox comboBox3;
+    private JLabel selectedTimeLabel;
     private JButton manageButton;
+    private JButton showAvailableTimesButton;
+    private JLabel messageLabel;
+
+    private MeetingAttendeesGUI meetAttendGUI;
+    private AvailableTimesGUI availableTimesGUI;
+
+    private List<Employee> invited;
+    private List<Room> rooms;
+    private LocalDateTime start;
 
 
     public CreateMeetingEmployeeGUI(final Employee employee) {
@@ -38,32 +47,111 @@ public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
         setup(rootPanel);
 
         this.employee = employee;
-        //get all employees
-       /** allRooms = Room.getAll();
-        for (int i = 0; i < allRooms.size(); i++) {
-            roomComboBox.addItem(Integer.toString(allRooms.get(i).getID()));
+        invited = new ArrayList<>();
+
+        DefaultComboBoxModel<String> rm = new DefaultComboBoxModel<>();
+        rooms = Room.getAll();
+        for (Room r : rooms) {
+            rm.addElement("Room " + r.getID());
         }
+        roomComboBox.setModel(rm);
 
-        DefaultTableModel model = new DefaultTableModel();
-        inviteListTable.setModel(model);
+        manageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (meetAttendGUI == null) {
+                    meetAttendGUI = new MeetingAttendeesGUI(employee, invited);
 
-        model.addColumn("Name");
-        model.addRow(new Object[] { employee.getName() });
+                    meetAttendGUI.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosing(WindowEvent e) {
+                            //read out employees from other window
+                            invited = meetAttendGUI.getAttending();
+                            populateInvitedList(invited);
+                            meetAttendGUI = null;
 
-        meetingDateLabel.setText(new Date().toLocaleString());
+                            //continue closing window
+                            super.windowClosing(e);
+                        }
+                    });
+                }
+            }
+        });
 
-        backButton.addActionListener(new ActionListener() {
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (invited.size() == 0) {
+                    messageLabel.setText("Cannot create meeting with no employees!");
+                } else if (start == null) {
+                    messageLabel.setText("Please select a start time!");
+                } else {
+                    int nextMeetingID = MeetingDB.getInstance().getNextID();
+                    Room selectedRoom = rooms.get(roomComboBox.getSelectedIndex());
+
+                    Meeting newMeeting = new Meeting(nextMeetingID, selectedRoom.getID(), LocalDateTime.now());
+                    newMeeting.save();
+
+                    //create participant for owner
+                    int ownerParticipantID = ParticipantDB.getInstance().getNextID();
+                    Participant owner = new Participant(ownerParticipantID, employee.getID(), newMeeting.getID(), true, true, true, true);
+                    owner.save();
+
+                    //create participant for each invited
+                    for (Employee emp : invited) {
+                        int participantID = ParticipantDB.getInstance().getNextID();
+                        Participant par = new Participant(participantID, emp.getID(), newMeeting.getID(), false, false, false, false);
+                        par.save();
+                    }
+
+                    //dispose
+                    new EmployeeGUI(employee);
+                    dispose();
+                }
+            }
+        });
+
+        showAvailableTimesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (availableTimesGUI == null) {
+                    if (invited.size() > 0) {
+                        availableTimesGUI = new AvailableTimesGUI(employee, invited);
+                        availableTimesGUI.addWindowListener(new WindowAdapter() {
+                            @Override
+                            public void windowClosing(WindowEvent e) {
+                                if (availableTimesGUI.getSelectedTime() != null) {
+                                    start = availableTimesGUI.getSelectedTime();
+                                    selectedTimeLabel.setText(start.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
+                                }
+                                availableTimesGUI = null;
+                                super.windowClosing(e);
+                            }
+                        });
+                    } else {
+                        messageLabel.setText("Please select employees first!");
+                    }
+                }
+            }
+        });
+
+        cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new EmployeeGUI(employee);
                 dispose();
             }
-        });*/
-
-
-
+        });
 
         setVisible(true);
+    }
+
+    private void populateInvitedList(List<Employee> invited) {
+        DefaultListModel model = new DefaultListModel();
+        for (Employee e : invited) {
+            model.addElement(e.getName());
+        }
+        invitedList.setModel(model);
     }
 
 }
