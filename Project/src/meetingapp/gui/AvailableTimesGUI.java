@@ -124,7 +124,7 @@ public class AvailableTimesGUI extends MeetingAppGUI {
         availableTimes = new boolean[5][24];
 
         for (Employee e : invited) {
-            boolean[][] schedule = e.getSchedule(startDay, 5, false);
+            boolean[][] schedule = e.getSchedule(startDay, 5, true);
             for (int i = 0; i < schedule.length; i++) {
                 for (int j = 0; j < schedule[i].length; j++) {
                     availableTimes[i][j] |= schedule[i][j];
