@@ -53,7 +53,7 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
             public void actionPerformed(ActionEvent e) {
                 int col = scheduleTable.getSelectedColumn();
                 int row = scheduleTable.getSelectedRow();
-                if (col > 0) {
+                if (col > 0 && !scheduleTable.getModel().getValueAt(row, col).equals("past")) {
                     scheduleTable.getModel().setValueAt("free", row, col);
                     LocalDateTime toUnreserve = startDay.atStartOfDay().plusDays(col - 1).plusHours(row);
                     employee.unreserveDate(toUnreserve);
@@ -70,7 +70,7 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
             public void actionPerformed(ActionEvent e) {
                 int col = scheduleTable.getSelectedColumn();
                 int row = scheduleTable.getSelectedRow();
-                if (col > 0) {
+                if (col > 0 && !scheduleTable.getModel().getValueAt(row, col).equals("past")) {
                     scheduleTable.getModel().setValueAt("reserved", row, col);
                     LocalDateTime toReserve = startDay.atStartOfDay().plusDays(col - 1).plusHours(row);
                     employee.reserveDate(toReserve);
@@ -149,7 +149,10 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
                 if (col == 0) {
                     thisRow[0] = times[row];
                 } else {
-                    if (reserved[col - 1][row]) {
+                    int currHour = LocalDateTime.now().getHour();
+                    if (currHour >= row && startDay.plusDays(col - 1).isEqual(originalStartDay)) {
+                        thisRow[col] = "past";
+                    } else if (reserved[col - 1][row]) {
                         thisRow[col] = "reserved";
                     } else {
                         thisRow[col] = "free";
