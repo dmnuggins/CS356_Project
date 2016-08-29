@@ -32,7 +32,6 @@ public class NotifyEmployeeInvites extends MeetingAppGUI {
         topLabel.setText("Invite from: " + participant.getMeeting().getOwner().getName());
         Meeting meeting = participant.getMeeting();
         dateLabelStart.setText("Starts: " + meeting.getStartString());
-        //dateLabelEnd.setText("Ends: " + meeting.getEnd());
 
         //build list of attending employees
         ArrayList<Participant> attending = (ArrayList<Participant>) meeting.getAllAccepted(true);

@@ -1,82 +1,63 @@
 package meetingapp.gui;
 
+import meetingapp.entity.Employee;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
 import java.util.Locale;
-
-import meetingapp.entity.Employee;
+import java.util.List;
 
 /**
- * Created by dmnguyen on 8/9/16.
+ * Created by cthill on 8/28/16.
  */
-public class ScheduleDisplayGUI extends MeetingAppGUI{
-    private JPanel scheduleDisplayPanel;
-    private JPanel southPanel;
-    private JPanel northPanel;
-    private JPanel buttonPanel;
-    private JButton reserveTimeButton;
-    private JButton unreserveTimeButton;
-    private JButton backButton;
-    private JPanel centerPanel;
-    private JPanel titlePanel;
-    private JTable scheduleTable;
-    private JLabel updateText;
-    private JButton rightButton;
-    private JButton leftButton;
-    LocalDate originalStartDay = LocalDate.now();
-    LocalDate startDay = LocalDate.now();
+public class AvailableTimesGUI extends MeetingAppGUI {
 
-    public ScheduleDisplayGUI(final Employee employee) {
-        super("Schedule", employee);
-        setup(scheduleDisplayPanel);
+    private JPanel rootPanel;
+    private JButton cancelButton;
+    private JButton selectButton;
+    private JButton leftButton;
+    private JButton rightButton;
+    private JTable scheduleTable;
+    private JLabel errorText;
+
+    private List<Employee> invited;
+    private LocalDate originalStartDay = LocalDate.now();
+    private LocalDate startDay = LocalDate.now();
+    private LocalDateTime selected;
+    private boolean[][] availableTimes = new boolean[5][24];
+
+    public AvailableTimesGUI(Employee employee, List<Employee> invited) {
+        super("Select a time", employee, false);
+        setup(rootPanel);
+
+        this.invited = new ArrayList<>(invited);
+        this.invited.add(employee);
 
         populateTable(startDay);
-        scheduleTable.getTableHeader().setReorderingAllowed(false);
 
-        
-        backButton.addActionListener(new ActionListener() {
+        cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new EmployeeGUI(employee);
-                dispose();
+                dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
             }
         });
 
-
-        unreserveTimeButton.addActionListener(new ActionListener() {
+        selectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int col = scheduleTable.getSelectedColumn();
                 int row = scheduleTable.getSelectedRow();
-                if (col > 0 && !scheduleTable.getModel().getValueAt(row, col).equals("past")) {
-                    scheduleTable.getModel().setValueAt("free", row, col);
-                    LocalDateTime toUnreserve = startDay.atStartOfDay().plusDays(col - 1).plusHours(row);
-                    employee.unreserveDate(toUnreserve);
-                    updateText.setText("Schedule Updated!");
-                } else {
-                    updateText.setText(" ");
-                }
-                scheduleTable.grabFocus();
-            }
-        });
 
-        reserveTimeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int col = scheduleTable.getSelectedColumn();
-                int row = scheduleTable.getSelectedRow();
-                if (col > 0 && !scheduleTable.getModel().getValueAt(row, col).equals("past")) {
-                    scheduleTable.getModel().setValueAt("reserved", row, col);
-                    LocalDateTime toReserve = startDay.atStartOfDay().plusDays(col - 1).plusHours(row);
-                    employee.reserveDate(toReserve);
-                    updateText.setText("Schedule Updated!");
-                } else {
-                    updateText.setText(" ");
+                if (col > 0 && !availableTimes[col - 1][row]) {
+                    selected = startDay.atStartOfDay().plusDays(col - 1).plusHours(row);
+                    dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
                 }
                 scheduleTable.grabFocus();
             }
@@ -108,7 +89,6 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
     }
 
     private void populateTable(LocalDate startDay) {
-        updateText.setText(" ");
 
         DefaultTableModel model = new DefaultTableModel() {
             @Override
@@ -141,7 +121,16 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
             model.addColumn(columns[i]);
         }
 
-        boolean[][] reserved = employee.getSchedule(startDay, 5, false);
+        availableTimes = new boolean[5][24];
+
+        for (Employee e : invited) {
+            boolean[][] schedule = e.getSchedule(startDay, 5, false);
+            for (int i = 0; i < schedule.length; i++) {
+                for (int j = 0; j < schedule[i].length; j++) {
+                    availableTimes[i][j] |= schedule[i][j];
+                }
+            }
+        }
 
         for (int row = 0; row < 24; row++) {
             Object[] thisRow = new Object[6];
@@ -152,10 +141,11 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
                     int currHour = LocalDateTime.now().getHour();
                     if (currHour >= row && startDay.plusDays(col - 1).isEqual(originalStartDay)) {
                         thisRow[col] = "past";
-                    } else if (reserved[col - 1][row]) {
-                        thisRow[col] = "reserved";
+                        availableTimes[col - 1][row] = true;
+                    } else if (availableTimes[col - 1][row]) {
+                        thisRow[col] = "-------";
                     } else {
-                        thisRow[col] = "free";
+                        thisRow[col] = "Available!";
                     }
                 }
             }
@@ -163,4 +153,7 @@ public class ScheduleDisplayGUI extends MeetingAppGUI{
         }
     }
 
+    public LocalDateTime getSelectedTime() {
+        return selected;
+    }
 }

@@ -4,6 +4,7 @@ import meetingapp.db.EmployeeDB;
 import meetingapp.db.ParticipantDB;
 import meetingapp.db.MeetingDB;
 
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.*;
@@ -38,7 +39,7 @@ public class Meeting extends Entity{
         return start;
     }
 
-    protected void save() {
+    public void save() {
         MeetingDB.getInstance().save(this);
     }
 
@@ -104,5 +105,13 @@ public class Meeting extends Entity{
 
     public static List<Meeting> getAll() {
         return (List<Meeting>)(List<?>) MeetingDB.getInstance().loadAll();
+    }
+
+    public void delete() {
+        try {
+            ParticipantDB.getInstance().eraseRecord(this.getID());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

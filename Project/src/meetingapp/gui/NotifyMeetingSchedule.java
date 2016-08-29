@@ -6,6 +6,7 @@ import meetingapp.entity.Employee;
 import meetingapp.entity.Participant;
 import meetingapp.entity.Meeting;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -33,9 +34,10 @@ public class NotifyMeetingSchedule extends MeetingAppGUI {
         scheduleTable.setModel(model);
         model.addColumn("Meeting Time");
 
-        List<Participant> meetings = employee.getAllMeetings(false, false);
+        List<Participant> meetings = employee.getAllMeetings(false);
+        Collections.sort(meetings);
 
-        LocalDateTime twoDays = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).plusDays(2);
+        LocalDateTime twoDays = LocalDate.now().atStartOfDay().plusDays(2);
 
         for (Participant p : meetings) {
             Meeting m = p.getMeeting();
@@ -44,7 +46,7 @@ public class NotifyMeetingSchedule extends MeetingAppGUI {
                 if (m.getStart().getDayOfMonth() != LocalDateTime.now().getDayOfMonth()) {
                     prefixText = "Tomorrow, ";
                 }
-                model.addRow(new Object[] { prefixText + m.getStart().format(DateTimeFormatter.ISO_TIME) });
+                model.addRow(new Object[] { prefixText + m.getStartString() });
             }
         }
 
