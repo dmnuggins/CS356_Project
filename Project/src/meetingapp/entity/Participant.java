@@ -74,6 +74,7 @@ public class Participant extends Entity {
 
     public void setSeenByOwner(boolean seenByOwner) {
         this.seenByOwner = seenByOwner;
+        save();
     }
 
     public void save() {
