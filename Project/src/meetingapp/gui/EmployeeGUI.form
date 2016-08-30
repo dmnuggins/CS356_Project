@@ -26,7 +26,7 @@
                 <constraints/>
                 <properties>
                   <preferredSize width="140" height="32"/>
-                  <text value="Dispaly Schedule"/>
+                  <text value="Display Schedule"/>
                 </properties>
               </component>
             </children>

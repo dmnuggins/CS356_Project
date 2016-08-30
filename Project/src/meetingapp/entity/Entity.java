@@ -20,7 +20,6 @@ public abstract class Entity {
 
     @Override
     public boolean equals(Object other) {
-        Employee eOther = (Employee) other;
-        return eOther.getID() == ID;
+        return ((Entity) other).getID() == ID;
     }
 }

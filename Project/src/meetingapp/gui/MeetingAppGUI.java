@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 public class MeetingAppGUI extends JFrame {
     protected Employee employee;
     protected Room room;
+    protected JFrame window = this;
 
     public MeetingAppGUI(String title, final Employee employee) {
         super(title);
@@ -27,6 +28,8 @@ public class MeetingAppGUI extends JFrame {
         setLocationRelativeTo(null);
         if (exitOnClose) {
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        } else {
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         }
         this.employee = employee;
     }
