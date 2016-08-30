@@ -102,6 +102,7 @@ public class MeetingManagerEmployeeGUI extends MeetingAppGUI {
         DefaultTableModel model = new DefaultTableModel();
         meetingTable.setModel(model);
         model.addColumn("Meeting");
+        model.addColumn("Owner");
 
         for (Participant p : meets) {
             Meeting m = p.getMeeting();
@@ -119,7 +120,7 @@ public class MeetingManagerEmployeeGUI extends MeetingAppGUI {
         }
 
         if (model.getRowCount() == 0) {
-            model.addRow(new Object[] { "No meetings to show" });
+            model.addRow(new Object[] { "No meetings to show", "-" });
         }
     }
 }
