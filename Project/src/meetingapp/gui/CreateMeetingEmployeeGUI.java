@@ -52,7 +52,7 @@ public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
         DefaultComboBoxModel<String> rm = new DefaultComboBoxModel<>();
         rooms = Room.getAll();
         for (Room r : rooms) {
-            rm.addElement("Room " + r.getID());
+            rm.addElement("Room " + r.getID() + " (" + r.getCapacity() + ")");
         }
         roomComboBox.setModel(rm);
 
@@ -81,14 +81,15 @@ public class CreateMeetingEmployeeGUI extends MeetingAppGUI{
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Room selectedRoom = rooms.get(roomComboBox.getSelectedIndex());
                 if (invited.size() == 0) {
                     messageLabel.setText("Cannot create meeting with no employees!");
                 } else if (start == null) {
                     messageLabel.setText("Please select a start time!");
+                } else if (selectedRoom.getCapacity() < invited.size()) {
+                    messageLabel.setText("Too many people for room!");
                 } else {
                     int nextMeetingID = MeetingDB.getInstance().getNextID();
-                    Room selectedRoom = rooms.get(roomComboBox.getSelectedIndex());
-
                     Meeting newMeeting = new Meeting(nextMeetingID, selectedRoom.getID(), LocalDateTime.now());
                     newMeeting.save();
 
