@@ -6,9 +6,7 @@ import meetingapp.entity.*;
 
 import java.time.*;
 
-/**
- * Created by cthill on 8/6/16.
- */
+
 public class MeetingApp {
 
     public static void main(String args[]) {
